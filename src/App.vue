@@ -95,6 +95,49 @@
           </div>
        
 
+  <RouterView />
+
+  <div class="footer">
+    <div class="container">
+      <div class="logo">
+        <img src="@/assets/logo.png" alt="Skin Glow" />
+        <h2>SKIN GLOW</h2>
+      </div>
+      <div class="info">
+        <h3>Information</h3>
+        <ul>
+          <li><router-link to="/about">About Us</router-link></li>
+          <li><router-link to="/services">Services</router-link></li>
+          <li>
+            <router-link to="/privacy-policy">Privacy Policy</router-link>
+          </li>
+          <li><router-link to="/terms">Terms & Conditions</router-link></li>
+        </ul>
+      </div>
+      <div class="social">
+        <h3>Follow us</h3>
+        <ul>
+          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><a href="https://tiktok.com" target="_blank">TikTok</a></li>
+        </ul>
+      </div>
+      <div class="contact">
+        <h3>Contact us</h3>
+        <p>Email: <a href="mailto:skinglow@gmail.com">skinglow@gmail.com</a></p>
+        <p>Phone: <a href="tel:+855230002323">+855 23 000 2323</a></p>
+      </div>
+    </div>
+    <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
+    <div class="pay">
+      <div class="payments">
+        <img src="@/assets/visa.png" alt="Visa" />
+        <img src="@/assets/mastercard.png" alt="MasterCard" />
+        <img src="@/assets/paypal.png" alt="PayPal" />
+      </div>
+    </div>
+  </div>
+
         <!-- <RouterView /> -->
 
         <!-- <Footer></Footer> -->
