@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-<!-- <template>
-  <RouterView />
-</template> -->
-<template>
-  <!-- <RouterView /> -->
-
-  <div id="app">
-    <ProductGrid />
-  </div>
-=======
 <template>
 
   <div class="header">
@@ -79,9 +68,6 @@
       </div>
     </div>
   </div>
-
-
->>>>>>> 3b9d08cf93e81f40a5aac3ff04b72fdc77fcacae
 </template>
 
 
@@ -95,19 +81,13 @@ body {
 </style>
 
 <script>
-<<<<<<< HEAD
-import ProductGrid from './views/ProductGrid.vue';
-=======
+import ProductGrid from './views/Productgrid.vue';
 import NavButton from './components/NavButton.vue';
->>>>>>> 3b9d08cf93e81f40a5aac3ff04b72fdc77fcacae
 
 export default {
   name: 'App',
   components: {
-<<<<<<< HEAD
     ProductGrid,
-  },
-=======
     NavButton,
   },
 
@@ -121,10 +101,11 @@ export default {
         { name: "About", route: "/about" },
         { name: "FAQ", route: "/faq" },
       ],
-    }
-  }
->>>>>>> 3b9d08cf93e81f40a5aac3ff04b72fdc77fcacae
+    };
+  },
 };
+
+
 </script>
 
 <style scoped>
@@ -155,7 +136,7 @@ export default {
 
 
 .footer {
-  position: relative;
+  width: 100%;
   background-color: #f9dada;
   text-align: center;
   font-family: Arial, sans-serif;
