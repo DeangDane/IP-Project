@@ -70,7 +70,7 @@
     </div>
   </div>
 
-  <ProductItem/>
+y
 </template>
 
 
@@ -90,6 +90,7 @@ import NavButton from './components/NavButton.vue';
 import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
+
 
 export default {
   name: 'App',
