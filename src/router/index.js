@@ -10,6 +10,7 @@ import Productcard from "@/views/CartView.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home, },
+  // { path: "/", name: "AllProduct", component: AllProduct, },
   { path: "/bestSeller", name: "BestSeller", component: BestSellersView },
   { path: "/promotion", name: "Promotion", component: PromotionsView },
   { path: "/newArrival", name: "NewArrival", component: NewArrivalsView },

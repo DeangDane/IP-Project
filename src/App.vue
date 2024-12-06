@@ -4,14 +4,15 @@
     <div class="upper">
       <div class="brand">
         <img width="156.25rem" height="161.25rem" src="../public/images/logo.png" alt="">
-        <p>SKIN GLOW</p>
+        <p style="font-size: 1.5rem;">SKIN GLOW</p>
       </div>
 
       <div class="options">
-        <input type="Search" placeholder="Search">
-        <button @click="goToProItem()" class="cartButton" >cart</button>
-        <button>favorite</button>
-        <button>Information</button>
+      
+       <input type="Search" placeholder="Search" >
+        <button @click="goToProItem()" class="cartButton" id="shop"><i class="fas fa-shopping-cart" ></i></button>
+        <button  style="border: none; background-color: white" ><i class="fa fa-heart"></i></button>
+        <button style="border: none; background-color: white" ><i class="fas fa-user"></i></button>
       </div>
 
     </div>
@@ -70,18 +71,11 @@
     </div>
   </div>
 
-  <ProductItem/>
+  <!-- <ProductItem/> -->
 </template>
 
 
-<style>
-/* Add any global styles */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: white;
-}
-</style>
+
 
 <script>
 // import ProductGrid from './views/ProductGridView.vue';
@@ -113,6 +107,7 @@ export default {
     return {
       buttons: [
         { name: "Home", route: "/" },
+        // { name: "AllProduct", route: "/"},
         { name: "Best Seller", route: "/bestSeller" },
         { name: "Promotion", route: "/promotion" },
         { name: "New Arrival", route: "/newArrival" },
@@ -127,7 +122,10 @@ export default {
 </script>
 
 <style scoped>
-
+#shop{
+        border: none;
+        background-color: white;
+      }
 .brand{
   display: flex;
   align-items: center;
@@ -143,13 +141,14 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #FFCBCF;
+  /* background-color: #FFCBCF; */
 }
 
 .lower{
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 
@@ -207,6 +206,10 @@ ul li a {
   left: 620px;
   bottom: 10px;
 }
-
+body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: white;
+      }
 
 </style>

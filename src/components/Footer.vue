@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="container">
       <div class="logo">
-        <img src="@/assets/logo.png" alt="Skin Glow" />
+        <img src="@/assets/logo.png"  alt="Skin Glow" />
         <h2>SKIN GLOW</h2>
       </div>
       <div class="info">
@@ -48,7 +48,7 @@
 
       </div>
       
-    </div>
+    
     <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
     <div class="pay">
       <div class="payments">
@@ -58,7 +58,7 @@
       </div>
     </div>
 
-  </div>
+  
 </template>
 
 <script>
@@ -101,7 +101,7 @@ export default {
   flex: 1;
 }
 .info ul,
-.social ul {
+.social ul ,
 
 .info, .social, .contact {
   margin: 10px;
@@ -136,4 +136,5 @@ ul li a {
   left: 620px;
   bottom: 10px;
 }
-</style>
+
+ </style>

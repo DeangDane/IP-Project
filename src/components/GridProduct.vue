@@ -1,46 +1,45 @@
 <template>
-    <div class="grid-container">
-      <ProductCard
-        v-for="(product, index) in products"
-        :key="index"
-        :product="product"
-      />
-    </div>
-  </template>
-  
-  <script>
-  import ProductCard from './Productcard.vue';
-  
-  export default {
-    name: 'ProductGrid',
-    components: {
-      ProductCard,
-    },
-    data() {
-      return {
-        products: [
-          {
-            title: 'Square One',
-            image: 'https://www.kiehls.com.ph/wp-content/uploads/2023/05/kiehls-face-ultra-pure-high-potency-serum-hyaluronic-acid-30ml-3605972791313-front-1-570x670.jpg',
-            price: '$18.9',
-            rating: 4,
-            isHot: true,
-          },
-          // Add more products
-        ],
-      };
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    padding: 10px;
-    max-width: 560px;
-    margin: auto;
-  }
-  </style>
-  
+  <div class="grid-container">
+    <ProductCard
+      v-for="(product, index) in products"
+      :key="index"
+      :product="product"
+    />
+  </div>
+</template>
+
+<script>
+import ProductCard from './Productcard.vue';
+
+export default {
+  name: 'ProductGrid', // Corrected name to match the file's functionality
+  components: {
+    ProductCard, // Ensure you're importing the correct component
+  },
+  data() {
+    return {
+      products: [
+        {
+          title: 'Product 1',
+          image: 'https://i.pinimg.com/736x/65/be/4e/65be4e8490c62ca138b2d67037f828c2.jpg',
+          price: '$10.0',
+          rating: 4,
+          isHot: true,
+        },
+        
+      ],
+    };
+  },
+};
+</script>
+
+<style scoped>
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Adjust column count as needed */
+  gap: 12px;
+  padding: 10px;
+  max-width: 560px;
+  margin: auto;
+}
+</style>
