@@ -9,7 +9,7 @@
   </template>
   
   <script>
-  import ProductCard from '../views/Productcard.vue';
+  import ProductCard from './ProductcardView.vue';
   
   export default {
     name: 'ProductGrid',

@@ -9,7 +9,7 @@
 
       <div class="options">
         <input type="Search" placeholder="Search">
-        <button>cart</button>
+        <button @click="goToProItem()" class="cartButton" >cart</button>
         <button>favorite</button>
         <button>Information</button>
       </div>
@@ -59,8 +59,9 @@
         <p>Phone: <a href="tel:+855230002323">+855 23 000 2323</a></p>
       </div>
     </div>
-    <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
+    
     <div class="pay">
+      <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
       <div class="payments">
         <img src="@/assets/visa.png" alt="Visa" />
         <img src="@/assets/mastercard.png" alt="MasterCard" />
@@ -83,12 +84,20 @@ body {
 <script>
 import ProductGrid from './views/Productgrid.vue';
 import NavButton from './components/NavButton.vue';
+import Productcard from './views/ProductcardView.vue';
 
 export default {
   name: 'App',
   components: {
     ProductGrid,
     NavButton,
+    Productcard,
+  },
+
+  methods: {
+    goToProItem() {
+      this.$router.push({ name: "Cart" });
+    }
   },
 
   data() {
@@ -140,7 +149,6 @@ export default {
   background-color: #f9dada;
   text-align: center;
   font-family: Arial, sans-serif;
-  width: 1440px;
 }
 .container {
   display: flex;
@@ -180,14 +188,13 @@ ul li a {
 }
 .pay {
   /* margin-left: 1400px; */
-  justify-content: end;
+  justify-content: space-between;
   display: flex;
 }
 .copyright {
   margin-top: 10px;
   font-size: 14px;
   color: #555;
-  position: absolute;
   left: 620px;
   bottom: 10px;
 }
