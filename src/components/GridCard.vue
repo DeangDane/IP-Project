@@ -6,23 +6,23 @@
         <h3 class="product-title">{{ product.title }}</h3>
         <div class="product-rating">
           <i
-            v-for="n in 5"
-            :key="n"
-            :class="n <= product.rating ? 'fa-solid fa-star' : 'fa-regular fa-star' "
+            v-for="star in 5"
+            :key="star"
+            :class="['fa-star', star <= product.rating ? 'fa-solid' : 'fa-regular']"
           ></i>
         </div>
         <div class="product-price">{{ product.price }}</div>
         <div class="icon">
-          <i class="fas fa-shopping-cart"></i>
+          <i class="fa-solid fa-basket-shopping"></i>
           <i class="fa-regular fa-heart"></i>
         </div>
       </div>
     </div>
   </template>
-    
+  
   <script>
   export default {
-    name: 'ProductCard',
+    name: "GridProduct",
     props: {
       product: {
         type: Object,
@@ -88,4 +88,3 @@
     border-radius: 50%;
   }
   </style>
-  
