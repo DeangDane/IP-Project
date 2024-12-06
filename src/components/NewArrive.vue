@@ -5,24 +5,20 @@
       <div class="product-details">
         <h3 class="product-title">{{ product.title }}</h3>
         <div class="product-rating">
-          <i
-            v-for="n in 5"
-            :key="n"
-            :class="n <= product.rating ? 'fa-solid fa-star' : 'fa-regular fa-star'"
-          ></i>
+          <span v-for="n in 5" :key="n" class="star" :class="{ filled: n <= rating }">★</span>
         </div>
         <div class="product-price">{{ product.price }}</div>
         <div class="icon">
-          <i class="fa-solid fa-basket-shopping"></i>
-          <i class="fa-regular fa-heart"></i>
+          <i class="fas fa-shopping-cart"></i>
+          <i class="fa fa-heart"></i>
         </div>
       </div>
     </div>
   </template>
-  
+    
   <script>
   export default {
-    name: 'ProductCard',
+    name: 'NewArrive',
     props: {
       product: {
         type: Object,
@@ -33,28 +29,32 @@
   </script>
   
   <style scoped>
-  /* Reuse styles from your existing CSS for the product cards */
   .grid-product {
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 10px;
-    background-color: white;
+    width: 230px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    box-shadow: 1px 3px 3px gray;
+    height: 300px;
+    
   }
   .product-badge {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background: red;
+    top: px;
+    left: px;
+    background: rgb(13, 186, 198);
+    width: 50px;
+    height: 20px;
     color: white;
-    padding: 2px 8px;
-    font-size: 10px;
+    padding: 1px 8px;
+    font-size: 8px;
     border-radius: 4px;
   }
   .product-image {
-    width: 60%;
+    margin-top: 40px;
+    width: 50%;
     height: 100px;
     object-fit: cover;
     margin-bottom: 10px;
@@ -76,9 +76,11 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+
     color: #33a0ff;
   }
-  .icon i {
+  .product-details .icon i {
+    right: 5px;
     font-size: 15px;
     padding: 8px;
     border-radius: 50%;

@@ -1,5 +1,4 @@
-
-      <template>
+<template>
         <div>
           <!-- Navigation Bar -->
           <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -54,9 +53,9 @@
                 :currentPrice="8"
               /> -->
               <PromotProduct
-                title="Clo de Peau Beauté"
-                subtitle="La Crème"
-                image="https://i.pinimg.com/736x/9a/8f/df/9a8fdfa0435aa3d76c9b04eb680fa540.jpg"
+                title="mixsoon Bean Essence"
+                subtitle="Acid Serum"
+                image="https://i.pinimg.com/736x/b2/12/ec/b212ec71ec8a63e4d9e37fe34beb627a.jpg"
                 :originalPrice="30"
                 :discount="70"
                 :currentPrice="18.9"
@@ -92,50 +91,22 @@
               :product="product"
             />
           </div>
+          <h3 align="center" style="margin-top: 30px;">NEW ARRIVE</h3>
+            <div class="grid-containe" >
+            <NewArrive
+              v-for="(productNew, index) in products"
+              :key="index"
+              :product="productNew"
+            />
+          </div>
           </div>
        
 
   <RouterView />
 
-  <div class="footer">
-    <div class="container">
-      <div class="logo">
-        <img src="@/assets/logo.png" alt="Skin Glow" />
-        <h2>SKIN GLOW</h2>
-      </div>
-      <div class="info">
-        <h3>Information</h3>
-        <ul>
-          <li><router-link to="/about">About Us</router-link></li>
-          <li><router-link to="/services">Services</router-link></li>
-          <li>
-            <router-link to="/privacy-policy">Privacy Policy</router-link>
-          </li>
-          <li><router-link to="/terms">Terms & Conditions</router-link></li>
-        </ul>
-      </div>
-      <div class="social">
-        <h3>Follow us</h3>
-        <ul>
-          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-          <li><a href="https://tiktok.com" target="_blank">TikTok</a></li>
-        </ul>
-      </div>
-      <div class="contact">
-        <h3>Contact us</h3>
-        <p>Email: <a href="mailto:skinglow@gmail.com">skinglow@gmail.com</a></p>
-        <p>Phone: <a href="tel:+855230002323">+855 23 000 2323</a></p>
-      </div>
-    </div>
-    <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
-    <div class="pay">
-      <div class="payments">
-        <img src="@/assets/visa.png" alt="Visa" />
-        <img src="@/assets/mastercard.png" alt="MasterCard" />
-        <img src="@/assets/paypal.png" alt="PayPal" />
-      </div>
-    </div>
+  <div id="app">
+    <!-- Your other components go here -->
+    <Footer />
   </div>
 
         <!-- <RouterView /> -->
@@ -161,7 +132,9 @@
       import PromoProduct from './components/PromoProduct.vue';
       import AutoImageSlider from './components/AutoImageSlider.vue';
       import PromotProduct from './components/PromotProduct.vue';
-      import ProductCard from './components/ProductCard.vue';
+      import ProductCard from './components/Productcard.vue';
+      import Footer from './components/Footer.vue'
+      import NewArrive from './components/NewArrive.vue';
 
       export default {
         name: 'App',
@@ -173,6 +146,8 @@
           AutoImageSlider,
           PromotProduct,
           ProductCard,
+          NewArrive,
+          Footer,
         
         },
         data() {
@@ -211,7 +186,9 @@
                 },
                 // Add more products
               ],
+             
             };
+           
           },
 
       };
@@ -258,7 +235,7 @@
       }
       .grid-containe{
         
-        gap: 30px;
+        gap: 20px;
         margin-top: 40px;
         margin-bottom: 40px;
         width: 100%;
@@ -266,6 +243,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        
+      }
+      .footer{
+        background-color: brown;
+        width: 100%;
+        height: 300px;
+        display: flex;
         
       }
       </style>

@@ -54,24 +54,24 @@ export default {
 </script>
 <style scoped>
 .slider-container {
-  overflow: hidden; /* Hide overflow */
-  width: 100%; /* Full width */
-  position: relative; /* Position relative for absolute child elements */
+  overflow: hidden; 
+  width: 100%; 
+  position: relative; 
 }
 
 .slider {
-  display: flex; /* Use flexbox for horizontal layout */
-  transition: transform 0.1s linear; /* Smooth transition */
-  width: max-content; /* Ensure it can expand */
+  display: flex; 
+  transition: transform 0.1s linear; 
+  width: max-content; 
 }
 
 .image-wrapper {
-  flex: 0 0 auto; /* Prevent images from shrinking */
+  flex: 0 0 auto; 
 }
 
 .slide-image {
-  width: 100%; /* Set width to fill the container */
-  height: 250px; /* Fixed height for images */
-  margin-bottom: 40px; /* Margin between images */
+  width: 100%; 
+  height: 370px; 
+  margin-bottom: 40px; 
 }
 </style>
