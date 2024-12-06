@@ -1,11 +1,10 @@
 <template>
-    <div class="home"
-
+    <!-- <div class="home"> -->
       <!-- Search Component -->
-      <SearchQ @search="handleSearch" />
+      <!-- <SearchQ @search="handleSearch" /> -->
   
       <!-- Reviews -->
-      <Review
+      <!-- <Review
         v-for="review in paginatedReviews"
         :key="review.id"
         :userAvatar="review.avatar"
@@ -14,15 +13,15 @@
         :stars="review.stars"
         :reviewText="review.text"
         :reviewImages="review.images"
-      />
+      /> -->
   
       <!-- Pagination Component -->
-      <PageNumber
+      <!-- <PageNumber
         :totalPages="totalPages"
         :currentPage="currentPage"
         @page-change="handlePageChange"
       />
-      <br/>
+      <br/> -->
     <!-- Header (Optional) -->
     <!-- <header class="header">
       <h1>Welcome to Skin Glow</h1>
@@ -34,7 +33,9 @@
       </nav>
     </header> -->
     <!-- Footer -->
-  </div>
+  <!-- </div> -->
+
+  Home Page
 
   </template>
   

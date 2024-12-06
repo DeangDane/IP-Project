@@ -27,10 +27,11 @@
 
     <script>
     // import imagePath from "@/assets/s.png";
-    import GridProduct from "./components/GridProduct.vue";
-    import ListProduct from "./components/ListProduct.vue";
+import GridProduct from "@/components/GridProduct.vue";
+import ListProduct from "@/components/ListProduct.vue";
     
     export default {
+      name: 'ProductView',
       components: { GridProduct, ListProduct },
       data() {
         return {
