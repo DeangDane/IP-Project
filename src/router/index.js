@@ -6,7 +6,7 @@ import FaqsView from "@/views/FaqsView.vue";
 import NewArrivalsView from "@/views/NewArrivalsView.vue";
 import ProDetailsView from "@/views/ProDetailsView.vue";
 import PromotionsView from "@/views/PromotionsView.vue";
-import Productcard from "@/views/ProductcardView.vue";
+import Productcard from "@/views/CartView.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home, },

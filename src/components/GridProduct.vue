@@ -9,7 +9,7 @@
   </template>
   
   <script>
-  import ProductCard from './ProductcardView.vue';
+  import ProductCard from './Productcard.vue';
   
   export default {
     name: 'ProductGrid',
@@ -19,20 +19,6 @@
     data() {
       return {
         products: [
-          {
-            title: 'Square One',
-            image: 'https://www.kiehls.com.ph/wp-content/uploads/2023/05/kiehls-face-ultra-pure-high-potency-serum-hyaluronic-acid-30ml-3605972791313-front-1-570x670.jpg',
-            price: '$18.9',
-            rating: 4,
-            isHot: true,
-          },
-          {
-            title: 'Square One',
-            image: 'https://www.kiehls.com.ph/wp-content/uploads/2023/05/kiehls-face-ultra-pure-high-potency-serum-hyaluronic-acid-30ml-3605972791313-front-1-570x670.jpg',
-            price: '$18.9',
-            rating: 4,
-            isHot: true,
-          },
           {
             title: 'Square One',
             image: 'https://www.kiehls.com.ph/wp-content/uploads/2023/05/kiehls-face-ultra-pure-high-potency-serum-hyaluronic-acid-30ml-3605972791313-front-1-570x670.jpg',
@@ -53,7 +39,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     padding: 10px;
-    max-width: 960px;
+    max-width: 560px;
     margin: auto;
   }
   </style>

@@ -69,6 +69,8 @@
       </div>
     </div>
   </div>
+
+  <ProductItem/>
 </template>
 
 
@@ -82,16 +84,23 @@ body {
 </style>
 
 <script>
-import ProductGrid from './views/Productgrid.vue';
+// import ProductGrid from './views/ProductGridView.vue';
+// import Productgrid from './views/ProductGridView.vue';
 import NavButton from './components/NavButton.vue';
-import Productcard from './views/ProductcardView.vue';
+import Productcard from './views/CartView.vue';
+import GridProduct from './components/GridProduct.vue';
+import ProductItem from './components/ProductItem.vue';
 
 export default {
   name: 'App',
   components: {
-    ProductGrid,
+    // ProductGrid,
+    // Productgrid,
     NavButton,
     Productcard,
+    GridProduct,
+    ProductItem,
+
   },
 
   methods: {
