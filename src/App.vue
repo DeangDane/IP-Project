@@ -132,7 +132,7 @@
       import PromoProduct from './components/PromoProduct.vue';
       import AutoImageSlider from './components/AutoImageSlider.vue';
       import PromotProduct from './components/PromotProduct.vue';
-      import ProductCard from './components/Productcard.vue';
+      import ProductCard from './components/ProductCard.vue';
       import Footer from './components/Footer.vue'
       import NewArrive from './components/NewArrive.vue';
 
