@@ -34,7 +34,6 @@
       </nav>
     </header> -->
     <!-- Footer -->
-    <Footer />
   </div>
 
   </template>
@@ -43,14 +42,12 @@
   import Review from "@/components/Review.vue";
   import PageNumber from "@/components/PageNumber.vue";
   import SearchQ from "@/components/SearchQ.vue";
-  import Footer from "../components/Footer.vue";
   
   export default {
     components: {
       Review,
       PageNumber,
       SearchQ,
-      Footer,
     },
     data() {
       return {
