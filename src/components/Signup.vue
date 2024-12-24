@@ -23,7 +23,14 @@
             <label for="password">Password</label>
             <input type="password" id="password" v-model="password" required />
           </div>
+          <div class="input-group">
+            <label for="password">Confirm Password</label>
+            <input type="password" id="confirmpassword" v-model="confirmpassword" required />
+          </div>
+
           <div v-if="signUpError.password" class="error-message">{{ signUpError.password }}</div>
+          <div v-if="signUpError.confirmpassword" class="error-message">{{ signUpError.confirmpassword }}</div>
+
           <button type="submit" class="login-btn">Sign Up</button>
         </form>
         <div class="social-login">
@@ -48,6 +55,7 @@ export default {
       name: "",
       email: "",
       password: "",
+      confirmpassword:"",
       signUpError: {}, // Error messages for invalid signup
     };
   },
@@ -62,6 +70,9 @@ export default {
       }
       if (this.password.length < 6) {
         this.signUpError.password = "Password must be at least 6 characters.";
+      }
+      if (this.confirmpassword.length < 6) {
+        this.signUpError.confirmpassword = "Confirm Password must be the same Password.";
       }
       if (!Object.keys(this.signUpError).length) {
         alert("Sign Up Successful!");
