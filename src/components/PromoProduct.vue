@@ -31,7 +31,6 @@
     display: flex;
     /* align-items: center; */
     /* justify-content: center; */
-     
     border-radius: 8px;
     padding: 20px;
     margin: 20px 0;
