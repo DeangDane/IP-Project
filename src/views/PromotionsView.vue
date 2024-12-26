@@ -4,31 +4,23 @@
       <img src="../assets/header1.png" alt="header1" class="header1-image" />
     </section>
     <div class="promo-product-container">
-      <PromoProduct
-        image="src/assets/promo2.png"
+<PromoProduct
+        image="https://inyourfaceskincare.com/cdn/shop/files/CREAM_clean_1800.png?v=1730145433&width=713"
         :originalPrice="40"
         :discount="80"
         :currentPrice="8"
       />
       <PromoProduct
-        image="src/assets/promo1.png"
+        image="https://brittonsport.com/wp-content/uploads/2020/03/3-510x510.jpg"
         :originalPrice="20"
         :discount="50"
         :currentPrice="10"
       />
       <PromoProduct
-       image="src/assets/promo3.png"
+        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHHnbo1fvc2XAfEej7YasT3yJyinI6xpg2qHe26EqBHCKdusFk"
         :originalPrice="34.33"
         :discount="24"
         :currentPrice="26.09"
-      />
-    </div>
-    <h4 align="center" style="margin-top: 1.5rem;"><b>BEST SELLER</b></h4>
-    <div class="grid-container">
-      <ListProduct
-        v-for="(product, index) in products"
-        :key="index"
-        :product="product"
       />
     </div>
     <PageNumber/>
