@@ -24,7 +24,7 @@
       />
     </div>
     <h4 align="center" style="margin-top: 1.5rem;"><b>NEW ARRIVE</b></h4>
-    <div class="grid-container">
+    <div class="grid-container1">
       <NewArrive
         v-for="(productNew, index) in products"
         :key="index"
@@ -239,15 +239,15 @@ h4 {
 background-color: #f9dada;
  border: none;
 }
-
-.grid-container {
+grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 50px;
   padding: 0 2rem;
 }
+
 </style>
 
       
