@@ -1,6 +1,7 @@
 <template>
 
-  <div class="header">
+  <div class="wrapper">
+    <div class="header">
     <div class="upper">
       <div class="brand">
         <img width="156.25rem" height="161.25rem" src="../public/images/logo.png" alt="">
@@ -26,7 +27,9 @@
     </div>
   </div>
 
-  <RouterView />
+  <div class="content">
+    <RouterView />
+  </div>
 
   <div class="footer">
     <div class="container">
@@ -69,8 +72,8 @@
       </div>
     </div>
   </div>
+  </div>
 
-y
 </template>
 
 
@@ -90,7 +93,6 @@ import NavButton from './components/NavButton.vue';
 import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
-
 
 export default {
   name: 'App',
@@ -112,8 +114,13 @@ export default {
 
   data() {
     return {
+      // gridProducts: [
+      //   { name: "Home", route: "/" },
+      // ],
+
       buttons: [
         { name: "Home", route: "/" },
+        { name: "All Products", route: "/allProduct" },
         { name: "Best Seller", route: "/bestSeller" },
         { name: "Promotion", route: "/promotion" },
         { name: "New Arrival", route: "/newArrival" },
@@ -132,6 +139,16 @@ export default {
 .brand{
   display: flex;
   align-items: center;
+}
+
+.content{
+  padding: 0 1rem;
+}
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .upper{
