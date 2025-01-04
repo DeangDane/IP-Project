@@ -1,5 +1,4 @@
 <template>
-    All Products
 
     <div class="content">
         <GridProduct
@@ -42,7 +41,8 @@ export default {
             { image:"images/Product1.png", proName:"Cleansing foam", color:"#FF4858", label:"HOT", price:19 },
             { image:"images/Product1.png", proName:"Cleansing foam", color:"#FF4858", label:"HOT", price:19 },
             { image:"images/Product1.png", proName:"Cleansing foam", color:"#FF4858", label:"HOT", price:19 },
-            { image:"images/Product1.png", proName:"Cleansing foam", color:"#FF4858", label:"HOT", price:19 },
+            // { image:"images/Product1.png", proName:"Cleansing foam", color:"#FF4858", label:"HOT", price:19 },
+        
         ],
 
         listproducts: [
@@ -61,7 +61,8 @@ export default {
 .content{
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
+    justify-content: center;
 }
 
 </style>

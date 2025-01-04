@@ -142,7 +142,7 @@ export default {
   border-radius: 20px;
   padding: 10px 25px;
   gap: 15px;
-  
+  box-shadow: 1px 3px 3px gray;
 }
 
 .listPro {
