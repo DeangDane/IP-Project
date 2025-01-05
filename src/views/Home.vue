@@ -30,6 +30,12 @@
       :currentPage="currentPage"
       @page-change="handlePageChange"
     />
+
+    <!-- Related Products -->
+    <div @click="goToDetails">
+      <img src="../assets/images/product1.png" alt="Product" />
+      <h2>Red Bean Refreshing Pore Mask</h2>
+    </div>
     <br />
     <Footer />
   </div>
@@ -115,6 +121,16 @@
       switchToSignUp() {
       this.currentComponent = "Signup";
       },
+      goToDetails() {
+  try {
+    this.$router.push({ name: "ProDetailsPage"});
+  } catch (error) {
+    console.error('Navigation error:', error);
+  }
+  console.log('Navigating to product details page');
+  this.$router.push({ name: "ProDetailsPage" });
+}
+
     },
   };
   </script>
