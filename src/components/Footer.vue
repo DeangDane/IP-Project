@@ -8,11 +8,17 @@
       <div class="info">
         <h3>Information</h3>
         <ul>
+
           <li><router-link to="/about">About Us</router-link></li>
           <li><router-link to="/services">Services</router-link></li>
           <li>
             <router-link to="/privacy-policy">Privacy Policy</router-link>
           </li>
+
+          <li><router-link to="/about-us">About Us</router-link></li>
+          <li><router-link to="/services">Services</router-link></li>
+          <li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
+
           <li><router-link to="/terms">Terms & Conditions</router-link></li>
         </ul>
       </div>
@@ -28,6 +34,7 @@
         <h3>Contact us</h3>
         <p>Email: <a href="mailto:skinglow@gmail.com">skinglow@gmail.com</a></p>
         <p>Phone: <a href="tel:+855230002323">+855 23 000 2323</a></p>
+
       </div>
     </div>
     <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
@@ -38,6 +45,19 @@
         <img src="@/assets/paypal.png" alt="PayPal" />
       </div>
     </div>
+
+      </div>
+      
+    </div>
+    <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
+    <div class="pay">
+      <div class="payments">
+        <img src="@/assets/visa.png" alt="Visa" />
+        <img src="@/assets/mastercard.png" alt="MasterCard" />
+        <img src="@/assets/paypal.png" alt="PayPal" />
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -62,13 +82,18 @@ export default {
   align-items: flex-start;
 }
 .logo img {
+
   height: 100px;
+
+  height: 100px; 
+
 }
 .logo h2 {
   font-size: 24px;
   font-family: Cormorant Garamond;
   margin: 10px 10px;
 }
+
 .info,
 .social,
 .contact {
@@ -77,6 +102,13 @@ export default {
 }
 .info ul,
 .social ul {
+
+.info, .social, .contact {
+  margin: 10px;
+  flex: 1;
+}
+.info ul, .social ul {
+
   list-style: none;
   padding: 0;
 }

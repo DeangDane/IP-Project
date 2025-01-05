@@ -1,6 +1,6 @@
 <template>
     <button @click="shopNow()" class="button" :style="{ backgroundColor: color}">
-        <p> {{name}} </p>
+        {{name}}
     </button>
 </template>
 
@@ -26,15 +26,17 @@ export default {
 .button{
     /* font-family: 'Poppins', sans-serif; */
     padding: 10px 20px;
-    margin: 5px;
-    font-size: 16px;
+    font-size: 1.15rem;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    text-align: center;
 }
 
 .button:hover {
-    background-color: #2980b9;
+    color: #FB7181;
+    border-bottom: solid 2px #FB7181;
 }
 
 </style>
