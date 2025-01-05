@@ -1,7 +1,8 @@
 <template>
     <div class="login-container">
       <div class="left-panel">
-        <img class="logo" src="@/assets/Logo SkinGlow.png" alt="Skin Glow Logo" />
+        <img class="logo" src="../public/images/logo.png" alt="Skin Glow Logo" />
+        <!-- <img class="logo" src="@/assets/Logo SkinGlow.png" alt="Skin Glow Logo" /> -->
         <h1>Skin Glow</h1>
       </div>
       <div class="right-panel">
