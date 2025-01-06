@@ -61,7 +61,7 @@ export default {
 
 .slider {
   display: flex; 
-  transition: transform 0.1s linear; 
+  transition: transform 0.1s linear infinite;  
   width: max-content; 
 }
 
