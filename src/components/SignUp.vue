@@ -48,7 +48,6 @@
 </template>
 <script>
 import { RouterLink } from 'vue-router';
-import { useUserProfileStore } from "../stores/UserProfile";
 
 export default {
   data() {

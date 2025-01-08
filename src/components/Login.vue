@@ -44,7 +44,6 @@
   
   <script>
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-  import { useUserProfileStore } from "../stores/UserProfile";
 
   export default {
     data() {
