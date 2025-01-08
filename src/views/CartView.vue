@@ -1,173 +1,67 @@
-<!-- <template>
-    <div class="grid-product">
-      <div v-if="product.isHot" class="product-badge">HOT</div>
-      <img :src="product.image" alt="Product Image" class="product-image" />
-      <div class="product-details">
-        <h3 class="product-title">{{ product.title }}</h3>
-        <div class="product-rating">
-          <i
-            v-for="n in 5"
-            :key="n"
-            :class="n <= product.rating ? 'fa-solid fa-star' : 'fa-regular fa-star'"
-          ></i>
-        </div>
-        <div class="product-price">{{ product.price }}</div>
-        <div class="icon">
-          <i class="fa-solid fa-basket-shopping"></i>
-          <i class="fa-regular fa-heart"></i>
-        </div>
+<template>
+  <div class="container">
+    <div class="title">
+      <div class="line"></div>
+      <h1>Your Basket</h1>
+      <div class="line"></div>
+    </div>
+    <div class="row">
+      <div class="checkout" v-for="(product, index) in products" :key="index">
+        <ProductItem
+          :title="product.title"
+          :price="product.price"
+          :image="product.image"
+          @remove="handleRemove"
+        />
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ProductCard',
-    props: {
-      product: {
-        type: Object,
-        required: true,
-      },
-    },
-  };
-  </script>
-  
-  <style scoped>
-  /* Reuse styles from your existing CSS for the product cards */
-  .grid-product {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: white;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .product-badge {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: red;
-    color: white;
-    padding: 2px 8px;
-    font-size: 10px;
-    border-radius: 4px;
-  }
-  .product-image {
-    width: 60%;
-    height: 100px;
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
-  .product-title {
-    font-size: 14px;
-    color: #333;
-  }
-  .product-rating {
-    color: #f7b64d;
-    font-size: 14px;
-  }
-  .product-price {
-    font-size: 16px;
-    color: #007bff;
-    font-weight: bold;
-  }
-  .icon {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    color: #33a0ff;
-  }
-  .icon i {
-    font-size: 15px;
-    padding: 8px;
-    border-radius: 50%;
-  }
-  </style> -->
 
-  <template>
-    <div class="container">
-      <div class=" title">
-        <div class="line"></div>
-        <h1>Your Basket</h1>
-        <div class="line"></div>
-      </div>
-      <div class="row">
-        <div class="checkout" v-for="(product, index) in products" :key="index">
-          <ProductItem
-            :title="product.title"
-            :price="product.price"
-            :image="product.image"
-            @remove="handleRemove"
-          />
-        </div>
+    <div class="payment">
+      <div class="coupon">
+        <input class="couponCode" type="string" placeholder="Coupon or Voucher Code">
+        <button class="subBtn">Submit</button>
       </div>
 
-      <div class="payment">
-        <div class="coupon">
-          <input class="couponCode" type="string" placeholder="Coupon or Voucher Code">
-          <button class="subBtn">Submit</button>
+      <div class="total">
+        <div class="info">
+          <div>Subtotal</div>
+          <div>{{ cartTotal | currency }}</div>
         </div>
-
-        <div class="total">
-          <div class="info">
-            <div>Subtotal</div>
-            <div>35$</div>
-          </div>
-          <div class="info">
-            <div>Shiping Fee</div>
-            <div>3$</div>
-          </div>
-          <div class="info">
-            <div>Coudivon or Voucher</div>
-            <div>None</div>
-          </div>
-          <hr>
-          <div id="inf" class="info">
-            <div>Total</div>
-            <div>38$</div>
-          </div>
-          <button class="checkoutTotal">Checkout</button>
+        <div class="info">
+          <div>Shipping Fee</div>
+          <div>3$</div>
         </div>
+        <div class="info">
+          <div>Coupon or Voucher</div>
+          <div>None</div>
+        </div>
+        <hr>
+        <div id="inf" class="info">
+          <div>Total</div>
+          <div>{{ (cartTotal + 3) | currency }}</div>
+        </div>
+        <button class="checkoutTotal" @click="checkout">Checkout</button>
       </div>
-  
-      <!-- Add the PromoProduct component -->
-      <!-- <div class="boxx">
-      <PromoProduct
-        image="https://i.pinimg.com/736x/0e/04/de/0e04ded9d236f115de4f52a9348fe28d.jpg"
-        :originalPrice="40"
-        :discount="80"
-        :currentPrice="8"
-      /> -->
-  
-      <!-- <PromotProduct
-        title="Clo de Peau Beauté"
-        subtitle="La Crème"
-        image="https://i.pinimg.com/736x/9a/8f/df/9a8fdfa0435aa3d76c9b04eb680fa540.jpg"
-        :originalPrice="30"
-        :discount="70"
-        :currentPrice="18.9"
-        :rating="4" 
-      /> -->
     </div>
-    <!-- </div> -->
-  </template>
-  
+  </div>
+</template>
+
 <script>
 import ProductItem from '@/components/ProductItem.vue';
-  // import PromoProduct from './components/PromoProduct.vue';
-  // import PromotProduct from './components/PromotProduct.vue';
-  
+
 export default {
-    components: {
-      ProductItem,
-      // PromoProduct,
-      // PromotProduct,
-    },
-    data() {
-      return {
-        products: [
-          {
+  components: {
+    ProductItem,
+  },
+  data() {
+    return {
+      groupWrapper: "list-group-item",
+      isShowingCart: false,
+      cart: {
+        items: [],
+      },
+      products: [
+      {
             title: "Sunscreen Cream SPF 50 (200 ml)",
             price: 18.8,
             image: "https://i.pinimg.com/736x/9a/8f/df/9a8fdfa0435aa3d76c9b04eb680fa540.jpg",
@@ -183,81 +77,141 @@ export default {
             image: "https://i.pinimg.com/736x/9a/8f/df/9a8fdfa0435aa3d76c9b04eb680fa540.jpg",
           },
         
-        ],
-      };
+        // Add more products here...
+      ],
+    };
+  },
+  computed: {
+    cartTotal() {
+      return this.cart.items.reduce(
+        (total, item) => total + item.quantity * item.product.price,
+        0
+      );
     },
-    methods: {
-      handleRemove() {
-        // Handle item removal here
-        console.log("Item removed");
-      },
+    taxAmount() {
+      return this.cartTotal * 0.1; // 10% tax
     },
-  };
-  </script>
-  
-  <style scoped>
-  .container{
-    width: 100%;
-    /* height: 50rem; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 5% 5% 5% 5%;
-    gap: calc(3vw);
-  }
-  .title {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* padding: 2%; */
-    gap: 20px;
-  }
+  },
+  filters: {
+    currency: function(value) {
+      var formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 0
+      });
+      return formatter.format(value);
+    }
+  },
+  methods: {
+    addProductToCart(product) {
+      const cartItem = this.getCartItem(product);
+      if (cartItem) {
+        cartItem.quantity++;
+      } else {
+        this.cart.items.push({ product, quantity: 1 });
+      }
+      product.inStock--;
+    },
+    increaseQuantity(item) {
+      item.quantity++;
+      item.product.inStock--;
+    },
+    decreaseQuantity(item) {
+      item.quantity--;
+      item.product.inStock++;
+      if (item.quantity === 0) {
+        this.removeItemFromCart(item);
+      }
+    },
+    removeItemFromCart(item) {
+      const index = this.cart.items.indexOf(item);
+      if (index > -1) {
+        this.cart.items.splice(index, 1);
+      }
+    },
+    listWrapper() {
+      this.groupWrapper = "list-group-item";
+    },
+    gridWrapper() {
+      this.groupWrapper = "grid-group-item";
+    },
+    checkout() {
+      if (confirm("Are you sure that you want to purchase these products?")) {
+        this.cart.items.forEach((item) => (item.product.inStock += item.quantity));
+        this.cart.items = [];
+      }
+    },
+    getCartItem(product) {
+      return this.cart.items.find((item) => item.product.id === product.id) || null;
+    },
+    handleRemove() {
+      // Handle item removal here
+      console.log("Item removed");
+    },
+  },
+  filters: {
+    currency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 2,
+      }).format(value);
+    },
+  },
+};
+</script>
 
-  .line {
+<style scoped>
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5% 5% 5% 5%;
+  gap: calc(3vw);
+}
+.title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.line {
   flex: 1;
   height: 2px;
   background-color: #1f3566; /* Navy blue line color */
 }
-
-.payment{
+.payment {
   display: flex;
   width: 100%;
-  /* flex-direction: row; */
   justify-content: space-between;
-  /* background-color: aqua; */
 }
-
-.info{
+.info {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* background-color: blanchedalmond; */
 }
-
-.total{
+.total {
   width: 250px;
   display: flex;
   flex-direction: column;
   gap: calc(0.5vw);
 }
-
-.couponCode{
+.couponCode {
   padding: 10px 10px 10px 5px;
   box-sizing: border-box;
   border: 2px solid #ccc;
   border-right: none;
   border-radius: 5px 0px 0px 5px;
-  /* -webkit-transition: 0.5s;
-  transition: 0.5s;*/
   outline: none;
 }
 .couponCode:focus {
   border: 2px solid #FFCBCF;
   border-right: none;
 }
-.subBtn{
+.subBtn {
   padding: 10px 30px;
   box-sizing: border-box;
   border: 2px solid #FF4858;
@@ -265,14 +219,12 @@ export default {
   background-color: #FFCBCF;
   outline: none;
 }
-
 .subBtn:active {
   border: 2px solid #FF4858;
   background-color: #FF4858;
   color: white;
 }
-
-.checkoutTotal{
+.checkoutTotal {
   padding: 10px 30px;
   border-radius: 5px;
   box-sizing: border-box;
@@ -280,26 +232,12 @@ export default {
   background-color: #FFCBCF;
   outline: none;
 }
-
 .checkoutTotal:active {
   border: 2px solid #FF4858;
   background-color: #FF4858;
   color: white;
 }
-
-#inf{
+#inf {
   font-size: larger;
 }
-/* .checkoutTotal{
-  gap: 10px;
-} */
-  /* .boxx{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-items: center;
-    justify-content: space-between ;
-    margin-left: 35%;
-    
-  } */
-  </style>
+</style>

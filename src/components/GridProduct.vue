@@ -1,7 +1,4 @@
 <template>
-  
-
-
   <div @click="goToProDetails()" class="gridPro">
     <div class="btns">
       <div class="cart">
@@ -16,7 +13,6 @@
     <div class="Image"><img :src="image" class="image" /></div>
 
     <div class="proName">
-      <h3>{{ proName }}</h3>
       <h3>{{ proName }}</h3>
     </div>
 

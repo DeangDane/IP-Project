@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    
 
     <div class="Image"><img :src="image" class="image" />
       <div class="label" :style="{ backgroundColor: color }">{{ label }}</div>
@@ -7,7 +8,6 @@
 
     <div class="listPro">
       <div class="proName">
-        <h3>{{ proName }}</h3>
         <h3>{{ proName }}</h3>
       </div>
 
@@ -79,9 +79,7 @@
       </div>
 
       <div class="description">
-        description dwndiwenhnjwendjkewndjkewnjkd'
-        dmjwiejdiojijewidjiewjdiwejdewdiweidjiewjdiew
-        duwediuewidewidiewjdiewjdiewjdiewjdiejdijeide
+        description of the products here...
       </div>
 
       <div class="btns">
@@ -138,17 +136,18 @@ export default {
   align-items: center;
   border: solid 1px #C1C8CE;
   background-color: #f6f8f7;
-  /* background-color: #4be397; */
   border-radius: 20px;
   padding: 10px 25px;
   gap: 15px;
   box-shadow: 1px 3px 3px gray;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .listPro {
   display: flex;
   flex-direction: column;
   justify-content: left;
+  gap: 10px;
 }
 
 .btns {
@@ -170,7 +169,6 @@ export default {
   position: relative;
   width: 200px;
   height: 230px;
-  /* background-color: #FB7181; */
 }
 
 .label {

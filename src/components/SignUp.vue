@@ -48,6 +48,7 @@
 </template>
 <script>
 import { RouterLink } from 'vue-router';
+import { useUserProfileStore } from "../stores/UserProfile";
 
 export default {
   data() {
@@ -76,6 +77,8 @@ export default {
       }
       if (!Object.keys(this.signUpError).length) {
         alert("Sign Up Successful!");
+        const userProfileStore = useUserProfileStore();
+        userProfileStore.saveUserProfile({ name: this.name, email: this.email });
         this.$emit('switchToLogin');
         // Navigate to the login page
         // this.$router.push("/login");

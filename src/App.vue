@@ -93,6 +93,7 @@ import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
 import Signup from "@/components/Signup.vue";
 import ProfileModal from "@/components/ProfileModal.vue";
+
 export default {
   name: 'App',
   components: {
