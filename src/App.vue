@@ -36,8 +36,9 @@
         <h2>SKIN GLOW</h2>
       </div>
       <div class="info">
-        <h3>Information</h3>
+        
         <ul>
+        <h3>Information</h3>
           <li><router-link to="/about">About Us</router-link></li>
           <li><router-link to="/services">Services</router-link></li>
           <li>
@@ -47,20 +48,23 @@
         </ul>
       </div>
       <div class="social">
-        <h3>Follow us</h3>
+        
         <ul>
-          <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-          <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-          <li><a href="https://tiktok.com" target="_blank">TikTok</a></li>
+        <h3>Follow us</h3>
+          <li><font-awesome-icon icon="facebook" />  <a href="https://facebook.com"target="_blank">Facebook</a></li>
+          <li><font-awesome-icon icon="instagram" size="xs" />  <a href="https://instagram.com" target="_blank">Instagram</a></li>
+          <li><font-awesome-icon icon="tiktok" />  <a href="https://tiktok.com" target="_blank">TikTok</a></li>
         </ul>
       </div>
       <div class="contact">
+      <ul>
         <h3>Contact us</h3>
-        <p>Email: <a href="mailto:skinglow@gmail.com">skinglow@gmail.com</a></p>
-        <p>Phone: <a href="tel:+855230002323">+855 23 000 2323</a></p>
+        <li><font-awesome-icon icon="envelope" />  <a href="mailto:skinglow@gmail.com">skinglow@gmail.com</a></li>
+        <li><font-awesome-icon icon="phone" /> <a href="tel:+855230002323">+855 23 000 2323</a></li>
+      </ul>
       </div>
     </div>
-    
+    <div class="line"></div>
     <div class="pay">
       <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
       <div class="payments">
@@ -153,6 +157,8 @@ export default {
 
 
 .footer {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   background-color: #f9dada;
   text-align: center;
@@ -160,15 +166,21 @@ export default {
 }
 .container {
   display: flex;
+  flex-direction:row;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
 }
+.logo {
+  flex: 1;
+  margin-right: 20px;
+}
 .logo img {
-  height: 100px;
+  height: 200px;
 }
 .logo h2 {
-  font-size: 24px;
+  font-size: 40px;
   font-family: Cormorant Garamond;
   margin: 10px 10px;
 }
@@ -179,7 +191,12 @@ export default {
   flex: 1;
 }
 .info ul,
-.social ul {
+.social ul,
+.contact ul {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+
   list-style: none;
   padding: 0;
 }
@@ -190,23 +207,32 @@ ul li a {
   color: black;
   text-decoration: none;
 }
+
 .payments img {
-  margin: 0 5px;
+  margin: 0 10px;
   height: 20px;
 }
-.pay {
-  /* margin-left: 1400px; */
-  justify-content: space-between;
+.payments {
+  margin-right:10px;
   display: flex;
+  flex-direction: row;
+}
+.pay {
+  background-color: #f9dada;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid black;
 }
 .copyright {
   margin-top: 10px;
+  margin-left: 20px;
   font-size: 14px;
   color: #555;
   left: 620px;
   bottom: 10px;
 }
-body {
+.body {
         margin: 0;
         font-family: Arial, sans-serif;
         background-color: white;
