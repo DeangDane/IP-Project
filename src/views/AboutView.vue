@@ -48,12 +48,12 @@
       <div class="features">
         <div class="feature">
           <font-awesome-icon :icon="['fas', 'truck']" size="3x" :style="{ color: '#c14463', padding: '10px' }" />       
-             <h3>FREE SHIPPING</h3>
+            <h3>FREE SHIPPING</h3>
           <p>Free shipping to all countries around the world</p>
         </div>
         <div class="feature">
           <font-awesome-icon :icon="['fas', 'check-double']" size="3x" :style="{ color: '#c14463', padding: '10px' }" />   
-                 <h3>100% Authentic</h3>
+                <h3>100% Authentic</h3>
           <p>We guarantee authenticity of our products</p>
         </div>
         <div class="feature">
@@ -89,6 +89,7 @@ export default {
   width: 1440px;
   margin: 0 auto;
 }
+
 
 /* FAQ Header Styling */
 .about-header {

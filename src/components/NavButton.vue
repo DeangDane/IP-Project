@@ -27,14 +27,16 @@ export default {
     /* font-family: 'Poppins', sans-serif; */
     padding: 10px 20px;
     margin: 5px;
-    font-size: 16px;
+    font-size: 1.15rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
 }
 
 .button:hover {
-    background-color: #2980b9;
+    color: #FB7181;
 }
 
 </style>

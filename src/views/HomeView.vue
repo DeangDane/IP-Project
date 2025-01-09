@@ -1,139 +1,182 @@
 <template>
-    
+
+  <div class="homeView">
     <AutoImageSlider />
-    <h4 align="center" style="margin-top: 1.5rem; margin-bottom: 1.5rem;"><b>FEATURED PRODUCT</b></h4>
-  <div class="container">
-    <div class="boxx">
-              
-              <!-- <PromoProduct
-                image="https://i.pinimg.com/736x/0e/04/de/0e04ded9d236f115de4f52a9348fe28d.jpg"
-                :originalPrice="40"
-                :discount="80"
-                :currentPrice="8"
-              /> -->
-              <PromotProduct
-                title="mixsoon Bean "
-                subtitle="Acid Serum"
-                image="https://i.pinimg.com/736x/b2/12/ec/b212ec71ec8a63e4d9e37fe34beb627a.jpg"
-                :originalPrice="30"
-                :discount="70"
-                :currentPrice="18.9"
-                :rating="4"
-              />
-              <PromotProduct
-                title="Anua Heartleaf 77%"
-                subtitle="Toner Anua"
-                image="https://i.pinimg.com/736x/ab/64/a8/ab64a8ee0cfd36b27d808027014533d6.jpg"
-                :originalPrice="30"
-                :discount="70"
-                :currentPrice="18.9"
-                :rating="4"
-              />
-              <PromotProduct
-                title="Clo de Peau Beauté"
-                subtitle="La Crème"
-                image="https://i.pinimg.com/736x/9a/8f/df/9a8fdfa0435aa3d76c9b04eb680fa540.jpg"
-                :originalPrice="30"
-                :discount="70"
-                :currentPrice="18.9"
-                :rating="4"
-              />
-            </div>
-            <h4 align="center" style="margin-top: 1.5rem;"><b>BEST SELLER</b></h4>
-            <div class="grid-containe" >
-              
-            <GridProduct
-              v-for="(product, index) in products"
-              :key="index"
-              :product="product"
-            />
-          </div>
-          <h4 align="center" style="margin-top: 1.5rem;"><b>NEW ARRIVE</b></h4>
-            <div class="grid-containe" >
-            <NewArrive
-              v-for="(productNew, index) in products"
-              :key="index"
-              :product="productNew"
-            />
-          </div>
+
+    <div class="text">
+      FEATURE PRODUCTS
+    </div>
+
+    <div class="content">
+      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
+        :proName="gridPro.proName" :price="gridPro.price" />
+    </div>
+
+    <button class="viewAll">View All</button>
+
+    <div class="text">
+      BEST SELLER
+    </div>
+
+    <div class="content">
+      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
+        :proName="gridPro.proName" :price="gridPro.price" />
+    </div>
+
+    <div class="text">
+      PROMOTIONS
+    </div>
+
+    <div class="content">
+      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
+        :proName="gridPro.proName" :price="gridPro.price" />
+    </div>
+
+    <div class="text">
+      NEW ARRIVALS
+    </div>
+
+    <div class="content">
+      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
+        :proName="gridPro.proName" :price="gridPro.price" />
+    </div>
+
+    <div class="search-container">
+      <input type="text" placeholder="Search query..." class="search-input" />
+      <button class="search-button">Search</button>
+    </div>
+
   </div>
-    
-    <!-- <PromotProduct /> -->
-    <NewArrive />
-   
-  </template>
 
-  
-  <script>
-  import AutoImageSlider from "@/components/AutoImageSlider.vue";
-  import PromotProduct from "@/components/PromotProduct.vue";
-  import Review from "@/components/Review.vue";
-  import PageNumber from "@/components/PageNumber.vue";
-  import SearchQ from "@/components/SearchQ.vue";
-  import GridProduct from "@/components/GridProduct.vue";
-  import NewArrive from "@/components/NewArrive.vue";
-  
-  export default {
-    components: {
-      Review,
-      PageNumber,
-      SearchQ,
-      AutoImageSlider,
-      PromotProduct,
-      GridProduct,
-      NewArrive,
-      
-    },
-   data() {
-            return {
-             
-        
-              products: [
-                {
-                  title: 'Square One',
-                  image: 'https://i.pinimg.com/736x/49/9a/3e/499a3eaf66e7915c0907c9ae6403a1a8.jpg',
-                  price: '$18.9',
-                  rating: 4,
-                  isHot: true,
-                },
-                // Add more products
-                {
-                  title: 'Square One',
-                  image: 'https://i.pinimg.com/736x/f2/06/1b/f2061bd1e9a7c88c19804edc6dbe0868.jpg',
-                  price: '$18.9',
-                  rating: 4,
-                  isHot: true,
-                },
-                // Add more products
-                {
-                  title: 'Square One',
-                  image: 'https://i.pinimg.com/736x/54/73/fd/5473fd9e3d2d567af59998fb6ff76bd8.jpg',
-                  price: '$18.9',
-                  rating: 4,
-                  isHot: true,
-                },
-                // Add more products
-                {
-                  title: 'Square One',
-                  image: 'https://i.pinimg.com/736x/4b/f7/18/4bf718ef4218f11b7264e2be908ce6e6.jpg',
-                  price: '$17.9',
-                  rating: 4,
-                  isHot: true,
-                },
-                // Add more products
-              ],
-             
-            };
-           
-          },
+</template>
 
-      };
-    
-  </script>
-  <style>
-.home{
+<script>
+import Review from "@/components/Review.vue";
+import PageNumber from "@/components/PageNumber.vue";
+import SearchQ from "@/components/SearchQ.vue";
+import GridProduct from "@/components/GridProduct.vue";
+import AutoImageSlider from "@/components/AutoImageSlider.vue";
+
+export default {
+  components: {
+    Review,
+    PageNumber,
+    SearchQ,
+    GridProduct,
+    AutoImageSlider
+  },
+  data() {
+    return {
+
+      gridproducts: [
+        { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
+        { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
+        { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
+        { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
+      ],
+
+      currentPage: 1,
+      query: "",
+    };
+  },
+  // computed: {
+  //   filteredReviews() {
+  //     return this.reviews.filter((review) =>
+  //       review.text.toLowerCase().includes(this.query.toLowerCase())
+  //     );
+  //   },
+  //   paginatedReviews() {
+  //     const reviewsPerPage = 5;
+  //     const start = (this.currentPage - 1) * reviewsPerPage;
+  //     return this.filteredReviews.slice(start, start + reviewsPerPage);
+  //   },
+  //   totalPages() {
+  //     return Math.ceil(this.filteredReviews.length / 5);
+  //   },
+  // },
+  // methods: {
+  //   handleSearch(query) {
+  //     this.query = query;
+  //     this.currentPage = 1;
+  //   },
+  //   handlePageChange(page) {
+  //     this.currentPage = page;
+  //   },
+  // },
+};
+</script>
+<style>
+.homeView {
   width: 100%;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.text {
+  font-size: 1.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.viewAll {
+  border: none;
+  background-color: white;
+  font-family: 'Poppins', sans-serif;
+  font-size: large;
+}
+
+.viewAll:hover {
+  color: #33A0FF;
+}
+
+
+.search-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #a3c1ff;
+  /* Light blue border */
+  border-radius: 5px;
+  overflow: hidden;
+  /* To keep the border radius */
+  width: 30%;
+  margin-left: 30%;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  border: none;
+  padding: 10px;
+  outline: none;
+  flex-grow: 1;
+  /* Allow input to take available space */
+  font-size: 16px;
+  color: #999;
+  /* Light gray text */
+}
+
+.search-button {
+  background-color: #00aaff;
+  /* Blue background */
+  color: white;
+  /* White text */
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-button:hover {
+  background-color: #0088cc;
+  /* Darker blue on hover */
 }
 
    
