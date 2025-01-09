@@ -55,33 +55,32 @@
     </div>
 
     <!-- Step 2: Payment Details -->
-    <div v-if="currentStep === 2" class="step1">
-      <!-- 1 -->
-      <div class="payment-card">
-        <img src="/src/assets/visacardd.png" alt="Visa card" />
-      </div>
-      <!-- 1 -->
+  <div v-if="currentStep === 2" class="step1">
+      <div class="paymcard">
+          <div class="payment-card">
+            <img src="/src/assets/visacardd.png" alt="Visa card" />
+          </div>
 
-      <!-- 2 -->
-      <div class="form-group">
-        <input type="text" placeholder="Card Number" v-model="form.cardNumber" />
-        <div class="cvv">
-          <input type="text" placeholder="Expiry Date (MM/YY)" v-model="form.expiry" />
-          <input type="text" placeholder="CVV" v-model="form.cvv" />
+        <div class="form-container1">
+          <div class="form-group">
+              <input type="text" placeholder="Card Number" v-model="form.cardNumber" />
+            <div class="cvv">
+                <input type="text" placeholder="Expiry Date (MM/YY)" v-model="form.expiry" />
+                <input type="text" placeholder="CVV" v-model="form.cvv" />
+            </div>          
+                <input type="text" placeholder="Holder Number" v-model="form.holderName" />
+          </div>
         </div>
-        <input type="text" placeholder="Holder Number" v-model="form.holderName" />
-      </div>
-      <!-- 2 -->
+      </div>     
 
-       <!-- 3 -->
-      <div class="save">
-        <label>
-        <input type="checkbox" id="save1" v-model="form.saveCard" /> Save this card for future use
-        <button class="next-btn" " @click="nextStep">Confirm Payment</button>
+        <div class="savecard">
+          <label>
+          <input type="checkbox" id="savecard" v-model="form.saveCard" /> 
+          <span>Save this card for future use</span>
+          <button class="next-btn" @click="nextStep">Confirm Payment</button>
       </label>
       </div>
-      <!-- 3 -->
-    </div>
+  </div>
 
     <!-- Step 3: Payment Success -->
     <div v-if="currentStep === 3" class="step success-step">
@@ -115,7 +114,7 @@ export default {
   },
   methods: {
     prevStep() {
-      alert("Back Payment");
+      
       this.$router.go(-1); // Navigate to the previous page in Vue Router history
     },
     nextStep() {
@@ -248,6 +247,7 @@ export default {
 
 /* Steps */
 .step {
+  
   text-align: left;
 }
 
@@ -395,40 +395,6 @@ i {
   color:#ff4c61 ;
   margin-bottom: 10px;
 }
-.step1{
-  display: flex;
-  position: relative;
-  flex-direction: space-between;
-  /* align-items: center;
-  justify-content: center; */
-  gap: 100px;
-  
-}
-.save{
-  position: absolute;
-  bottom: 0;
-  right: 50px;
-  left: 50px;
-  gap: 10px;
-}
-.save label input {
-  position: absolute;
-  bottom: 0;
-  top: 1px;
-  size: 30px;
-  right: 10px;
-  left: 80px;
-  gap: 10px;
-
-}
-.form-group input{
-  /* display: flex; */
-  /* flex-direction: column; */
-  width: 100%;
-  gap: 0pX;
-  margin-right: 0px;
-  margin-bottom: 15px;
-}
 /* Buttons */
 button {
   padding: 12px 15px;
@@ -463,29 +429,81 @@ h3 {
   color: rgb(18, 18, 110);
   font-size: 1rem;
 }
+
+/* Payment Card Preview */
 .payment-card {
-  width: 50%; /* Full width of container */
+  width: 100%; /* Full width of container */
   max-width: 400px; /* Limit maximum width */
+  gap: 10px;
   margin: 0 auto 20px; /* Center image with spacing */
   /* background-color: none; */
 }
+.payment-card img {
+  width: 100px;
+  max-width: 350px;
+  margin: 0 auto 20px;
+  border-radius: 8px;
+}
+.paymcard{
+  display: flex;
+  gap: 5px;
 
-/* Payment Card Preview */
+}
+.form-container1 input{
+  width: 100%;
+  gap: 20px;
+}
+.form-container1 input::placeholder{
+  font-size: 13px;
+  width: 100%;
+  gap: 20px;
+}
+.step1{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+
+}
+/*  */
+label #savecard{
+  position: absolute;
+  font-size: 1rem;
+
+}
+.cvv{
+  display: flex;
+  gap: 20px;
+  flex-direction: row;
+}
+.savecard label input{
+  margin-top: 10px;
+  left: 110px;
+  bottom: 160px;
+  right: 10px;
+  size: 10px;
+  color: gray;
+ 
+}
+.savecard label span{
+  position: absolute;
+  margin-top: 10px;
+  left: 29rem;
+  right: 10px;
+  top: 20rem;
+  bottom: 10rem;
+  /* right: 10px; */
+  size: 10px;
+  font-size: 1rem;
+
+}
 .payment-card img {
   width: 100%;
   max-width: 350px;
   margin: 0 auto 20px;
   border-radius: 8px;
-  
 }
-.cvv{
-  display: flex;
-  gap: 20px;
-}
-.cvv input::placeholder{
-  font-size: 14px;
-  gap: 20px;
-}
+
 /* Checkbox */
 input[type="checkbox"] {
   margin-right: 10px;
