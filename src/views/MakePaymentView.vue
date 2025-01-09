@@ -84,15 +84,15 @@
 
     <!-- Step 3: Payment Success -->
     <div v-if="currentStep === 3" class="step success-step">
-      <div class="success-icon">✔</div>
-      <h3>Payment Successful</h3>
-      <p>Thank you for your payment!</p>
-      <button class="complete-btn" @click="completePayment">Finish</button>
+      <i class="fa-solid fa-circle-check"></i>
+      <h3>Success</h3>
+      <button class="complete-btn" @click="completePayment">Complete</button>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -114,13 +114,20 @@ export default {
   },
   methods: {
     prevStep() {
-      
-      this.$router.go(-1); // Navigate to the previous page in Vue Router history
+      if (this.currentStep > 1) {
+        this.currentStep--;
+      } else {
+        alert("You are already at the first step.");
+      }
     },
     nextStep() {
+      
       if (this.currentStep < 3) {
         this.currentStep++;
       }
+      if (this.currentStep === 3) {
+        this.triggerSuccessAlert();
+  }
     },
     closePayment() {
       alert("Payment process has been closed.");
@@ -154,6 +161,7 @@ export default {
         this.form.paymentMethod = method;
       }
     },
+
   },
 };
 </script>
@@ -419,7 +427,15 @@ button:hover {
 }
 
 /* Success Step */
-.success-step .success-icon {
+ .success-step {
+  text-align: center;
+  font-weight: bold;
+  font-size: 3rem;
+  color: #ff4c61;
+  margin-bottom: 20px;
+
+}
+.success-step i{
   font-size: 3rem;
   color: #ff4c61;
   margin-bottom: 20px;
@@ -469,6 +485,7 @@ h3 {
 label #savecard{
   position: absolute;
   font-size: 1rem;
+  color: gray;
 
 }
 .cvv{
@@ -483,10 +500,12 @@ label #savecard{
   right: 10px;
   size: 10px;
   color: gray;
- 
+  border: none;
+  font-size: 1rem;                            
 }
 .savecard label span{
   position: absolute;
+  color: gray;
   margin-top: 10px;
   left: 29rem;
   right: 10px;
@@ -541,4 +560,6 @@ button.complete-btn {
 button.complete-btn:hover {
   background: #ff4c61;
 }
+
+
 </style>

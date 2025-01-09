@@ -9,6 +9,7 @@ import PromotionsView from "@/views/PromotionsView.vue";
 import AllProduct from "@/views/AllProduct.vue";
 import MakePaymentView from "@/views/MakePaymentView.vue";
 
+
 const routes = [
   { path: "/", name: "Home", component: Home, },
   { path: "/allProduct", component: AllProduct },
