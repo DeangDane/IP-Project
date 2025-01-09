@@ -65,6 +65,8 @@
         }
         if (!Object.keys(this.loginError).length) {
           alert("Login Successful!");
+        const userProfileStore = useUserProfileStore();
+        userProfileStore.saveUserProfile({ name: 'User', email: this.email }); // Replace 'User' with actual user data
           this.$emit("close");
         }
       },
