@@ -12,7 +12,8 @@
           <input class="search" type="Search" placeholder="Search">
           <button @click="goToProItem()" class="cartButton"><i class="fas fa-shopping-cart"></i></button>
           <button class="favoriteButton"><i class="fa fa-heart"></i></button>
-          <button @click="signUp()" class="userButton"><i class="fas fa-user"></i></button>
+          <button class="userButton" @click="toggleModal"><i class="fas fa-user"></i></button>
+          <ProfileModal :show="isModalVisible" @close="toggleModal" />
         </div>
 
       </div>
@@ -89,32 +90,47 @@ import NavButton from './components/NavButton.vue';
 import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
-import SignUpView from "@/views/SignUpView.vue";
+import Login from "@/components/Login.vue";
+import Signup from "@/components/Signup.vue";
+import ProfileModal from "@/components/ProfileModal.vue";
 
 export default {
   name: 'App',
   components: {
     // ProductGrid,
-    // Productgrid,
     NavButton,
     Productcard,
     GridProduct,
     ProductItem,
-
+    Login,
+    Signup,
+    ProfileModal,
   },
 
-  methods: {
+  methods: 
+  {
+    toggleModal() {
+      this.isModalVisible = !this.isModalVisible;
+      },
     goToProItem() {
       this.$router.push({ name: "Cart" });
-    }
-    
-    signUp(){
-      this.$router.push({ name: "Sign Up" });
-    }
+    },
+    switchToLogin() {
+      this.currentComponent = "Login";
+      },
+      switchToSignUp() {
+      this.currentComponent = "Signup";
+      },
+
   },
 
   data() {
     return {
+
+      currentComponent: "Login",
+        isModalVisible: false,
+        // currentPage: 1,
+        // query: "",
       // gridProducts: [
       //   { name: "Home", route: "/" },
       // ],
@@ -176,6 +192,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 

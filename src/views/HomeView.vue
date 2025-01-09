@@ -178,4 +178,61 @@ export default {
   background-color: #0088cc;
   /* Darker blue on hover */
 }
+
+   
+      .boxx{
+        display: flex;
+        width: auto;
+        justify-content: center;
+      }
+      #navbarNav{
+        justify-content: space-between;
+        display: flex;
+      }
+      .btn-user{
+        border: none;
+        background-color: aliceblue;
+      }
+      .btn-shop{
+        border: none;
+        background-color: aliceblue;
+      }
+      .narbar-li{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        list-style-type: none;
+        justify-content: center;
+        
+      }
+      .narbar-li a{
+        color: black;
+      }
+      body {
+        font-family: 'Cormorant Garamond', serif; /* Apply the font globally */
+      }
+      .navbar-brand span {
+        font-family: 'Cormorant Garamond', serif; /* Apply to brand name */
+        font-weight: 700; /* Bold weight */
+      }
+      .grid-containe{
+        
+        gap: 20px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+      }
+      .footer{
+        background-color: brown;
+        width: 100%;
+        height: 300px;
+        display: flex;
+        
+      }
+    
 </style>

@@ -8,7 +8,7 @@ import ProDetailsView from "@/views/ProDetailsView.vue";
 import PromotionsView from "@/views/PromotionsView.vue";
 import Productcard from "@/views/CartView.vue";
 import AllProductsView from "@/views/AllProductsView.vue";
-import SignUpView from "@/views/SignUpView.vue";
+import Productview from "@/views/Productview.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home, },
@@ -20,7 +20,7 @@ const routes = [
   { path: "/faq", name: "Faq", component: FaqsView },
   { path: "/proDetail", name: "ProDetail", component: ProDetailsView },
   { path: "/cart", name: "Cart", component: Productcard },
-  { path: "/sigUp", name: "Sign Up", component: SignUpView },
+  {path: "/productview", name: "Productview", component: Productview},
 ];
 
 const router = createRouter({
