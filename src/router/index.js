@@ -9,6 +9,9 @@ import PromotionsView from "@/views/PromotionsView.vue";
 import Productcard from "@/views/CartView.vue";
 import AllProductsView from "@/views/AllProductsView.vue";
 import Productview from "@/views/Productview.vue";
+import MakePaymentView from "@/views/MakePaymentView.vue";
+import CartView from "@/views/CartView.vue";
+
 
 const routes = [
   { path: "/", name: "Home", component: Home, },
@@ -21,6 +24,9 @@ const routes = [
   { path: "/proDetail", name: "ProDetail", component: ProDetailsView },
   { path: "/cart", name: "Cart", component: Productcard },
   {path: "/productview", name: "Productview", component: Productview},
+  {path: "/cart", name: "Cart", component: CartView},
+  { path: "/makePayment", name: "MakePayment", component: MakePaymentView },
+
 ];
 
 const router = createRouter({

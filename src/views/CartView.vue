@@ -33,14 +33,17 @@
         </div>
         <div class="info">
           <div>Coupon or Voucher</div>
-          <div>None</div>
+          <div>{{ appliedCoupon || 'None' }}</div>
         </div>
         <hr>
         <div id="inf" class="info">
           <div>Total</div>
           <div>{{ (cartTotal + 3) | currency }}</div>
         </div>
-        <button class="checkoutTotal" @click="checkout">Checkout</button>
+        <router-link to="/makePayment">
+          <button class="checkoutTotal"  >Checkout</button>
+        </router-link>
+
       </div>
     </div>
   </div>
@@ -135,12 +138,17 @@ export default {
     gridWrapper() {
       this.groupWrapper = "grid-group-item";
     },
-    checkout() {
-      if (confirm("Are you sure that you want to purchase these products?")) {
-        this.cart.items.forEach((item) => (item.product.inStock += item.quantity));
-        this.cart.items = [];
-      }
+    // checkout() {
+    //   if (confirm("Are you sure that you want to purchase these products?")) {
+    //     this.cart.items.forEach((item) => (item.product.inStock += item.quantity));
+    //     this.cart.items = [];
+    //   }
+    // },
+
+    goToMakePayment() {
+      this.$router.push('/makePayment');
     },
+
     getCartItem(product) {
       return this.cart.items.find((item) => item.product.id === product.id) || null;
     },

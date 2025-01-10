@@ -93,6 +93,8 @@ import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
 import Signup from "@/components/Signup.vue";
 import ProfileModal from "@/components/ProfileModal.vue";
+import MakePaymentView from './views/MakePaymentView.vue';
+
 
 export default {
   name: 'App',
@@ -105,6 +107,8 @@ export default {
     Login,
     Signup,
     ProfileModal,
+    MakePaymentView,
+
   },
 
   methods: 
