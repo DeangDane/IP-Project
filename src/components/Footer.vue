@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <div class="container">
+    
       <div class="logo">
         <img src="@/assets/logo.png"  alt="Skin Glow" />
         <h2>SKIN GLOW</h2>
@@ -20,15 +20,15 @@
           <li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
 
           <li><router-link to="/terms">Terms & Conditions</router-link></li>
-        </ul>
+        
       </div>
       <div class="social">
         <h3>Follow us</h3>
-        <ul>
+       
           <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
           <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
           <li><a href="https://tiktok.com" target="_blank">TikTok</a></li>
-        </ul>
+        
       </div>
       <div class="contact">
         <h3>Contact us</h3>
@@ -39,7 +39,11 @@
     </div>
     <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
     <div class="pay">
-      <div class="payments">
+      <div class="copy">
+        <p >© 2018 Ecommerce theme by www.bisenbaev.com</p>
+
+      </div>
+      <div class="payment">
         <img src="@/assets/visa.png" alt="Visa" />
         <img src="@/assets/mastercard.png" alt="MasterCard" />
         <img src="@/assets/paypal.png" alt="PayPal" />
@@ -63,23 +67,20 @@
 
 <script>
 export default {
-  name: "Footer",
-};
+  name: 'Footer'
+}
 </script>
 
 <style scoped>
-.footer {
-  position: relative;
-  background-color: #f9dada;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  width: 1440px;
-}
-.container {
+.footer{
   display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  
+  height: 300px;
+  background-color:  rgb(255, 203, 207);
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start;
+  font-family: 'Cormorant Garamond', serif;
 }
 .logo img {
 
@@ -124,17 +125,15 @@ ul li a {
   height: 20px;
 }
 .pay {
-  /* margin-left: 1400px; */
-  justify-content: end;
-  display: flex;
+  
+  width: 100%;
+  height: 50px;
+
 }
-.copyright {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #555;
-  position: absolute;
-  left: 620px;
-  bottom: 10px;
+.copy {
+  width: 50%;
+  height: 10px;
+  
 }
 
  </style>
