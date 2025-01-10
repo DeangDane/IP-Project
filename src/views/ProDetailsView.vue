@@ -59,27 +59,32 @@
                 </div>
                 <!-- Reviews Section -->
                 <div v-else-if="selectedTab === 1">
-                    <div class="reviews-section">
-                        <div v-for="(review, index) in reviews" :key="index" class="review">
-                            <div class="review-header">
-                                <h4>{{ review.name }}</h4>
-                                <div class="rating">
-                                    <span v-for="star in review.rating" :key="star">⭐</span>
-                                    <span class="rating-number">({{ review.rating }}/5)</span>
-                                </div>
-                            </div>
-                            <p class="review-comment">{{ review.comment }}</p>
-                            <div class="review-actions">
-                                <button @click="editReview(index)">Update</button>
-                                <button @click="deleteReview(index)">Delete</button>
-                            </div>
-                        </div>
-                        <button class="write-review-btn" @click="openReviewModal">
-                            Write Review
-                        </button>
+                <div class="reviews-section">
+                <div v-for="review in reviews" :key="review.id">
+                    <Review
+                    :userAvatar="review.userAvatar"
+                    :userName="review.userName"
+                    :reviewDate="review.date"
+                    :stars="review.rating"
+                    :reviewText="review.comment"
+                    :reviewImages="review.photos"
+                    />
+                    <div class="review-actions">
+                    <button @click="editReview(review.id)">Edit</button>
+                    <button @click="deleteReview(review.id)">Delete</button>
                     </div>
                 </div>
+                <div class="write-review-container">
+
+                <button class="write-review-btn" @click="openReviewModal">
+                            Write Review
+                        </button>
+                </div>
+                </div>
+                </div>
+
             </div>
+
         </div>
 
         <!-- Related Products -->
@@ -129,6 +134,8 @@
 </template>
 
 <script>
+import { useReviewsStore } from "@/stores/Reviews";
+import Review from "@/components/Review.vue";
 import product1 from "@/assets/images/product1.png";
 import product2 from "@/assets/images/product2.png";
 import product3 from "@/assets/images/product3.png";
@@ -137,6 +144,10 @@ import related1 from "@/assets/images/related1.png";
 import related2 from "@/assets/images/related2.png";
 import related3 from "@/assets/images/related3.png";
 export default {
+    name: "ProDetailsView",
+  components: {
+    Review,
+  },
     data() {
         return {
             // Default product details
@@ -145,10 +156,7 @@ export default {
             tabs: ["Product Information", "Reviews"],
             selectedTab: 0,
             tabContents: ["Details about this product.", ""],
-            reviews: [
-                { name: "Alice", rating: 5, comment: "Amazing product!", date: "2025-01-04" },
-                { name: "Bob", rating: 4, comment: "Good value for money.", date: "2025-01-03" },
-            ],
+            
             relatedProducts: [
                 {
                     name: "Heartleaf Quercetinol",
@@ -156,9 +164,6 @@ export default {
                     currentPrice: "$20.43",
                     details: {
                         images: [related1],
-                        reviews: [
-                            { name: "Jane", rating: 4, comment: "Works great!", date: "2025-01-02" },
-                        ],
                     },
                 },
                 {
@@ -167,9 +172,6 @@ export default {
                     currentPrice: "$19.99",
                     details: {
                         images: [related2],
-                        reviews: [
-                            { name: "Mike", rating: 5, comment: "Highly recommended!", date: "2025-01-01" },
-                        ],
                     },
                 },
                 {
@@ -178,9 +180,6 @@ export default {
                     currentPrice: "$29.43",
                     details: {
                         images: [related3],
-                        reviews: [
-                            { name: "Jane", rating: 4, comment: "Works great!", date: "2025-01-02" },
-                        ],
                     },
                 },
                 {
@@ -189,9 +188,6 @@ export default {
                     currentPrice: "$20.43",
                     details: {
                         images: [related1],
-                        reviews: [
-                            { name: "Jane", rating: 4, comment: "Works great!", date: "2025-01-02" },
-                        ],
                     },
                 },
             ],
@@ -206,10 +202,17 @@ export default {
             isReviewModalOpen: false,
             reviewRating: 0,
             reviewComment: "",
+            reviewPhotos: [],
+            editingReviewId: null,
             isEditing: false,
-            editingIndex: null,
         };
     },
+    computed: {
+    reviews() {
+      const reviewsStore = useReviewsStore();
+      return reviewsStore.reviews;
+    },
+  },
     methods: {
         selectImage(image) {
             this.selectedImage = image;
@@ -218,6 +221,12 @@ export default {
             this.selectedTab = index;
         },
         addToCart() {
+            const product = {
+            name: this.productName,
+            price: this.currentPrice,
+            image: this.selectedImage,
+            quantity: this.quantity,
+        };
             alert(`Added ${this.quantity} item(s) of ${this.productName} to your cart.`);
         },
         loadProductDetails(product) {
@@ -264,32 +273,40 @@ export default {
             });
         },
         submitReview() {
-            const newReview = {
-                name: "Anonymous", // You can replace this with a user input for the name
-                rating: this.reviewRating,
-                comment: this.reviewComment,
-                date: new Date().toISOString().split("T")[0],
-            };
-            if (this.isEditing) {
-                this.reviews.splice(this.editingIndex, 1, newReview);
-            } else {
-                this.reviews.push(newReview);
-            }
-            this.closeReviewModal();
+            const reviewsStore = useReviewsStore();
+        const newReview = {
+        userName: "Anonymous", // You can replace this with a user input for the name
+        rating: this.reviewRating,
+        comment: this.reviewComment,
+        date: new Date().toISOString().split("T")[0],
+        photos: this.reviewPhotos,
+      };
+      if (this.isEditing) {
+        reviewsStore.updateReview(this.editingReviewId, newReview);
+      } else {
+        reviewsStore.addReview(this.productName, newReview.comment, newReview.rating, newReview.photos);
+      }
+      this.closeReviewModal();
         },
-        editReview(index) {
-            const review = this.reviews[index];
+        editReview(reviewId) {
+            const reviewsStore = useReviewsStore();
+            const review = reviewsStore.reviews.find((review) => review.id === reviewId);
             this.reviewRating = review.rating;
             this.reviewComment = review.comment;
             this.reviewPhotos = review.photos;
-            this.editingIndex = index;
+            this.editingReviewId = reviewId;
             this.isEditing = true;
             this.openReviewModal();
         },
-        deleteReview(index) {
-            this.reviews.splice(index, 1);
+        deleteReview(reviewId) {
+            const reviewsStore = useReviewsStore();
+            reviewsStore.deleteReview(reviewId);        
         },
     },
+    mounted() {
+    const reviewsStore = useReviewsStore();
+    reviewsStore.loadReviews();
+  },
 };
 </script>
 
@@ -510,8 +527,14 @@ export default {
     font-size: 14px;
 }
 
+.write-review-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
 .write-review-btn {
-    background-color: #007bff;
+    background-color: rgb(234, 129, 147);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -522,6 +545,7 @@ export default {
 
 .write-review-btn:hover {
     background-color: #0056b3;
+
 }
 
 /* Related Products */
@@ -643,7 +667,8 @@ text-decoration: underline;
 }
 
 .review-modal .star {
-    font-size: 28px;
+    /* font-size: 28px; */
+    font-size: 1.5em;
     color: #ccc;
     cursor: pointer;
     transition: color 0.2s ease;

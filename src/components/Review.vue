@@ -70,9 +70,11 @@
     color: gold;
   }
   .review-images img {
-    width: 60px;
-    margin-right: 8px;
-    border-radius: 4px;
+    width: 50px; /* Set a fixed width */
+  height: 50px; /* Set a fixed height */
+  object-fit: cover; /* Ensure the image covers the area */
+  margin-right: 8px;
+  border-radius: 4px;
   }
   </style>
   
