@@ -16,6 +16,11 @@
             </div>
             <div class="product-info">
                 <h1>{{ productName }}</h1>
+                <div class="ratings-section">
+                <span class="stars">★★★★★</span>
+                <a href="#reviews" class="reviews-link">0 reviews</a>
+                <a href="#submit-review" class="submit-review">Submit a review</a>
+                </div>
                 <div class="price">
                     <span class="current-price">{{ currentPrice }}</span>
                     <span class="original-price">{{ originalPrice }}</span>
@@ -28,7 +33,15 @@
                 </div>
                 <div class="actions">
                     <input type="number" v-model.number="quantity" min="1" />
-                    <button @click="addToCart">Add To Cart</button>
+                    <button @click="addToCart"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                </div>
+                <div class="share-buttons">
+                <button @click="shareOnFacebook" class="share-button">
+                    <font-awesome-icon :icon="['fab', 'facebook-f']" />  Share on Facebook
+                </button>
+                <button @click="shareOnTwitter" class="share-button">
+                    <font-awesome-icon :icon="['fab', 'twitter']" />  Share on Twitter
+                </button>
                 </div>
             </div>
         </div>
@@ -81,6 +94,9 @@
                         <span class="current-price">{{ product.currentPrice }}</span>
                     </div>
                 </div>
+
+            <p>LOAD MORE</p>
+                
             </div>
         </div>
 
@@ -215,6 +231,17 @@ export default {
             this.selectedTab = 0; // Reset to the first tab
         },
 
+        shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            window.open(shareUrl, "_blank");
+        },
+        shareOnTwitter() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`Check out this product: ${this.productName}`);
+            const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+            window.open(shareUrl, "_blank");
+        },
 
         openReviewModal() {
             this.isReviewModalOpen = true;
@@ -341,6 +368,28 @@ export default {
     margin-bottom: 10px;
 }
 
+.ratings-section {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.ratings-section .stars {
+  color: #f39c12;
+}
+
+.ratings-section .reviews-link,
+.ratings-section .submit-review {
+  margin-left: 10px;
+  color: #007bff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.ratings-section .reviews-link:hover,
+.ratings-section .submit-review:hover {
+  text-decoration: underline;
+}
+
 .price {
     display: flex;
     align-items: center;
@@ -396,6 +445,25 @@ export default {
 
 .actions button:hover {
     background-color: #0056b3;
+}
+
+.share-buttons {
+  margin-top: 20px;
+}
+
+.share-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+
+.share-button:hover {
+  background-color: #0056b3;
 }
 
 /* Product Tabs */
@@ -462,15 +530,23 @@ export default {
 }
 
 .related-products h2 {
-    font-size: 20px;
+    font-size: 26px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
+    text-align: center;
 }
 
 .related-products .products-list {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+}
+
+.related-products p {
+text-decoration: underline;
+  color: #007bff;
+  margin: 0 auto;
+  font-weight: 500;
 }
 
 .product-card {
