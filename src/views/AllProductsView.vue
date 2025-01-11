@@ -146,6 +146,7 @@
 import GridProduct from "@/components/GridProduct.vue";
 import ListProduct from "@/components/ListProduct.vue";
 import PageNumber from "@/components/PageNumber.vue";
+import { useProductStore } from "@/store/ProductStore";
 
   export default {
     components: {
@@ -269,7 +270,7 @@ import PageNumber from "@/components/PageNumber.vue";
     gap: 20px;
     padding: 20px;
   }
-   
+  
   .main-content {
     width: 900px;
     flex-grow: 1;

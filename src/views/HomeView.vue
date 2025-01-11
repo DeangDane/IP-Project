@@ -6,7 +6,7 @@
       
     </div>
     <div class="content">
-      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
+      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
         :proName="gridPro.proName" :price="gridPro.price" />
     </div>
 
@@ -17,7 +17,7 @@
     </div>
 
     <div class="content">
-      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
+      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
         :proName="gridPro.proName" :price="gridPro.price" />
     </div>
 
@@ -26,7 +26,7 @@
     </div>
 
     <div class="content">
-      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
+      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
         :proName="gridPro.proName" :price="gridPro.price" />
     </div>
 
@@ -49,10 +49,8 @@ import Review from "@/components/Review.vue";
 import PageNumber from "@/components/PageNumber.vue";
 import SearchQ from "@/components/SearchQ.vue";
 import GridProduct from "@/components/GridProduct.vue";
-// import NewArrive from "@/components/NewArrive.vue";
-
 import AutoImageSlider from "@/components/AutoImageSlider.vue";
-import NewArrive from "@/components/NewArrive.vue";
+import { useProductStore } from "@/store/ProductStore";
 
 export default {
   components: {
@@ -64,18 +62,22 @@ export default {
     AutoImageSlider,
     
   },
-  data() {
+
+  setup() {
+    const productStore = useProductStore();
     return {
-      gridproducts: [
-        { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
-        { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
-        { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
-        { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
-      ],
-      currentPage: 1,
-      query: "",
+      gridproducts: productStore.products,
     };
   },
+  // data() {
+  //   return {
+
+  //     gridproducts: useProductStore.products,
+
+  //     currentPage: 1,
+  //     query: "",
+  //   };
+  // },
   // computed: {
   //   filteredReviews() {
   //     return this.reviews.filter((review) =>
@@ -232,60 +234,71 @@ export default {
   /* Darker blue on hover */
 }
 
-   
-      .boxx{
-        display: flex;
-        width: auto;
-        justify-content: center;
-      }
-      #navbarNav{
-        justify-content: space-between;
-        display: flex;
-      }
-      .btn-user{
-        border: none;
-        background-color: aliceblue;
-      }
-      .btn-shop{
-        border: none;
-        background-color: aliceblue;
-      }
-      .narbar-li{
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        list-style-type: none;
-        justify-content: center;
-        
-      }
-      .narbar-li a{
-        color: black;
-      }
-      body {
-        font-family: 'Cormorant Garamond', serif; /* Apply the font globally */
-      }
-      .navbar-brand span {
-        font-family: 'Cormorant Garamond', serif; /* Apply to brand name */
-        font-weight: 700; /* Bold weight */
-      }
-      .grid-containe{
-        
-        gap: 20px;
-        margin-top: 40px;
-        margin-bottom: 40px;
-        width: 100%;
-        height: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-      }
-      .footer{
-        background-color: brown;
-        width: 100%;
-        height: 300px;
-        display: flex;
-        
-      }
-    
+
+.boxx {
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
+
+#navbarNav {
+  justify-content: space-between;
+  display: flex;
+}
+
+.btn-user {
+  border: none;
+  background-color: aliceblue;
+}
+
+.btn-shop {
+  border: none;
+  background-color: aliceblue;
+}
+
+.narbar-li {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style-type: none;
+  justify-content: center;
+
+}
+
+.narbar-li a {
+  color: black;
+}
+
+body {
+  font-family: 'Cormorant Garamond', serif;
+  /* Apply the font globally */
+}
+
+.navbar-brand span {
+  font-family: 'Cormorant Garamond', serif;
+  /* Apply to brand name */
+  font-weight: 700;
+  /* Bold weight */
+}
+
+.grid-containe {
+
+  gap: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.footer {
+  background-color: brown;
+  width: 100%;
+  height: 300px;
+  display: flex;
+
+}
 </style>

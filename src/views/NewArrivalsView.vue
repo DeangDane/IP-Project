@@ -1,17 +1,18 @@
 <template>
-<div class="newArrival">
-    <div class="text">
-        NEW ARRIVALS
-    </div>
+    <div class="newArrival">
+        <div class="text">
+            NEW ARRIVALS
+        </div>
 
-    <div class="content">
-        <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color"
-            :label="gridPro.label" :proName="gridPro.proName" :price="gridPro.price" />
+        <div class="content">
+            <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color"
+                :label="gridPro.label" :proName="gridPro.proName" :price="gridPro.price" />
+        </div>
     </div>
-</div>
 </template>
 <script>
 import GridProduct from "@/components/GridProduct.vue";
+import { useProductStore } from "@/store/ProductStore";
 
 export default {
     name: "NewArrival",
@@ -20,30 +21,22 @@ export default {
         GridProduct,
     },
 
-    data() {
+    setup() {
+        const productStore = useProductStore();
         return {
-
-            gridproducts: [
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#FFC600", label: "NEW", price: 19 },
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#FFC600", label: "NEW", price: 19 },
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#FFC600", label: "NEW", price: 19 },
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#FFC600", label: "NEW", price: 19 },
-            ],
-
-            currentPage: 1,
-            query: "",
+            gridproducts: productStore.newProducts,
         };
     },
 };
 </script>
 
 <style>
-
-.newArrival{
+.newArrival {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
+
 .content {
     display: flex;
     flex-wrap: wrap;

@@ -4,7 +4,7 @@
     <div class="header">
       <div class="upper">
         <div class="brand">
-          <img width="107px" height="110px" src="../public/images/logo.png" alt="">
+          <img width="107px" height="110px" src="/images/logo.png" alt="">
           <p class="brandName">SKIN GLOW</p>
         </div>
 
@@ -91,7 +91,7 @@ import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
-import Signup from "@/components/Signup.vue";
+import SignUp from "@/components/SignUp.vue";
 import ProfileModal from "@/components/ProfileModal.vue";
 
 export default {
@@ -103,7 +103,7 @@ export default {
     GridProduct,
     ProductItem,
     Login,
-    Signup,
+    SignUp,
     ProfileModal,
   },
 
