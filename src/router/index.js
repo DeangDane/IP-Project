@@ -6,25 +6,35 @@ import FaqsView from "@/views/FaqsView.vue";
 import NewArrivalsView from "@/views/NewArrivalsView.vue";
 import ProDetailsView from "@/views/ProDetailsView.vue";
 import PromotionsView from "@/views/PromotionsView.vue";
-import AllProduct from "@/views/AllProduct.vue";
+import Productcard from "@/views/CartView.vue";
+import AllProductsView from "@/views/AllProductsView.vue";
+import Productview from "@/views/Productview.vue";
 import MakePaymentView from "@/views/MakePaymentView.vue";
-
+import CartView from "@/views/CartView.vue";
+import OrderHistory from "@/views/OrderHistory.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home, },
-  { path: "/allProduct", component: AllProduct },
-  { path: "/bestSeller", component: BestSellersView },
-  { path: "/promotion", component: PromotionsView },
-  { path: "/newArrival", component: NewArrivalsView },
-  { path: "/about", component: About },
-  { path: "/faq", component: FaqsView },
-  { path: "/proDetail", component: ProDetailsView },
+  { path: "/allProduct", name: "AllProduct", component: AllProductsView, },
+  { path: "/bestSeller", name: "BestSeller", component: BestSellersView },
+  { path: "/promotion", name: "Promotion", component: PromotionsView },
+  { path: "/newArrival", name: "NewArrival", component: NewArrivalsView },
+  { path: "/about", name: "About", component: About },
+  { path: "/faq", name: "Faq", component: FaqsView },
+  { path: "/proDetail", name: "ProDetail", component: ProDetailsView },
+  { path: "/cart", name: "Cart", component: Productcard },
+  {path: "/productview", name: "Productview", component: Productview},
+  {path: "/cart", name: "Cart", component: CartView},
   { path: "/makePayment", name: "MakePayment", component: MakePaymentView },
+  { path: "/order-history", name:"OrderHistory", component: () => import("@/views/OrderHistory.vue"),
+
+  }
+
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes, // Correct property name
+  routes, 
 });
 
 export default router;

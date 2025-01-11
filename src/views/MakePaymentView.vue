@@ -92,6 +92,7 @@
 </template>
 
 <script>
+import { useOrderStore } from '@/store/OrderStore';
 
 export default {
   data() {
@@ -135,9 +136,47 @@ export default {
       this.currentStep = 1;
     },
     completePayment() {
+      const orderStore = useOrderStore();
+      
+      const newOrder = {
+        id: Date.now(), // Unique ID for the order
+        userId: "12345", // Replace with actual user ID
+        location: "123 Street, City", // Replace with actual location
+        coupon: "DISCOUNT10", // Replace with actual coupon
+        totalAmount: 100.0, // Replace with actual total amount
+        discount: 10.0, // Replace with actual discount
+        state: "Completed", // Order status
+        items: [
+          { productId: "1", amount: 2 },
+          { productId: "2", amount: 1 },
+        ], // Example items
+      
+    };
+    
+      // alert("Payment completed successfully!");
+      // this.resetForm();
+      // this.currentStep = 1;
+      // Save the order details to the store
+
+      // const orderDetails = {
+      //   firstName: this.form.firstName,
+      //   lastName: this.form.lastName,
+      //   email: this.form.email,
+      //   phoneNumber: this.form.phoneNumber,
+      //   address: this.form.address,
+      //   paymentMethod: this.form.paymentMethod,
+      //   date: new Date().toLocaleString(),
+      // };
+      // const orderStore = useOrderStore();
+      // orderStore.addOrder(orderDetails);
+
+      // useOrderStore.addOrder(newOrder);
+  
+      // Alert the user and reset
       alert("Payment completed successfully!");
       this.resetForm();
       this.currentStep = 1;
+
     },
     resetForm() {
       this.form = {
@@ -153,7 +192,11 @@ export default {
         holderName: "",
         saveCard: false,
       };
+      // Save the order details to history
+        useOrderStore.addToHistory(orderDetails);
     },
+    
+
     selectPaymentMethod(method) {
       if (this.form.paymentMethod === method) {
         this.form.paymentMethod = "";
@@ -496,7 +539,7 @@ label #savecard{
 .savecard label input{
   margin-top: 10px;
   left: 110px;
-  bottom: 160px;
+  bottom: 123px;
   right: 10px;
   size: 10px;
   color: gray;
@@ -546,7 +589,11 @@ label[for="checkbox"]:hover {
 }
 button.next-btn {
   background-color: #ff4c61;
-
+  position: absolute;
+  bottom: 20px;
+  right: 35%;
+  align-items: center;
+  justify-content: center;
   padding: 12px 50px;
   border: none;
   border-radius: 8px;
