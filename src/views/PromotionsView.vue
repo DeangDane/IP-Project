@@ -5,13 +5,14 @@
         </div>
 
         <div class="content">
-            <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color"
+            <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color"
                 :label="gridPro.label" :proName="gridPro.proName" :price="gridPro.price" />
         </div>
     </div>
 </template>
 <script>
 import GridProduct from "@/components/GridProduct.vue";
+import { useProductStore } from "@/store/ProductStore";
 
 export default {
     name: "Promotion",
@@ -20,18 +21,10 @@ export default {
         GridProduct,
     },
 
-    data() {
+    setup() {
+        const productStore = useProductStore();
         return {
-
-            gridproducts: [
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#40BFFF", label: "70%", price: 19 },
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#40BFFF", label: "70%", price: 19 },
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#40BFFF", label: "70%", price: 19 },
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#40BFFF", label: "70%", price: 19 },
-            ],
-
-            currentPage: 1,
-            query: "",
+            gridproducts: productStore.proProducts,
         };
     },
 };
