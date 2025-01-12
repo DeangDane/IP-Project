@@ -1,4 +1,5 @@
 <template>
+  
   <div class="homeView">
     <AutoImageSlider />
     <div class="text">

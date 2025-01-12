@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <h1>YOUR ORDERED</h1>
-    
+    <h1>Your Favorites</h1>
+
     <div class="summary">
-      <div>All orders ({{ totalOrders }})</div>
+      <div>All orders ({{ favoriteProducts.length }})</div>
       <div>Pending ({{ pendingOrders }})</div>
       <div>Completed ({{ completedOrders }})</div>
     </div>
@@ -18,44 +18,61 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" :key="item.id">
+        <tr v-for="item in favoriteProducts" :key="item.productId">
           <td>
-            <img :src="item.image" :alt="item.name" class="item-image">
+            <img :src="item.image" :alt="item.name" class="item-image" />
             {{ item.name }}
           </td>
           <td>{{ item.status }}</td>
           <td>\${{ item.total.toFixed(2) }}</td>
-          <td class="order-details" @click="showDetails(item)">order details</td>
+          <td @click="showDetails(item)" class="order-details">Order details</td>
         </tr>
       </tbody>
     </table>
+
+    <Modal :isVisible="selectedItem !== null" @close="closeDetails">
+      <template #header>
+        <h2>{{ selectedItem?.name }}</h2>
+      </template>
+      <template #body>
+        <p>Status: {{ selectedItem?.status }}</p>
+        <p>Total: \${{ selectedItem?.total.toFixed(2) }}</p>
+      </template>
+    </Modal>
   </div>
 </template>
 
 <script>
+import favorite from './favorite.js'; // Import the favorite.js logic
+import Modal from './Modal.vue'; // Import the modal component
+
 export default {
-  name: 'YourOrdered',
-  props: {
-    items: {
-      type: Array,
-      required: true,
-    },
+  name: 'Favorite',
+  components: {
+    Modal,
+  },
+  data() {
+    return {
+      selectedItem: null, // Holds the selected item for details
+    };
   },
   computed: {
-    totalOrders() {
-      return this.items.length;
+    favoriteProducts() {
+      return favorite.getFavoriteProducts(); // Get favorite products
     },
     pendingOrders() {
-      return this.items.filter(item => item.status === "Pending").length;
+      return this.favoriteProducts.filter(item => item.status === "Pending").length;
     },
     completedOrders() {
-      return this.items.filter(item => item.status === "Completed").length;
+      return this.favoriteProducts.filter(item => item.status === "Completed").length;
     },
   },
   methods: {
     showDetails(item) {
-      // Implement the logic to show order details
-      alert(`Details for ${item.name}`);
+      this.selectedItem = favorite.showFavoriteDetails(item); // Get item details
+    },
+    closeDetails() {
+      this.selectedItem = null; // Close the modal
     },
   },
 };
@@ -73,15 +90,13 @@ export default {
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
 }
 
 .summary {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .orders-table {
