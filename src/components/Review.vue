@@ -35,7 +35,7 @@ export default {
       const options = { year: "numeric", month: "long", day: "numeric" };
       return new Date(date).toLocaleDateString(undefined, options);
     },
-  },
+  }
 };
 </script>
 
@@ -47,30 +47,41 @@ export default {
   margin-bottom: 16px;
   background-color: #fff;
 }
+
 .review-header {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
 }
+
 .avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   margin-right: 12px;
 }
+
 .user-details h3 {
   margin: 0;
   font-size: 16px;
 }
+
 .review-date {
   font-size: 12px;
   color: #888;
 }
+
 .stars .star {
   color: gold;
 }
+
 .review-images img {
-  width: 60px;
+  width: 50px;
+  /* Set a fixed width */
+  height: 50px;
+  /* Set a fixed height */
+  object-fit: cover;
+  /* Ensure the image covers the area */
   margin-right: 8px;
   border-radius: 4px;
 }

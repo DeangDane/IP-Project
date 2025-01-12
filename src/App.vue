@@ -92,8 +92,8 @@ import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
 import SignUp from "@/components/SignUp.vue";
-import ProfileModal from "@/components/ProfileModal.vue";
 import MakePaymentView from './views/MakePaymentView.vue';
+import ProfileModal from './components/ProfileModal.vue';
 
 
 export default {

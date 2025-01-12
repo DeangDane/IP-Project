@@ -54,19 +54,19 @@ export default {
 }
 
 .modal-content {
-  width: 60%;
-  /* Default width for larger screens */
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-}
+    width: 60%; /* Default width for larger screens */
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+  }
 
 @media (max-width: 768px) {
-  .modal-content {
-    width: 90%;
-    /* Adjust width for smaller screens */
-  }
+.modal-content {
+width: 90%; /* Adjust width for smaller screens */
+}
 }
 </style>
+
+

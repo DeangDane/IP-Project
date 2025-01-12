@@ -279,6 +279,7 @@ import { useProductStore } from "@/store/ProductStore";
   .sidebar {
   width: 250px;
   padding: 20px;
+  height: 1080px;
   background-color: #f8f8f8;
   border-right: 1px solid #ddd;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);

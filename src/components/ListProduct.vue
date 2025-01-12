@@ -1,6 +1,5 @@
 <template>
-  <div class="wrapper">
-    
+  <div @click="goToProDetails()" class="wrapper">
 
     <div class="Image"><img :src="image" class="image" />
       <div class="label" :style="{ backgroundColor: color }">{{ label }}</div>
@@ -123,6 +122,11 @@ export default {
     price: Number,
     color: String,
     label: String,
+  },
+  methods: {
+    goToProDetails() {
+      this.$router.push({ name: "ProDetail" });
+    },
   },
 };
 </script>
