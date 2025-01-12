@@ -41,6 +41,10 @@
           <div>{{ (cartTotal + 3) | currency }}</div>
         </div>
         <router-link to="/makePayment">
+<<<<<<< HEAD
+=======
+        <!-- <router-link to="/purchase-history"> -->
+>>>>>>> Nita
           <button class="checkoutTotal"  >Checkout</button>
         </router-link>
 
@@ -145,9 +149,9 @@ export default {
     //   }
     // },
 
-    goToMakePayment() {
-      this.$router.push('/makePayment');
-    },
+    // goToMakePayment() {
+    //   this.$router.push('/makePayment');
+    // },
 
     getCartItem(product) {
       return this.cart.items.find((item) => item.product.id === product.id) || null;
@@ -247,5 +251,13 @@ export default {
 }
 #inf {
   font-size: larger;
+}
+router-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+router-link:hover {
+  text-decoration: underline;
 }
 </style>

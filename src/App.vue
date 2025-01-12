@@ -1,10 +1,9 @@
 <template>
-
   <div class="wrapper">
     <div class="header">
       <div class="upper">
         <div class="brand">
-          <img width="107px" height="110px" src="/images/logo.png" alt="">
+          <img width="107px" height="110px" src="../public/images/logo.png" alt="">
           <p class="brandName">SKIN GLOW</p>
         </div>
 
@@ -13,6 +12,8 @@
           <button @click="goToProItem()" class="cartButton"><i class="fas fa-shopping-cart"></i></button>
           <button class="favoriteButton"><i class="fa fa-heart"></i></button>
           <button class="userButton" @click="toggleModal"><i class="fas fa-user"></i></button>
+          <router-link to="/order-history">Order History</router-link>
+
           <ProfileModal :show="isModalVisible" @close="toggleModal" />
         </div>
 
@@ -91,9 +92,9 @@ import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
-import SignUp from "@/components/SignUp.vue";
+import Signup from "@/components/Signup.vue";
+import ProfileModal from "@/components/ProfileModal.vue";
 import MakePaymentView from './views/MakePaymentView.vue';
-import ProfileModal from './components/ProfileModal.vue';
 
 
 export default {
@@ -105,7 +106,7 @@ export default {
     GridProduct,
     ProductItem,
     Login,
-    SignUp,
+    Signup,
     ProfileModal,
     MakePaymentView,
 
