@@ -1,4 +1,5 @@
 <template>
+    <ProductGallery/>
 <div class="newArrival">
     <div class="text">
         NEW ARRIVALS
@@ -12,12 +13,14 @@
 </template>
 <script>
 import GridProduct from "@/components/GridProduct.vue";
+import ProductGallery from "@/components/ProductGallery.vue";
 
 export default {
     name: "NewArrival",
 
     components: {
         GridProduct,
+        ProductGallery,
     },
 
     data() {

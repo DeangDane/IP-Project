@@ -15,11 +15,11 @@ export default {
         'https://i.pinimg.com/736x/9b/43/a4/9b43a4fa74787d622b9a932429eb0fed.jpg',
         'https://i.pinimg.com/736x/9d/51/09/9d51097a5adf001f2380217fef44b68f.jpg',
         'https://i.pinimg.com/736x/42/bb/6f/42bb6fbbedfeb20efa4eac851f511725.jpg',
-        // Add more images if needed
+        
       ],
       displayedImages: [],
       scrollAmount: 0,
-      scrollSpeed: 2, // Speed of scrolling
+      scrollSpeed: 2, 
     };
   },
   mounted() {
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     loadImages() {
-      // Duplicate the images to enable seamless looping
+     
       this.displayedImages = [...this.images, ...this.images];
     },
     startAutoScroll() {

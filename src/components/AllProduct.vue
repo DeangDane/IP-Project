@@ -1,4 +1,5 @@
 <template>
+    <!-- <Normalslide/> -->
     <div class="all-products-page">
         <!-- Sidebar -->
         <aside class="sidebar">
@@ -51,6 +52,7 @@
 
 <script>
 import ProductGrid from "@/components/ProductGrid.vue";
+// import Normalslide from "@/components/Normalslide.vue";
 
 export default {
     name: "AllProduct",
