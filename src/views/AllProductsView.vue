@@ -1,6 +1,7 @@
 <template>
+    <Normalslide/>
+  
     <div class="product-view">
-
       <!-- Sidebar -->
       <aside class="sidebar">
         <!-- Categories -->
@@ -145,14 +146,17 @@
 
 import GridProduct from "@/components/GridProduct.vue";
 import ListProduct from "@/components/ListProduct.vue";
+import Normalslide from "@/components/Normalslide.vue";
 import PageNumber from "@/components/PageNumber.vue";
 import { useProductStore } from "@/store/ProductStore";
 
+// import Normalslide from "@/components/Normalslide.vue";
   export default {
     components: {
       GridProduct,
       ListProduct,
-      PageNumber
+      PageNumber,
+      Normalslide,
     },
     data() {
       return {

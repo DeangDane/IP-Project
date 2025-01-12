@@ -1,147 +1,175 @@
 <template>
-   <div class="product-gallery">
-    <img :src="bgImage" alt="Background Image" />
-    <!-- <p class="quote">"Calmness comes from within, but a little help never hurt."</p> -->
+  <div class="product-gallery">
+    <img :src="bgImage" style="width: 100%; height: 30rem;" alt="Background Image" />
     <div class="products">
-    <div class="product" v-for="product in products" :key="product.id" :style="{ backgroundImage: `url(${product.image})` }">
-      
-      <h3>{{ product.name }}</h3>
-      <p class="price">{{ formatPrice(product.price) }}</p>
-      <router-link :to="`/buy/${product.id}`" class="buy-button">Buy Now</router-link>
+      <div class="product" v-for="product in products" :key="product.id">
+        <div class="product-image" :style="{ backgroundImage: `url(${product.image})` }">
+      <div class="bg-img">
+      <div class="price">
+        <h6 class="product-name">{{ product.name }}</h6>
+      </div>
+          <div class="price-info">
+              <p class="original-price">{{ formatPrice(product.originalPrice) }}</p>
+              <p class="discount">{{ product.discount }}% Off</p>
+              <h5 class="current-price">{{ formatPrice(product.price) }}</h5>
+            
+          </div>
+      </div>
+    </div>
+       
+        
+      </div>
     </div>
   </div>
-  </div>
-  </template>
+</template>
 
-  <script>
-  import bgImage from '.././assets/bgslide.png';
-  export default {
-    data() {
-      return {
-        bgImage,
-        products: [
-          {
-            id: 1,
-            name: "Hydration Cream",
-            price: 49.00,
-            image: "https://i.pinimg.com/236x/c3/29/33/c329339e939f66f2696f9cbecda43a10.jpg" // Replace with actual image path
-          },
-          {
-            id: 2,
-            name: "Rejuvenating Serum",
-            price: 39.00,
-            image: "https://i.pinimg.com/736x/3b/a7/79/3ba779576684c022fa84ec01e04f9e6e.jpg" // Replace with actual image path
-          },
-          {
-            id: 3,
-            name: "Nourishing Oil",
-            price: 29.00,
-            image: "https://i.pinimg.com/736x/5f/57/e1/5f57e1f63011bdb96667443287e0d79c.jpg" // Replace with actual image path
-          }
-        ]
-      };
-    },
-    methods: {
-      formatPrice(price) {
-        return `$${price.toFixed(2)}`;
-      }
+<script>
+import bgImage from '../assets/bgslide.png';
+
+export default {
+  data() {
+    return {
+      bgImage,
+      products: [
+        {
+          id: 1,
+          name: "The Cream",
+          price: 8.00,
+          originalPrice: 40.00,
+          discount: 80,
+          image: "https://i.pinimg.com/736x/ea/f3/83/eaf3832c96a9053a4d74b1083edf9e29.jpg"
+        },
+        {
+          id: 2,
+          name: "Hydrogel Cream",
+          price: 10.00,
+          originalPrice: 20.00,
+          discount: 50,
+          image: "https://i.pinimg.com/736x/26/ba/43/26ba4361195b64d571fb11cb56787faf.jpg"
+        },
+        {
+          id: 3,
+          name: "Oil-Free Eye Makeup Remover",
+          price: 26.09,
+          originalPrice: 34.93,
+          discount: 24,
+          image: "https://i.pinimg.com/736x/43/ce/43/43ce43b0e5a7100140a5d397b358b987.jpg"
+        }
+      ]
+    };
+  },
+  methods: {
+    formatPrice(price) {
+      return `$${price.toFixed(2)}`;
     }
-  };
-  </script>
-  
-  <style scoped>
-  .product-gallery {
-    position: relative;
-    text-align: center;
-    padding: 0px;
-    width: 100%;
+  }
+};
+</script>
 
-    /* height: 300px; */
-    /* display: flex; */
-    background-color: #f9e9e1; /* Soft pastel background */
-  }
-  .img {
-    width: 100%;
-    height: 200px;
-  }
-  .quote {
-    font-style: italic;
-    color: #5b5b5b; /* Soft gray color for the quote */
-  }
+<style scoped>
+.price{
+  width: 70%;
+  height: 70%;
+  /* background-color: gray; */
+  font-family: 'Poppins', sans-serif; 
+  margin-top: 5%;
+  margin-left: 10px;
+  /* background-color: red; */
   
-  .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    /* gap: 20px; */
-    margin-top: 20px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    height:0px;
-    left: 23%;
-    
-    
-  }
-  .products img {
-    width: 100%;
-    height: 100%;
-  }
-  
-  
- 
-  .product {
-  background-size: cover;
-  background-position: center;
-  width: 300px;
-  height: 250px;
-  /* border-radius: 8px; */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.product-gallery {
+  width: 99%;
+  /* background-color: #f9e9e1; */
+  height: 650px;
+  margin: 0 auto;
+}
+
+.products {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+  margin: 0 auto;
   position: relative;
-  color: black;
+  top: -120px;
+  background-color: white;
+  /* border: 2px solid black; */
+ 
+  
+  
 
 }
-  
-  .product img {
-    max-width: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    /* display: flex; */
-    width: 40px;
-    height: 40px;
-    /* background-color: red; */
-  }
-  
-  .price {
-    font-weight: bold;
-    color: black;
-    
-    
-  }
-  
-  .buy-button {
-    display: inline-block;
-    margin-top: 10px;
-    /* padding: 10px; */
-    background-color:lightpink;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
 
-  }
-  
-  .buy-button:hover {
-    background-color: #0056b3;
-  }
-  .bg-image {
+.product {
+  /* position: relative; */
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+  /* margin: 10px; */
+  /* text-align: center; */
+  /* padding: 110px; */
+  /* height: 300px; */
+  /* background-color: white; */
+  border: 1px solid rgb(222, 209, 209);
+ 
 }
 
-  </style>
+.product-image {
+  width: 100%;
+  height: 250px; 
+  background-size: contain; /* Change from cover to contain */
+  background-position: center;
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  z-index: 1; /* Send image behind text */
+  background-repeat: no-repeat; /* Prevent image from repeating */
+}
+
+.price-info {
+  position: relative;
+  z-index: 2; 
+display: flex;
+font-family: 'Poppins', sans-serif; 
+/* gap: 30px; */
+align-items: center;
+justify-content: center;
+/* background-color: red; */
+
+}
+
+.current-price {
+  font-weight: bold;
+  color: rgb(0, 195, 255);
+  margin-left: 20%;
+  
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: grey;
+  margin-right: 5%;
+}
+
+.discount {
+  color:red;
+  margin-right: 10%;
+}
+
+.product-name {
+  font-weight: bold;
+  
+  
+  z-index: 2; 
+  color: #223263;
+  /* margin-top: 10%; */
+
+}
+.bg-img {
+  background-color: rgba(240, 128, 128, 0.3);
+  backdrop-filter: blur(0.2px); 
+  padding: 2px; 
+  height: 100%;
+  width: 100%;
+ 
+ 
+}
+</style>

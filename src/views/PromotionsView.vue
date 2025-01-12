@@ -1,4 +1,5 @@
 <template>
+    <ProductGallery />
     <div class="promotions">
         <div class="text">
             PROMOTIONS
@@ -13,12 +14,14 @@
 <script>
 import GridProduct from "@/components/GridProduct.vue";
 import { useProductStore } from "@/store/ProductStore";
+import ProductGallery from "@/components/ProductGallery.vue";
 
 export default {
     name: "Promotion",
 
     components: {
         GridProduct,
+        ProductGallery,
     },
 
     setup() {

@@ -1,4 +1,5 @@
 <template>
+  
   <div class="homeView">
     <AutoImageSlider />
     <div class="text">
@@ -10,38 +11,46 @@
         :proName="gridPro.proName" :price="gridPro.price" />
     </div>
 
-    <button class="viewAll">View All</button>
-
+    
     <div class="text">
       BEST SELLER
     </div>
-
+    
     <div class="content">
       <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
-        :proName="gridPro.proName" :price="gridPro.price" />
+      :proName="gridPro.proName" :price="gridPro.price" />
     </div>
-
+    
+    <button class="viewAll">View All</button>
+    
     <div class="text">
       PROMOTIONS
     </div>
-
+    
     <div class="content">
       <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
-        :proName="gridPro.proName" :price="gridPro.price" />
+      :proName="gridPro.proName" :price="gridPro.price" />
     </div>
-
+    
+    <button class="viewAll">View All</button>
+    
     <div class="text">
       NEW ARRIVALS
     </div>
-
+    
     <div class="content">
       <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
-        :proName="gridPro.proName" :price="gridPro.price" />
+      :proName="gridPro.proName" :price="gridPro.price" />
     </div>
+    
+    <button class="viewAll">View All</button>
+
     <div class="search-container">
       <input type="text" placeholder="Search query..." class="search-input" />
       <button class="search-button">Search</button>
     </div>
+    
+
   </div>
 </template>
 <script>

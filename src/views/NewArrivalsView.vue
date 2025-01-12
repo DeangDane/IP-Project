@@ -13,12 +13,14 @@
 <script>
 import GridProduct from "@/components/GridProduct.vue";
 import { useProductStore } from "@/store/ProductStore";
+import ProductGallery from "@/components/ProductGallery.vue";
 
 export default {
     name: "NewArrival",
 
     components: {
         GridProduct,
+        ProductGallery,
     },
 
     setup() {

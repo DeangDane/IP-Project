@@ -1,5 +1,8 @@
 <template>
+    <ProductGallery />
+    <!-- <YourOrdered/> -->
     <div class="bestSeller">
+        
         <div class="text">
             BEST SELLERS
         </div>
@@ -12,12 +15,16 @@
 </template>
 <script>
 import GridProduct from "@/components/GridProduct.vue";
+import ProductGallery from "@/components/ProductGallery.vue";
+// import YourOrdered from "@/components/YourOrdered.vue";
 
 export default {
     name: "BestSeller",
 
     components: {
         GridProduct,
+        ProductGallery,
+        // YourOrdered,
     },
 
     data() {
