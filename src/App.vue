@@ -91,7 +91,7 @@ import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
-import Signup from "@/components/Signup.vue";
+import SignUp from "@/components/SignUp.vue";
 import ProfileModal from "@/components/ProfileModal.vue";
 
 export default {
@@ -103,7 +103,7 @@ export default {
     GridProduct,
     ProductItem,
     Login,
-    Signup,
+    SignUp,
     ProfileModal,
   },
 
@@ -136,13 +136,13 @@ export default {
       // ],
 
       buttons: [
-        { name: "HOME", route: "/" },
-        { name: "ALL PRODUCTS", route: "/allProduct" },
-        { name: "BEST SELLER", route: "/bestSeller" },
-        { name: "PROMOTION", route: "/promotion" },
-        { name: "NEW ARRIVAL", route: "/newArrival" },
-        { name: "ABOUT", route: "/about" },
-        { name: "FAQ", route: "/faq" },
+        { id: 1, name: "HOME", route: "/" },
+        { id: 2, name: "ALL PRODUCTS", route: "/allProduct" },
+        { id: 3, name: "BEST SELLER", route: "/bestSeller" },
+        { id: 4, name: "PROMOTION", route: "/promotion" },
+        { id: 5, name: "NEW ARRIVAL", route: "/newArrival" },
+        { id: 6, name: "ABOUT", route: "/about" },
+        { id: 7, name: "FAQ", route: "/faq" },
       ],
     };
   },
@@ -165,9 +165,9 @@ export default {
   font-size: 40px;
 }
 
-.content {
+/* .content {
   padding: 0 1rem;
-}
+} */
 
 .wrapper {
   display: flex;

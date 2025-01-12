@@ -8,6 +8,7 @@
 export default {
     name: "NavButton",
     props: {
+        id: Number,
         name: String,
         route: String,
         color: String,

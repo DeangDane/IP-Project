@@ -8,7 +8,7 @@
     </div>
 
     <div class="content">
-      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
+      <GridProduct v-for="gridPro in hotProducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
         :proName="gridPro.proName" :price="gridPro.price" />
     </div>
 
@@ -19,7 +19,7 @@
     </div>
 
     <div class="content">
-      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
+      <GridProduct v-for="gridPro in hotProducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
         :proName="gridPro.proName" :price="gridPro.price" />
     </div>
 
@@ -28,7 +28,7 @@
     </div>
 
     <div class="content">
-      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
+      <GridProduct v-for="gridPro in proProducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
         :proName="gridPro.proName" :price="gridPro.price" />
     </div>
 
@@ -37,7 +37,7 @@
     </div>
 
     <div class="content">
-      <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
+      <GridProduct v-for="gridPro in newProducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
         :proName="gridPro.proName" :price="gridPro.price" />
     </div>
 
@@ -57,6 +57,7 @@ import SearchQ from "@/components/SearchQ.vue";
 import GridProduct from "@/components/GridProduct.vue";
 import AutoImageSlider from "@/components/AutoImageSlider.vue";
 import { useProductStore } from "@/store/ProductStore";
+import { computed } from "vue";
 
 export default {
   components: {
@@ -66,46 +67,28 @@ export default {
     GridProduct,
     AutoImageSlider
   },
-
   setup() {
     const productStore = useProductStore();
+
+    const hotProducts = computed(() => productStore.hotProducts);
+    const newProducts = computed(() => productStore.newProducts);
+    const proProducts = computed(() => productStore.proProducts);
+
     return {
-      gridproducts: productStore.products,
+      hotProducts,
+      newProducts,
+      proProducts,
     };
   },
-  // data() {
+  // setup() {
+  //   const productStore = useProductStore();
   //   return {
-
-  //     gridproducts: useProductStore.products,
-
-  //     currentPage: 1,
-  //     query: "",
+  //     hotProducts: productStore.hotProducts,
+  //     newProducts: productStore.newProducts,
+  //     proProducts: productStore.proProducts,
   //   };
   // },
-  // computed: {
-  //   filteredReviews() {
-  //     return this.reviews.filter((review) =>
-  //       review.text.toLowerCase().includes(this.query.toLowerCase())
-  //     );
-  //   },
-  //   paginatedReviews() {
-  //     const reviewsPerPage = 5;
-  //     const start = (this.currentPage - 1) * reviewsPerPage;
-  //     return this.filteredReviews.slice(start, start + reviewsPerPage);
-  //   },
-  //   totalPages() {
-  //     return Math.ceil(this.filteredReviews.length / 5);
-  //   },
-  // },
-  // methods: {
-  //   handleSearch(query) {
-  //     this.query = query;
-  //     this.currentPage = 1;
-  //   },
-  //   handlePageChange(page) {
-  //     this.currentPage = page;
-  //   },
-  // },
+
 };
 </script>
 <style>

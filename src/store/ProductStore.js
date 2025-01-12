@@ -17,7 +17,7 @@ export const useProductStore = defineStore("product", {
                 rating: 4,
                 reviews: 10,
                 skintype: [
-                    "nomal",
+                    "nomal", "dry", "oily", "sensitive"
                 ],
                 images: [
                     "images/Product1.png",
@@ -37,6 +37,8 @@ export const useProductStore = defineStore("product", {
                 rawPrice: 25,
                 rating: 4,
                 reviews: 10,
+                brand: "Anua",
+                instock: 10,
                 skintype: [
                     "nomal",
                 ],
@@ -58,6 +60,8 @@ export const useProductStore = defineStore("product", {
                 rawPrice: 25,
                 rating: 4,
                 reviews: 10,
+                brand: "Anua",
+                instock: 10,
                 skintype: [
                     "nomal",
                 ],
@@ -79,6 +83,8 @@ export const useProductStore = defineStore("product", {
                 rawPrice: 25,
                 rating: 4,
                 reviews: 10,
+                brand: "Anua",
+                instock: 10,
                 skintype: [
                     "nomal",
                 ],
@@ -100,6 +106,8 @@ export const useProductStore = defineStore("product", {
                 rawPrice: 25,
                 rating: 4,
                 reviews: 10,
+                brand: "Anua",
+                instock: 10,
                 skintype: [
                     "nomal",
                 ],
@@ -121,6 +129,8 @@ export const useProductStore = defineStore("product", {
                 rawPrice: 25,
                 rating: 4,
                 reviews: 10,
+                brand: "Anua",
+                instock: 10,
                 skintype: [
                     "nomal",
                 ],
@@ -132,8 +142,14 @@ export const useProductStore = defineStore("product", {
         ],
     }),
     getters: {
-        filteredProducts: (state) => (proName) => {
-            return state.products.filter((product) => product.proName === proName);
+        getProductByName: (state) => (name) => {
+            return state.products.filter((product) => product.proName === name);
+        },
+        getProductBySkinType: (state) => (skinType) => {
+            return state.products.filter((product) => product.skintype.includes(skinType));
+        },
+        getProductById: (state) => (id) => {
+            return state.products.find((product) => product.id === id);
         },
 
         hotProducts: (state) => {
@@ -151,3 +167,34 @@ export const useProductStore = defineStore("product", {
     },
     actions: {},
 });
+
+// import { defineStore } from "pinia";
+
+// export const useCartStore = defineStore("cart", {
+//     state: () => ({
+//         cart: []
+//     }),
+//     actions: {
+//         addItemToCart(productid, amount, price, state) {
+//             const existingItem = this.cart.items.find(item => item.productid === productid);
+//             if (existingItem) {
+//                 existingItem.amount += amount;
+//                 existingItem.price = price;
+//                 existingItem.state = state;
+//             } else {
+//                 this.cart.items.push({
+//                     productid,
+//                     amount,
+//                     price,
+//                     state
+//                 });
+//             }
+//         },
+//         removeItemFromCart(productid) {
+//             this.cart.items = this.cart.items.filter(item => item.productid !== productid);
+//         },
+//         clearCart() {
+//             this.cart.items = [];
+//         }
+//     }
+// });
