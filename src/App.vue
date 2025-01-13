@@ -108,9 +108,6 @@ watch: {
 },
   methods: 
   {
-    toggleModal() {
-      this.isModalVisible = !this.isModalVisible;
-    },
     toggleUserOptions() {
       if (this.isLoggedIn) {
         this.showUserOptions = !this.showUserOptions;
@@ -138,7 +135,6 @@ watch: {
 
   data() {
     return {
-        isModalVisible: false,
         showUserOptions: false,
 
       buttons: [

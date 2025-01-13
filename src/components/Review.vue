@@ -54,66 +54,66 @@
   border-radius: 8px;
   margin-bottom: 16px;
   background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 .review-header {
   display: flex;
-  align-items: flex-start; /* Align items at the top */
+  align-items: flex-start; 
   margin-bottom: 16px;
-  gap: 16px; /* Add space between image and details */
+  gap: 16px; 
 }
 
 .profile-image {
-  width: 60px; /* Slightly larger profile image */
+  width: 60px; 
   height: 60px;
   border-radius: 50%;
-  margin-bottom: 0; /* Remove bottom margin to align properly */
-  border: 2px solid #ddd; /* Add a border for better visibility */
+  margin-bottom: 0; 
+  border: 2px solid #ddd; 
 }
 
 .user-details {
   display: flex;
-  flex-direction: column; /* Stack username and date vertically */
+  flex-direction: column; 
   justify-content: center;
 }
 
 .user-details h3 {
-  margin: 0; /* Remove default margin */
-  font-size: 18px; /* Slightly larger font */
-  font-weight: bold; /* Emphasize username */
-  color: #333; /* Darker text color for better readability */
+  margin: 0; 
+  font-size: 18px; 
+  font-weight: bold; 
+  color: #333; 
 }
 
 .review-date {
-  font-size: 14px; /* Slightly larger for better readability */
+  font-size: 14px; 
   color: #888;
   margin-top: 4px;
 }
 
 .review-content {
   margin-top: 8px;
-  line-height: 1.6; /* Improve readability of text */
+  line-height: 1.6; 
   color: #555;
 }
 
 .stars .star {
   color: gold;
-  margin-right: 4px; /* Space between stars */
+  margin-right: 4px; 
 }
 
 .review-images {
   margin-top: 12px;
-  display: flex; /* Use flexbox for horizontal alignment */
-  gap: 12px; /* Add space between images */
+  display: flex; 
+  gap: 12px; 
 }
 
 .review-images img {
-  width: 60px; /* Increase size for better visibility */
+  width: 60px; 
   height: 60px;
-  object-fit: cover; /* Ensure the image covers the area */
-  border-radius: 8px; /* Rounded corners */
-  border: 1px solid #ddd; /* Add border for better separation */
+  object-fit: cover; 
+  border-radius: 8px; 
+  border: 1px solid #ddd; 
 }
 
 </style>

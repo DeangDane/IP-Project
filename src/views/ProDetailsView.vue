@@ -225,10 +225,6 @@ export default {
         };
     },
     computed: {
-    // currentUser() {
-    //   const userProfileStore = useUserProfileStore();
-    //   return userProfileStore.currentUser;
-    // },
 
     userName: {
       get() {
@@ -270,14 +266,13 @@ export default {
       alert(`Added ${this.quantity} item(s) of ${this.productName} to your cart.`);
     },
     loadProductDetails(product) {
-      // Update all product details dynamically
       this.productName = product.name;
       this.productImages = product.details.images;
       this.selectedImage = product.details.images[0];
       this.reviews = product.details.reviews;
       this.currentPrice = product.currentPrice;
       this.tabContents[0] = `Details about ${product.name}.`;
-      this.selectedTab = 0; // Reset to the first tab
+      this.selectedTab = 0; 
     },
     shareOnFacebook() {
       const url = encodeURIComponent(window.location.href);
@@ -323,16 +318,9 @@ export default {
       if (this.isEditing) {
         reviewsStore.updateReview(this.editingReviewId, newReview);
       } else {
-        // reviewsStore.addReview({
-        //   userAvatar: this.userProfile.profileImage,
-        //   userName: this.userProfile.name,
-        //   date: new Date().toLocaleDateString(),
-        //   rating: this.reviewRating,
-        //   comment: this.reviewComment,
-        //   photos: this.reviewPhotos,
-        // });      
+         
         reviewsStore.addReview(
-          this.productId, // Ensure productId is defined in your component
+          this.productId, 
           this.reviewComment,
           this.reviewRating,
           this.reviewPhotos

@@ -105,7 +105,7 @@
 }
 
 .left-panel img.logo {
-  width: 210px; /* Adjust logo size */
+  width: 210px; 
   margin-bottom: 5px;
 }
 
@@ -184,7 +184,7 @@
 .login-btn {
   width: 100%;
   padding: 10px;
-  background-color: #f08c9c; /* Soft pink */
+  background-color: #f08c9c; 
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -211,7 +211,7 @@
 }
 
 .signup-link a {
-  color: #f08c9c; /* Soft pink */
+  color: #f08c9c;
   text-decoration: none;
 }
 
