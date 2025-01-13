@@ -26,10 +26,8 @@ const routes = [
   {path: "/productview", name: "Productview", component: Productview},
   {path: "/cart", name: "Cart", component: CartView},
   { path: "/makePayment", name: "MakePayment", component: MakePaymentView },
-  { path: "/order-history", name:"OrderHistory", component: () => import("@/views/OrderHistory.vue"),
-
-  }
-
+  { path: "/order-history", name:"OrderHistory", component: () => import("@/views/OrderHistory.vue")},
+  {path: "/profile", name: "Profile", component: () => import("@/views/ProfileView.vue")},
 ];
 
 const router = createRouter({

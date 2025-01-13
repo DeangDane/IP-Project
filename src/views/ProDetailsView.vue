@@ -17,10 +17,19 @@
             <div class="product-info">
                 <h1>{{ productName }}</h1>
                 <div class="ratings-section">
-                <span class="stars">★★★★★</span>
-                <a href="#reviews" class="reviews-link">0 reviews</a>
-                <a href="#submit-review" class="submit-review">Submit a review</a>
+                    <div class="stars">
+                        <span v-for="star in 5" :key="star" class="star" :class="{ active: star <= reviewRating }"
+                            @click="reviewRating = star">
+                            ⭐
+                        </span>
+                        <span class="rating-number">{{ reviewRating }}/5</span>
+                        <!-- <a href="#reviews" class="reviews-link">0 reviews</a>
+                <a href="#submit-review" class="submit-review">Submit a review</a> -->
+                        <a href="#Reviews" class="reviews-link">{{ reviews.length }} reviews</a>
+                        <a href="#Reviews" class="submit-review" @click="openReviewModal">Submit a review</a>
+                    </div>
                 </div>
+
                 <div class="price">
                     <span class="current-price">{{ currentPrice }}</span>
                     <span class="original-price">{{ originalPrice }}</span>
@@ -36,12 +45,12 @@
                     <button @click="addToCart"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                 </div>
                 <div class="share-buttons">
-                <button @click="shareOnFacebook" class="share-button">
-                    <font-awesome-icon :icon="['fab', 'facebook-f']" />  Share on Facebook
-                </button>
-                <button @click="shareOnTwitter" class="share-button">
-                    <font-awesome-icon :icon="['fab', 'twitter']" />  Share on Twitter
-                </button>
+                    <button @click="shareOnFacebook" class="share-button">
+                        <font-awesome-icon :icon="['fab', 'facebook-f']" /> Share on Facebook
+                    </button>
+                    <button @click="shareOnTwitter" class="share-button">
+                        <font-awesome-icon :icon="['fab', 'twitter']" /> Share on Twitter
+                    </button>
                 </div>
             </div>
         </div>
@@ -59,28 +68,23 @@
                 </div>
                 <!-- Reviews Section -->
                 <div v-else-if="selectedTab === 1">
-                <div class="reviews-section">
-                <div v-for="review in reviews" :key="review.id">
-                    <Review
-                    :userAvatar="review.userAvatar"
-                    :userName="review.userName"
-                    :reviewDate="review.date"
-                    :stars="review.rating"
-                    :reviewText="review.comment"
-                    :reviewImages="review.photos"
-                    />
-                    <div class="review-actions">
-                    <button @click="editReview(review.id)">Edit</button>
-                    <button @click="deleteReview(review.id)">Delete</button>
-                    </div>
-                </div>
-                <div class="write-review-container">
+                    <div class="reviews-section">
+                        <div v-for="review in reviews" :key="review.id">
+                            <Review :profileImage="profileImage" :userName="userName" :reviewDate="review.date"
+                                :stars="review.rating" :reviewText="review.comment" :reviewImages="review.photos" />
+                            <div class="review-actions">
+                                <button @click="editReview(review.id)">Edit</button>
+                                <button @click="deleteReview(review.id)">Delete</button>
+                            </div>
+                        </div>
 
-                <button class="write-review-btn" @click="openReviewModal">
-                            Write Review
-                        </button>
-                </div>
-                </div>
+                        <div class="write-review-container">
+
+                            <button class="write-review-btn" @click="openReviewModal">
+                                Write Review
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -100,8 +104,8 @@
                     </div>
                 </div>
 
-            <p>LOAD MORE</p>
-                
+                <p>LOAD MORE</p>
+
             </div>
         </div>
 
@@ -135,6 +139,7 @@
 
 <script>
 import { useReviewsStore } from "@/store/Reviews";
+import { useUserProfileStore } from "@/store/UserStore";
 import Review from "@/components/Review.vue";
 import product1 from "@/assets/images/product1.png";
 import product2 from "@/assets/images/product2.png";
@@ -145,9 +150,9 @@ import related2 from "@/assets/images/related2.png";
 import related3 from "@/assets/images/related3.png";
 export default {
     name: "ProDetailsView",
-  components: {
-    Review,
-  },
+    components: {
+        Review,
+    },
     data() {
         return {
             // Default product details
@@ -156,7 +161,7 @@ export default {
             tabs: ["Product Information", "Reviews"],
             selectedTab: 0,
             tabContents: ["Details about this product.", ""],
-            
+
             relatedProducts: [
                 {
                     name: "Heartleaf Quercetinol",
@@ -191,6 +196,7 @@ export default {
                     },
                 },
             ],
+            productId: 1,
             productName: "Red Bean Refreshing Pore Mask",
             currentPrice: "$17.75",
             originalPrice: "$23.33",
@@ -203,16 +209,44 @@ export default {
             reviewRating: 0,
             reviewComment: "",
             reviewPhotos: [],
+            userProfile: {
+                name: "null",
+                profileImage: "null",
+            },
             editingReviewId: null,
             isEditing: false,
+
         };
     },
     computed: {
-    reviews() {
-      const reviewsStore = useReviewsStore();
-      return reviewsStore.reviews;
+        // currentUser() {
+        //   const userProfileStore = useUserProfileStore();
+        //   return userProfileStore.currentUser;
+        // },
+
+        userName: {
+            get() {
+                const userProfileStore = useUserProfileStore();
+                return userProfileStore.currentUser?.name || "";
+            },
+            set(value) {
+                const userProfileStore = useUserProfileStore();
+                userProfileStore.currentUser.name = value;
+            }
+        },
+        profileImage() {
+            const userProfileStore = useUserProfileStore();
+            return userProfileStore.currentUserProfileImage;
+        },
+
+        reviews() {
+            const reviewsStore = useReviewsStore();
+            return reviewsStore.reviews;
+        },
+        otherUserReviews() {
+            return this.reviews.filter(review => review.userName !== this.userName);
+        }
     },
-  },
     methods: {
         selectImage(image) {
             this.selectedImage = image;
@@ -222,11 +256,11 @@ export default {
         },
         addToCart() {
             const product = {
-            name: this.productName,
-            price: this.currentPrice,
-            image: this.selectedImage,
-            quantity: this.quantity,
-        };
+                name: this.productName,
+                price: this.currentPrice,
+                image: this.selectedImage,
+                quantity: this.quantity,
+            };
             alert(`Added ${this.quantity} item(s) of ${this.productName} to your cart.`);
         },
         loadProductDetails(product) {
@@ -239,7 +273,6 @@ export default {
             this.tabContents[0] = `Details about ${product.name}.`;
             this.selectedTab = 0; // Reset to the first tab
         },
-
         shareOnFacebook() {
             const url = encodeURIComponent(window.location.href);
             const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
@@ -251,7 +284,6 @@ export default {
             const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
             window.open(shareUrl, "_blank");
         },
-
         openReviewModal() {
             this.isReviewModalOpen = true;
             this.isEditing = false;
@@ -274,19 +306,33 @@ export default {
         },
         submitReview() {
             const reviewsStore = useReviewsStore();
-        const newReview = {
-        userName: "Anonymous", // You can replace this with a user input for the name
-        rating: this.reviewRating,
-        comment: this.reviewComment,
-        date: new Date().toISOString().split("T")[0],
-        photos: this.reviewPhotos,
-      };
-      if (this.isEditing) {
-        reviewsStore.updateReview(this.editingReviewId, newReview);
-      } else {
-        reviewsStore.addReview(this.productName, newReview.comment, newReview.rating, newReview.photos);
-      }
-      this.closeReviewModal();
+            const newReview = {
+                profileImage: this.userProfile.profileImage,
+                userName: this.userProfile.name,
+                rating: this.reviewRating,
+                comment: this.reviewComment,
+                date: new Date().toISOString().split("T")[0],
+                photos: this.reviewPhotos,
+            };
+            if (this.isEditing) {
+                reviewsStore.updateReview(this.editingReviewId, newReview);
+            } else {
+                // reviewsStore.addReview({
+                //   userAvatar: this.userProfile.profileImage,
+                //   userName: this.userProfile.name,
+                //   date: new Date().toLocaleDateString(),
+                //   rating: this.reviewRating,
+                //   comment: this.reviewComment,
+                //   photos: this.reviewPhotos,
+                // });      
+                reviewsStore.addReview(
+                    this.productId, // Ensure productId is defined in your component
+                    this.reviewComment,
+                    this.reviewRating,
+                    this.reviewPhotos
+                );
+            }
+            this.closeReviewModal();
         },
         editReview(reviewId) {
             const reviewsStore = useReviewsStore();
@@ -300,13 +346,13 @@ export default {
         },
         deleteReview(reviewId) {
             const reviewsStore = useReviewsStore();
-            reviewsStore.deleteReview(reviewId);        
+            reviewsStore.deleteReview(reviewId);
         },
     },
     mounted() {
-    const reviewsStore = useReviewsStore();
-    reviewsStore.loadReviews();
-  },
+        const reviewsStore = useReviewsStore();
+        reviewsStore.loadReviews();
+    },
 };
 </script>
 
@@ -386,25 +432,25 @@ export default {
 }
 
 .ratings-section {
-  font-size: 14px;
-  margin-bottom: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 
 .ratings-section .stars {
-  color: #f39c12;
+    color: #f39c12;
 }
 
 .ratings-section .reviews-link,
 .ratings-section .submit-review {
-  margin-left: 10px;
-  color: #007bff;
-  text-decoration: none;
-  font-size: 14px;
+    margin-left: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
 }
 
 .ratings-section .reviews-link:hover,
 .ratings-section .submit-review:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 .price {
@@ -465,22 +511,22 @@ export default {
 }
 
 .share-buttons {
-  margin-top: 20px;
+    margin-top: 20px;
 }
 
 .share-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  margin-right: 10px;
-  cursor: pointer;
-  border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 
 .share-button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 /* Product Tabs */
@@ -528,9 +574,9 @@ export default {
 }
 
 .write-review-container {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
 .write-review-btn {
@@ -544,7 +590,7 @@ export default {
 }
 
 .write-review-btn:hover {
-    background-color: #0056b3;
+    background-color: #e04e4e;
 
 }
 
@@ -567,10 +613,10 @@ export default {
 }
 
 .related-products p {
-text-decoration: underline;
-  color: #007bff;
-  margin: 0 auto;
-  font-weight: 500;
+    text-decoration: underline;
+    color: #007bff;
+    margin: 0 auto;
+    font-weight: 500;
 }
 
 .product-card {

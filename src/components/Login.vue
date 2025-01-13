@@ -18,6 +18,8 @@
               <input type="password" id="password" v-model="password" required />
             </div>
             <div v-if="loginError.password" class="error-message">{{ loginError.password }}</div>
+            <div v-if="loginError.general" class="error-message">{{ loginError.general }}</div>
+
             <div class="options">
               <label>
                 <input type="checkbox" v-model="rememberMe" />
@@ -44,8 +46,12 @@
   
   <script>
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+  import { useUserProfileStore } from "@/store/UserStore";
 
   export default {
+    components: {
+    FontAwesomeIcon,
+  },
     data() {
       return {
         email: "",
@@ -55,22 +61,47 @@
       };
     },
     methods: {
-      handleLogin() {
-        this.loginError = {};
-        if (!this.email.includes("@")) {
-          this.loginError.email = "Invalid email format.";
-        }
-        if (this.password.length < 6) {
-          this.loginError.password = "Password must be at least 6 characters.";
-        }
-        if (!Object.keys(this.loginError).length) {
-          alert("Login Successful!");
+
+    //   handleLogin() {
+    //   this.loginError = {};
+    //   if (!this.email.includes("@")) {
+    //     this.loginError.email = "Invalid email format.";
+    //   }
+    //   if (this.password.length < 6) {
+    //     this.loginError.password = "Password must be at least 6 characters.";
+    //   }
+    //   if (!Object.keys(this.loginError).length) {
+    //     const userProfileStore = useUserProfileStore();
+    //     userProfileStore.signIn(this.email, this.password);
+    //     if (userProfileStore.isLoggedIn) {
+    //       this.$emit("close");
+    //       this.$router.push('/');
+    //     } else {
+    //       this.loginError.general = userProfileStore.loginError;
+    //     }
+    //   }
+    // },
+
+    handleLogin() {
+      this.loginError = {};
+      if (!this.email.includes("@")) {
+        this.loginError.email = "Invalid email format.";
+      }
+      if (this.password.length < 6) {
+        this.loginError.password = "Password must be at least 6 characters.";
+      }
+      if (!Object.keys(this.loginError).length) {
         const userProfileStore = useUserProfileStore();
-        userProfileStore.saveUserProfile({ name: 'User', email: this.email }); // Replace 'User' with actual user data
+        const result = userProfileStore.login(this.email, this.password);
+        if (result.success) {
           this.$emit("close");
+          this.$router.push('/');
+        } else {
+          this.loginError.general = result.message;
         }
-      },
+      }
     },
+  },
   };
   </script>
   

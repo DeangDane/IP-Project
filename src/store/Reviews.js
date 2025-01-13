@@ -6,7 +6,6 @@ export const useReviewsStore = defineStore("Review", {
   }),
   getters: {
     recentReviews(state) {
-      // Filter reviews to show only those within the last 2 days
       return state.reviews.filter((review) => {
         const reviewDate = new Date(review.date);
         const diffInDays = (new Date() - reviewDate) / (1000 * 60 * 60 * 24);
@@ -17,12 +16,10 @@ export const useReviewsStore = defineStore("Review", {
   actions: {
     loadReviews() {
       const savedReviews = JSON.parse(localStorage.getItem("reviews")) || [];
-      // console.log("Loaded reviews from localStorage:", savedReviews);
       this.reviews = savedReviews.map((review) => ({
         ...review,
-        date: new Date(review.date), // Convert date back to a Date object
+        date: new Date(review.date), 
       }));
-      // console.log("Reviews after loading:", this.reviews); // Debugging line
     },
     saveReviews() {
       localStorage.setItem("reviews", JSON.stringify(this.reviews));
@@ -33,7 +30,9 @@ export const useReviewsStore = defineStore("Review", {
       }
 
       const newReview = {
-        id: Date.now(), // Assign a unique id to the review
+        id: Date.now(), 
+        // userAvatar,
+        // userName,
         productId,
         comment,
         rating,
@@ -57,4 +56,8 @@ export const useReviewsStore = defineStore("Review", {
       this.saveReviews();
     },
   },
+  // mounted() {
+  //   const reviewsStore = useReviewsStore();
+  //   reviewsStore.loadReviews();
+  // },
 });
