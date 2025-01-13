@@ -9,9 +9,21 @@
 
         <div class="options">
           <input class="search" type="Search" placeholder="Search">
-          <button @click="goToProItem()" class="cartButton"><i class="fas fa-shopping-cart"></i></button>
-          <button class="favoriteButton"><i class="fa fa-heart"></i></button>
-          <button class="userButton" @click="toggleModal"><i class="fas fa-user"></i></button>
+          <button @click="goToProItem()" class="cartButton">
+            <!-- <i class="fas fa-shopping-cart"></i> -->
+            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            <div class="cartCount">0</div>
+          </button>
+          <button class="favoriteButton">
+            <!-- <i class="fa fa-heart"></i> -->
+            <svg width="40px" height="40px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M1.24264 8.24264L8 15L14.7574 8.24264C15.553 7.44699 16 6.36786 16 5.24264V5.05234C16 2.8143 14.1857 1 11.9477 1C10.7166 1 9.55233 1.55959 8.78331 2.52086L8 3.5L7.21669 2.52086C6.44767 1.55959 5.28338 1 4.05234 1C1.8143 1 0 2.8143 0 5.05234V5.24264C0 6.36786 0.44699 7.44699 1.24264 8.24264Z" fill="#000000"></path> </g></svg>
+            <div class="heartCount">0</div>
+          </button>
+          <button class="userButton" @click="toggleModal">
+            <!-- <i class="fas fa-user"></i> -->
+            <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+
+          </button>
           <router-link to="/order-history">Order History</router-link>
 
           <ProfileModal :show="isModalVisible" @close="toggleModal" />
@@ -170,9 +182,9 @@ export default {
   font-size: 40px;
 }
 
-.content {
+/* .content {
   padding: 0 1rem;
-}
+} */
 
 .wrapper {
   display: flex;
@@ -275,9 +287,34 @@ ul li a {
 .cartButton,
 .favoriteButton,
 .userButton {
+  position: relative;
   border: none;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+}
+
+.userButton{
   background-color: white;
+  border: solid 1px black;
+  border-radius: 50%;
+}
+
+.heartCount,
+.cartCount{
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 16px;
 }
 </style>

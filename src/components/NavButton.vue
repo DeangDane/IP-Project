@@ -32,6 +32,7 @@ export default {
     font-family: 'Poppins', sans-serif;
     background-color: white;
     text-align: center;
+    box-sizing: border-box;
 }
 
 .button:hover {

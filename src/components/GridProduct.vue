@@ -27,8 +27,8 @@
 
     <div class="price">
         <h4 class="actualPrice">${{ price }}</h4>
-        <h5 class="rawPrice">$ 30</h5>
-        <h5 class="percent">70% off</h5>
+        <h5 class="rawPrice">${{ rawPrice }}</h5>
+        <h5 class="percent"> {{ discount }}% off</h5>
       </div>
   </div>
 
@@ -41,6 +41,8 @@ export default {
     image: String,
     proName: String,
     price: Number,
+    rawPrice: Number,
+    discount: Number,
     color: String,
     label: String,
   },

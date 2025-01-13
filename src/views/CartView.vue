@@ -41,10 +41,7 @@
           <div>{{ (cartTotal + 3) | currency }}</div>
         </div>
         <router-link to="/makePayment">
-<<<<<<< HEAD
-=======
         <!-- <router-link to="/purchase-history"> -->
->>>>>>> Nita
           <button class="checkoutTotal"  >Checkout</button>
         </router-link>
 

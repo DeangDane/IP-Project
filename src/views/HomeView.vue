@@ -8,7 +8,7 @@
     </div>
     <div class="content">
       <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
-        :proName="gridPro.proName" :price="gridPro.price" />
+        :proName="gridPro.proName" :price="gridPro.price" :rawPrice="gridPro.rawPrice" :discount="gridPro.discount"  />
     </div>
 
     
@@ -18,10 +18,10 @@
     
     <div class="content">
       <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
-      :proName="gridPro.proName" :price="gridPro.price" />
+      :proName="gridPro.proName" :price="gridPro.price" :rawPrice="gridPro.rawPrice" :discount="gridPro.discount" />
     </div>
     
-    <button class="viewAll">View All</button>
+    <button class="viewAll" @click="goToBestSellers()" >View All</button>
     
     <div class="text">
       PROMOTIONS
@@ -29,10 +29,10 @@
     
     <div class="content">
       <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
-      :proName="gridPro.proName" :price="gridPro.price" />
+      :proName="gridPro.proName" :price="gridPro.price" :rawPrice="gridPro.rawPrice" :discount="gridPro.discount" />
     </div>
     
-    <button class="viewAll">View All</button>
+    <button class="viewAll" @click="goToPromotion()" >View All</button>
     
     <div class="text">
       NEW ARRIVALS
@@ -40,10 +40,10 @@
     
     <div class="content">
       <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color" :label="gridPro.label"
-      :proName="gridPro.proName" :price="gridPro.price" />
+      :proName="gridPro.proName" :price="gridPro.price" :rawPrice="gridPro.rawPrice" :discount="gridPro.discount" />
     </div>
     
-    <button class="viewAll">View All</button>
+    <button class="viewAll" @click="goToNewArrival()" >View All</button>
 
     <div class="search-container">
       <input type="text" placeholder="Search query..." class="search-input" />
@@ -77,6 +77,18 @@ export default {
     return {
       gridproducts: productStore.products,
     };
+  },
+
+  methods: {
+    goToBestSellers() {
+      this.$router.push("/bestSeller");
+    },
+    goToPromotion() {
+      this.$router.push("/promotion");
+    },
+    goToNewArrival() {
+      this.$router.push("/newArrival");
+    },
   },
   // data() {
   //   return {
@@ -139,7 +151,8 @@ export default {
   font-size: large;
 }
 .viewAll:hover {
-  color: #33A0FF;
+  /* color: #33A0FF; */
+  background-color: 33A0FF;
 }
 .search-container {
   display: flex;
