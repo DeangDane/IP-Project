@@ -89,11 +89,10 @@ body {
 // import Productgrid from './views/ProductGridView.vue';
 import NavButton from './components/NavButton.vue';
 import Productcard from './views/CartView.vue';
-import GridProduct from './components/GridProduct.vue';
-import ProductItem from './components/ProductItem.vue';
+// import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
 import Signup from "@/components/Signup.vue";
-import ProfileModal from "@/components/ProfileModal.vue";
+// import ProfileModal from "@/components/ProfileModal.vue";
 import MakePaymentView from './views/MakePaymentView.vue';
 
 
@@ -103,11 +102,11 @@ export default {
     // ProductGrid,
     NavButton,
     Productcard,
-    GridProduct,
-    ProductItem,
+    // GridProduct,
+    // ProductItem,
     Login,
     Signup,
-    ProfileModal,
+    // ProfileModal,
     MakePaymentView,
 
   },

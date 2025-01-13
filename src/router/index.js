@@ -7,7 +7,7 @@ import NewArrivalsView from "@/views/NewArrivalsView.vue";
 import ProDetailsView from "@/views/ProDetailsView.vue";
 import PromotionsView from "@/views/PromotionsView.vue";
 import Productcard from "@/views/CartView.vue";
-import AllProductsView from "@/views/AllProductsView.vue";
+import AllProduct from "@/views/AllProduct.vue";
 import Productview from "@/views/Productview.vue";
 import MakePaymentView from "@/views/MakePaymentView.vue";
 import CartView from "@/views/CartView.vue";
@@ -15,7 +15,7 @@ import OrderHistory from "@/views/OrderHistory.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home, },
-  { path: "/allProduct", name: "AllProduct", component: AllProductsView, },
+  { path: "/allProduct", name: "AllProduct", component: AllProduct, },
   { path: "/bestSeller", name: "BestSeller", component: BestSellersView },
   { path: "/promotion", name: "Promotion", component: PromotionsView },
   { path: "/newArrival", name: "NewArrival", component: NewArrivalsView },

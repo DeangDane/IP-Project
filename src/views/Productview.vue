@@ -27,11 +27,10 @@
 
     <script>
     // import imagePath from "@/assets/s.png";
-    import GridProduct from "./components/GridProduct.vue";
-    import ListProduct from "./components/ListProduct.vue";
+   
     
     export default {
-      components: { GridProduct, ListProduct },
+      components: { },
       data() {
         return {
           viewMode: "grid", // Default to Grid View

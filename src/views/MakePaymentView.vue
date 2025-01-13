@@ -31,7 +31,7 @@
         <div class="payment-methods">
           <label>
             <i class="fa-regular fa-credit-card"></i> 
-            <input value="MasterCard" type="checkbox" @change="selectPaymentMethod('MasterCard')" :checked="form.paymentMethod === 'MasterCard'" />
+            <input value="MasterCard" type="checkbox" v-model="form.paymentMethod" @change="selectPaymentMethod('MasterCard')" :checked="form.paymentMethod === 'MasterCard'" />
             <span id="M">Credit Card Or Debit</span>
           </label>
           <label>
@@ -51,7 +51,7 @@
           <input type="text" placeholder="Phone Number" v-model="form.phoneNumber" />
         </div>
       </div>
-      <button class="next-btn" @click="nextStep">Go to Payment</button>
+      <button :disabled="!form.firstName || !form.lastName" class="next-btn" @click="nextStep">Go to Payment</button>
     </div>
 
     <!-- Step 2: Payment Details -->
@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import { useOrderStore } from '@/store/OrderStore';
+ // Assuming you use Pinia
 
 export default {
   data() {
@@ -121,62 +121,54 @@ export default {
         alert("You are already at the first step.");
       }
     },
+    validateStep1() {
+    if (!this.form.firstName || !this.form.lastName || !this.form.email || !this.form.address) {
+      alert("Please fill out all required fields.");
+      return false;
+    }
+    if (!/\S+@\S+\.\S+/.test(this.form.email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+    return true;
+  },
+    // nextStep() {
+    //   if (this.currentStep < 3) {
+    //     this.currentStep++;
+    //   }
+    //   if (this.currentStep === 3) {
+    //     this.triggerSuccessAlert();
+    //   }
+    // },
     nextStep() {
-      
-      if (this.currentStep < 3) {
-        this.currentStep++;
-      }
-      if (this.currentStep === 3) {
-        this.triggerSuccessAlert();
-  }
-    },
+    if (this.currentStep === 1 && !this.validateStep1()) {
+      return;
+    }
+    this.currentStep++;
+  },
     closePayment() {
       alert("Payment process has been closed.");
       this.resetForm();
       this.currentStep = 1;
     },
     completePayment() {
-      const orderStore = useOrderStore();
-      
-      const newOrder = {
-        id: Date.now(), // Unique ID for the order
-        userId: "12345", // Replace with actual user ID
-        location: "123 Street, City", // Replace with actual location
-        coupon: "DISCOUNT10", // Replace with actual coupon
-        totalAmount: 100.0, // Replace with actual total amount
-        discount: 10.0, // Replace with actual discount
-        state: "Completed", // Order status
-        items: [
-          { productId: "1", amount: 2 },
-          { productId: "2", amount: 1 },
-        ], // Example items
-      
-    };
-    
-      // alert("Payment completed successfully!");
-      // this.resetForm();
-      // this.currentStep = 1;
       // Save the order details to the store
+      const orderDetails = {
+        firstName: this.form.firstName,
+        lastName: this.form.lastName,
+        email: this.form.email,
+        phoneNumber: this.form.phoneNumber,
+        address: this.form.address,
+        paymentMethod: this.form.paymentMethod,
+        date: new Date().toLocaleString(),
+      };
+      const orderStore = useOrderStore();
+      orderStore.addOrder(orderDetails);
 
-      // const orderDetails = {
-      //   firstName: this.form.firstName,
-      //   lastName: this.form.lastName,
-      //   email: this.form.email,
-      //   phoneNumber: this.form.phoneNumber,
-      //   address: this.form.address,
-      //   paymentMethod: this.form.paymentMethod,
-      //   date: new Date().toLocaleString(),
-      // };
-      // const orderStore = useOrderStore();
-      // orderStore.addOrder(orderDetails);
-
-      // useOrderStore.addOrder(newOrder);
-  
       // Alert the user and reset
       alert("Payment completed successfully!");
       this.resetForm();
       this.currentStep = 1;
-
     },
     resetForm() {
       this.form = {
@@ -192,11 +184,7 @@ export default {
         holderName: "",
         saveCard: false,
       };
-      // Save the order details to history
-        useOrderStore.addToHistory(orderDetails);
     },
-    
-
     selectPaymentMethod(method) {
       if (this.form.paymentMethod === method) {
         this.form.paymentMethod = "";
@@ -204,15 +192,16 @@ export default {
         this.form.paymentMethod = method;
       }
     },
-
   },
 };
 </script>
+
 
 <style scoped>
 /* General Container */
 .payment-container {
   width: 800px;
+  height: 600px;
   position: relative;
   margin: 50px auto;
   padding: 25px 30px;
@@ -536,10 +525,12 @@ label #savecard{
   gap: 20px;
   flex-direction: row;
 }
+
 .savecard label input{
   margin-top: 10px;
   left: 110px;
-  bottom: 123px;
+  /* top: ; */
+  bottom: 253px;
   right: 10px;
   size: 10px;
   color: gray;
