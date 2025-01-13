@@ -11,7 +11,7 @@
         <div class="options">
           <input class="search" type="Search" placeholder="Search">
           <button @click="goToProItem()" class="cartButton"><i class="fas fa-shopping-cart"></i></button>
-          <button class="favoriteButton"><i class="fa fa-heart"></i></button>
+          <button class="favoriteButton" ><i class="fa fa-heart"></i></button>
           <button class="userButton" @click="toggleModal"><i class="fas fa-user"></i></button>
           <ProfileModal :show="isModalVisible" @close="toggleModal" />
         </div>

@@ -9,6 +9,7 @@ import PromotionsView from "@/views/PromotionsView.vue";
 import Productcard from "@/views/CartView.vue";
 import AllProductsView from "@/views/AllProductsView.vue";
 import Productview from "@/views/Productview.vue";
+// import YourOrdered from "@/views/YourOrdered.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home, },
@@ -21,6 +22,7 @@ const routes = [
   { path: "/proDetail", name: "ProDetail", component: ProDetailsView },
   { path: "/cart", name: "Cart", component: Productcard },
   {path: "/productview", name: "Productview", component: Productview},
+  // {path: "/favorite", name: "YourOrdered", component: YourOrdered},
 ];
 
 const router = createRouter({
