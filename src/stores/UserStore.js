@@ -1,14 +1,11 @@
 import { defineStore } from 'pinia';
 
-export const useUserProfileStore = defineStore('Profile', {
+export const useUserProfileStore = defineStore('UserProfile', {
   state: () => ({
-    // isLoggedIn: false,
-    // currentUser: null,
-    // users: [],
     users: JSON.parse(localStorage.getItem('users')) || [],
     currentUser: JSON.parse(localStorage.getItem('currentUser')) || null,
     isLoggedIn: !!localStorage.getItem('currentUser'),
-    profileImage: '',
+    // profileImage: '',
     loginError: '',
     signupError: '',
     signupSuccess: false,
@@ -98,6 +95,7 @@ export const useUserProfileStore = defineStore('Profile', {
       const index = this.users.findIndex(user => user.email === this.currentUser.email);
       if (index !== -1) {
         this.users[index] = { ...this.currentUser };
+        this.saveUsersToLocalStorage();
       }
     }
   },

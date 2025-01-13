@@ -47,7 +47,6 @@
   </div>
 </template>
 <script>
-import { RouterLink } from 'vue-router';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { useUserProfileStore } from "@/stores/UserStore";
 

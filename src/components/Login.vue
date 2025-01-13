@@ -62,26 +62,6 @@
     },
     methods: {
 
-    //   handleLogin() {
-    //   this.loginError = {};
-    //   if (!this.email.includes("@")) {
-    //     this.loginError.email = "Invalid email format.";
-    //   }
-    //   if (this.password.length < 6) {
-    //     this.loginError.password = "Password must be at least 6 characters.";
-    //   }
-    //   if (!Object.keys(this.loginError).length) {
-    //     const userProfileStore = useUserProfileStore();
-    //     userProfileStore.signIn(this.email, this.password);
-    //     if (userProfileStore.isLoggedIn) {
-    //       this.$emit("close");
-    //       this.$router.push('/');
-    //     } else {
-    //       this.loginError.general = userProfileStore.loginError;
-    //     }
-    //   }
-    // },
-
     handleLogin() {
       this.loginError = {};
       if (!this.email.includes("@")) {

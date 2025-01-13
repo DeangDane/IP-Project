@@ -22,8 +22,6 @@ const routes = [
   { path: "/cart", name: "Cart", component: Productcard },
   {path: "/productview", name: "Productview", component: Productview},
   {path: "/profile", name: "Profile", component: () => import("@/views/ProfileView.vue")},
-  // {path: "address", name: "Address", component: () => import("@/views/AddressView.vue")},
-  // {path: "myorder", name: "MyOrder", component: () => import("@/views/MyOrderView.vue")},
 ];
 
 const router = createRouter({

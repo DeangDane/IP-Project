@@ -15,6 +15,7 @@
         <div class="review-images">
           <img v-for="image in reviewImages" :src="image" :key="image" alt="Review Image" />
         </div>
+        
       </div>
     </div>
   </template>

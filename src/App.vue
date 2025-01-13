@@ -8,21 +8,23 @@
           <p class="brandName">SKIN GLOW</p>
         </div>
 
+        <ProfileModal v-if="!isLoggedIn" :show="true" @close="handleModalClose" />
+    <div v-else>
         <div class="options">
           <input class="search" type="Search" placeholder="Search">
           <button @click="goToProItem()" class="cartButton"><i class="fas fa-shopping-cart"></i></button>
           <button class="favoriteButton"><i class="fa fa-heart"></i></button>
           <button class="userButton" @click="toggleUserOptions"><i class="fas fa-user"></i></button>
-          <ProfileModal :show="isModalVisible" @close="toggleModal" />
-          <UserOptions v-if="showUserOptions && isLoggedIn" />
+          <!-- <ProfileModal :show="isModalVisible" @close="toggleModal" /> -->
+          <UserOptions v-if="showUserOptions"/>
         </div>
       </div>
+    </div>
 
       <div class="lower">
         <NavButton v-for="button in buttons" :key="button.name" :name="button.name" :route="button.route" />
       </div>
-    </div>
-
+  </div>
 
     <div class="content">
       <RouterView />
@@ -69,8 +71,7 @@
         </div>
       </div>
     </div>
-  </div>
-
+</div>
 </template>
 
 
@@ -79,8 +80,6 @@ import NavButton from './components/NavButton.vue';
 import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
-import Login from "@/components/Login.vue";
-import SignUp from "@/components/SignUp.vue";
 import ProfileModal from "@/components/ProfileModal.vue";
 import { useUserProfileStore } from "@/stores/UserStore";
 import UserOptions from "@/components/UserOptions.vue";
@@ -92,8 +91,6 @@ export default {
     Productcard,
     GridProduct,
     ProductItem,
-    Login,
-    SignUp,
     ProfileModal,
     UserOptions,
   },
@@ -123,6 +120,9 @@ watch: {
     },
     goToProItem() {
       this.$router.push({ name: "Cart" });
+    },
+    handleModalClose() {
+      // Handle modal close event if needed
     },
    
       logout() {

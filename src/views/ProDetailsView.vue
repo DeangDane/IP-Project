@@ -579,6 +579,31 @@ export default {
     font-size: 14px;
 }
 
+.review-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.review-actions button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-actions button:hover {
+  background-color: #0056b3;
+}
+
+.review-actions button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
 .write-review-container {
   display: flex;
   justify-content: flex-end;
