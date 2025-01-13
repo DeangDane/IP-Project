@@ -11,6 +11,7 @@
         :proName="gridPro.proName" :price="gridPro.price" :rawPrice="gridPro.rawPrice" :discount="gridPro.discount"  />
     </div>
 
+    <PromoProduct/>
     
     <div class="text">
       BEST SELLER
@@ -60,6 +61,7 @@ import SearchQ from "@/components/SearchQ.vue";
 import GridProduct from "@/components/GridProduct.vue";
 import AutoImageSlider from "@/components/AutoImageSlider.vue";
 import { useProductStore } from "@/store/ProductStore";
+import PromoProduct from "@/components/PromoProduct.vue";
 
 export default {
   components: {
@@ -69,6 +71,7 @@ export default {
     GridProduct,
     // NewArrive,
     AutoImageSlider,
+    PromoProduct,
     
   },
 
