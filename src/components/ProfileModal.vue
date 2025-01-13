@@ -9,7 +9,8 @@
 
 <script>
 import Login from "@/components/Login.vue";
-import Signup from "@/components/Signup.vue";
+import SignUp from "@/components/SignUp.vue";
+import { useUserProfileStore } from "@/stores/UserStore";
 
 export default {
   props: {
@@ -22,7 +23,7 @@ export default {
   },
   components: {
     Login,
-    Signup,
+    SignUp,
   },
   methods: {
     closeModal() {
@@ -32,8 +33,18 @@ export default {
       this.currentView = "Login";
     },
     switchToSignUp() {
-      this.currentView = "Signup";
+      this.currentView = "SignUp";
     },
+  },
+  computed: {
+    userProfile() {
+      const userProfileStore = useUserProfileStore();
+      return userProfileStore.currentUser;
+    },
+  },
+  mounted() {
+    const userProfileStore = useUserProfileStore();
+    userProfileStore.loadUsersFromLocalStorage();
   },
 };
 </script>

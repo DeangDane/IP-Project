@@ -12,10 +12,10 @@
           <input class="search" type="Search" placeholder="Search">
           <button @click="goToProItem()" class="cartButton"><i class="fas fa-shopping-cart"></i></button>
           <button class="favoriteButton"><i class="fa fa-heart"></i></button>
-          <button class="userButton" @click="toggleModal"><i class="fas fa-user"></i></button>
+          <button class="userButton" @click="toggleUserOptions"><i class="fas fa-user"></i></button>
           <ProfileModal :show="isModalVisible" @close="toggleModal" />
+          <UserOptions v-if="showUserOptions && isLoggedIn" />
         </div>
-
       </div>
 
       <div class="lower">
@@ -74,66 +74,72 @@
 </template>
 
 
-<!-- <style>
-/* Add any global styles */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: white;
-}
-</style> -->
-
 <script>
-// import ProductGrid from './views/ProductGridView.vue';
-// import Productgrid from './views/ProductGridView.vue';
 import NavButton from './components/NavButton.vue';
 import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
-import Signup from "@/components/Signup.vue";
+import SignUp from "@/components/SignUp.vue";
 import ProfileModal from "@/components/ProfileModal.vue";
+import { useUserProfileStore } from "@/stores/UserStore";
+import UserOptions from "@/components/UserOptions.vue";
 
 export default {
   name: 'App',
   components: {
-    // ProductGrid,
     NavButton,
     Productcard,
     GridProduct,
     ProductItem,
     Login,
-    Signup,
+    SignUp,
     ProfileModal,
+    UserOptions,
   },
 
+  computed: {
+  isLoggedIn() {
+    const userProfileStore = useUserProfileStore();
+    return userProfileStore.isLoggedIn;
+  },
+},
+watch: {
+  isLoggedIn(newValue) {
+    this.showUserOptions = newValue;
+  },
+},
   methods: 
   {
     toggleModal() {
       this.isModalVisible = !this.isModalVisible;
-      },
+    },
+    toggleUserOptions() {
+      if (this.isLoggedIn) {
+        this.showUserOptions = !this.showUserOptions;
+      } else {
+        this.toggleModal();
+      }
+    },
     goToProItem() {
       this.$router.push({ name: "Cart" });
     },
-    switchToLogin() {
-      this.currentComponent = "Login";
-      },
-      switchToSignUp() {
-      this.currentComponent = "Signup";
-      },
-
+   
+      logout() {
+      const userProfileStore = useUserProfileStore();
+      userProfileStore.logout();
+      this.$router.push("/");
+    },
+  },
+  mounted() {
+    const userProfileStore = useUserProfileStore();
+    userProfileStore.loadUsersFromLocalStorage();
   },
 
   data() {
     return {
-
-      currentComponent: "Login",
         isModalVisible: false,
-        // currentPage: 1,
-        // query: "",
-      // gridProducts: [
-      //   { name: "Home", route: "/" },
-      // ],
+        showUserOptions: false,
 
       buttons: [
         { name: "HOME", route: "/" },
@@ -185,7 +191,6 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* background-color: #FFCBCF; */
 }
 
 .lower {
@@ -274,5 +279,14 @@ ul li a {
   height: 40px;
   width: 40px;
   background-color: white;
+}
+.user-options {
+  position: absolute;
+  top: 72px;
+  right: 2px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 </style>

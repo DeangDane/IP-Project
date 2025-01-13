@@ -17,10 +17,19 @@
             <div class="product-info">
                 <h1>{{ productName }}</h1>
                 <div class="ratings-section">
-                <span class="stars">★★★★★</span>
-                <a href="#reviews" class="reviews-link">0 reviews</a>
-                <a href="#submit-review" class="submit-review">Submit a review</a>
+                    <div class="stars">
+                        <span v-for="star in 5" :key="star" class="star" :class="{ active: star <= reviewRating }"
+                            @click="reviewRating = star">
+                            ⭐
+                        </span>
+                        <span class="rating-number">{{ reviewRating }}/5</span>
+                         <!-- <a href="#reviews" class="reviews-link">0 reviews</a>
+                <a href="#submit-review" class="submit-review">Submit a review</a> -->
+                <a href="#Reviews" class="reviews-link">{{ reviews.length }} reviews</a>
+                <a href="#Reviews" class="submit-review" @click="openReviewModal">Submit a review</a>
+                    </div>           
                 </div>
+
                 <div class="price">
                     <span class="current-price">{{ currentPrice }}</span>
                     <span class="original-price">{{ originalPrice }}</span>
@@ -62,8 +71,8 @@
                 <div class="reviews-section">
                 <div v-for="review in reviews" :key="review.id">
                     <Review
-                    :userAvatar="review.userAvatar"
-                    :userName="review.userName"
+                    :profileImage="profileImage"
+                    :userName="userName"
                     :reviewDate="review.date"
                     :stars="review.rating"
                     :reviewText="review.comment"
@@ -74,6 +83,7 @@
                     <button @click="deleteReview(review.id)">Delete</button>
                     </div>
                 </div>
+
                 <div class="write-review-container">
 
                 <button class="write-review-btn" @click="openReviewModal">
@@ -135,6 +145,7 @@
 
 <script>
 import { useReviewsStore } from "@/stores/Reviews";
+import { useUserProfileStore } from "@/stores/UserStore";
 import Review from "@/components/Review.vue";
 import product1 from "@/assets/images/product1.png";
 import product2 from "@/assets/images/product2.png";
@@ -191,6 +202,7 @@ export default {
                     },
                 },
             ],
+            productId: 1,
             productName: "Red Bean Refreshing Pore Mask",
             currentPrice: "$17.75",
             originalPrice: "$23.33",
@@ -203,79 +215,106 @@ export default {
             reviewRating: 0,
             reviewComment: "",
             reviewPhotos: [],
+            userProfile: {
+                name: "null",
+                profileImage: "null",
+            },
             editingReviewId: null,
             isEditing: false,
+            
         };
     },
     computed: {
+    // currentUser() {
+    //   const userProfileStore = useUserProfileStore();
+    //   return userProfileStore.currentUser;
+    // },
+
+    userName: {
+      get() {
+        const userProfileStore = useUserProfileStore();
+        return userProfileStore.currentUser?.name || "";
+      },
+      set(value) {
+        const userProfileStore = useUserProfileStore();
+        userProfileStore.currentUser.name = value;
+      }
+    },
+    profileImage() {
+      const userProfileStore = useUserProfileStore();
+      return userProfileStore.currentUserProfileImage;
+    },    
+
     reviews() {
       const reviewsStore = useReviewsStore();
       return reviewsStore.reviews;
     },
+    otherUserReviews() {
+      return this.reviews.filter(review => review.userName !== this.userName);
+    }
   },
-    methods: {
-        selectImage(image) {
-            this.selectedImage = image;
-        },
-        selectTab(index) {
-            this.selectedTab = index;
-        },
-        addToCart() {
-            const product = {
-            name: this.productName,
-            price: this.currentPrice,
-            image: this.selectedImage,
-            quantity: this.quantity,
-        };
-            alert(`Added ${this.quantity} item(s) of ${this.productName} to your cart.`);
-        },
-        loadProductDetails(product) {
-            // Update all product details dynamically
-            this.productName = product.name;
-            this.productImages = product.details.images;
-            this.selectedImage = product.details.images[0];
-            this.reviews = product.details.reviews;
-            this.currentPrice = product.currentPrice;
-            this.tabContents[0] = `Details about ${product.name}.`;
-            this.selectedTab = 0; // Reset to the first tab
-        },
-
-        shareOnFacebook() {
-            const url = encodeURIComponent(window.location.href);
-            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
-            window.open(shareUrl, "_blank");
-        },
-        shareOnTwitter() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent(`Check out this product: ${this.productName}`);
-            const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
-            window.open(shareUrl, "_blank");
-        },
-
-        openReviewModal() {
-            this.isReviewModalOpen = true;
-            this.isEditing = false;
-            this.reviewRating = 0;
-            this.reviewComment = "";
-            this.reviewPhotos = [];
-        },
-        closeReviewModal() {
-            this.isReviewModalOpen = false;
-        },
+  methods: {
+    selectImage(image) {
+      this.selectedImage = image;
+    },
+    selectTab(index) {
+      this.selectedTab = index;
+    },
+    addToCart() {
+      const product = {
+        name: this.productName,
+        price: this.currentPrice,
+        image: this.selectedImage,
+        quantity: this.quantity,
+      };
+      alert(`Added ${this.quantity} item(s) of ${this.productName} to your cart.`);
+    },
+    loadProductDetails(product) {
+      // Update all product details dynamically
+      this.productName = product.name;
+      this.productImages = product.details.images;
+      this.selectedImage = product.details.images[0];
+      this.reviews = product.details.reviews;
+      this.currentPrice = product.currentPrice;
+      this.tabContents[0] = `Details about ${product.name}.`;
+      this.selectedTab = 0; // Reset to the first tab
+    },
+    shareOnFacebook() {
+      const url = encodeURIComponent(window.location.href);
+      const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      window.open(shareUrl, "_blank");
+    },
+    shareOnTwitter() {
+      const url = encodeURIComponent(window.location.href);
+      const text = encodeURIComponent(`Check out this product: ${this.productName}`);
+      const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+      window.open(shareUrl, "_blank");
+    },
+    openReviewModal() {
+      this.isReviewModalOpen = true;
+      this.isEditing = false;
+      this.reviewRating = 0;
+      this.reviewComment = "";
+      this.reviewPhotos = [];
+    },
+    closeReviewModal() {
+      this.isReviewModalOpen = false;
+    },
         handlePhotoUpload(event) {
-            const files = event.target.files;
-            Array.from(files).forEach((file) => {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    this.reviewPhotos.push(e.target.result);
-                };
-                reader.readAsDataURL(file);
-            });
-        },
-        submitReview() {
-            const reviewsStore = useReviewsStore();
-        const newReview = {
-        userName: "Anonymous", // You can replace this with a user input for the name
+      const files = event.target.files;
+      Array.from(files).forEach((file) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.reviewPhotos.push(e.target.result);
+        };
+        reader.readAsDataURL(file);
+      });
+    },
+    submitReview() {
+      const reviewsStore = useReviewsStore();
+      const newReview = {
+        profileImage: this.userProfile.profileImage,
+        userName: this.userProfile.name,
         rating: this.reviewRating,
         comment: this.reviewComment,
         date: new Date().toISOString().split("T")[0],
@@ -284,26 +323,39 @@ export default {
       if (this.isEditing) {
         reviewsStore.updateReview(this.editingReviewId, newReview);
       } else {
-        reviewsStore.addReview(this.productName, newReview.comment, newReview.rating, newReview.photos);
-      }
+        // reviewsStore.addReview({
+        //   userAvatar: this.userProfile.profileImage,
+        //   userName: this.userProfile.name,
+        //   date: new Date().toLocaleDateString(),
+        //   rating: this.reviewRating,
+        //   comment: this.reviewComment,
+        //   photos: this.reviewPhotos,
+        // });      
+        reviewsStore.addReview(
+          this.productId, // Ensure productId is defined in your component
+          this.reviewComment,
+          this.reviewRating,
+          this.reviewPhotos
+        );
+    }
       this.closeReviewModal();
-        },
-        editReview(reviewId) {
-            const reviewsStore = useReviewsStore();
-            const review = reviewsStore.reviews.find((review) => review.id === reviewId);
-            this.reviewRating = review.rating;
-            this.reviewComment = review.comment;
-            this.reviewPhotos = review.photos;
-            this.editingReviewId = reviewId;
-            this.isEditing = true;
-            this.openReviewModal();
-        },
-        deleteReview(reviewId) {
-            const reviewsStore = useReviewsStore();
-            reviewsStore.deleteReview(reviewId);        
-        },
     },
-    mounted() {
+    editReview(reviewId) {
+      const reviewsStore = useReviewsStore();
+      const review = reviewsStore.reviews.find((review) => review.id === reviewId);
+      this.reviewRating = review.rating;
+      this.reviewComment = review.comment;
+      this.reviewPhotos = review.photos;
+      this.editingReviewId = reviewId;
+      this.isEditing = true;
+      this.openReviewModal();
+    },
+    deleteReview(reviewId) {
+      const reviewsStore = useReviewsStore();
+      reviewsStore.deleteReview(reviewId);
+    },
+  },
+  mounted() {
     const reviewsStore = useReviewsStore();
     reviewsStore.loadReviews();
   },
@@ -544,7 +596,7 @@ export default {
 }
 
 .write-review-btn:hover {
-    background-color: #0056b3;
+    background-color: #e04e4e;
 
 }
 

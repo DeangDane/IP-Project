@@ -48,8 +48,13 @@
 </template>
 <script>
 import { RouterLink } from 'vue-router';
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { useUserProfileStore } from "@/stores/UserStore";
 
 export default {
+  components: {
+    FontAwesomeIcon,
+  },
   data() {
     return {
       name: "",
@@ -71,16 +76,18 @@ export default {
       if (this.password.length < 6) {
         this.signUpError.password = "Password must be at least 6 characters.";
       }
-      if (this.confirmpassword.length < 6) {
-        this.signUpError.confirmpassword = "Confirm Password must be the same Password.";
+      if (this.password !== this.confirmpassword) {
+        this.signUpError.confirmpassword = "Passwords do not match.";
       }
       if (!Object.keys(this.signUpError).length) {
-        alert("Sign Up Successful!");
         const userProfileStore = useUserProfileStore();
-        userProfileStore.saveUserProfile({ name: this.name, email: this.email });
-        this.$emit('switchToLogin');
-        // Navigate to the login page
-        // this.$router.push("/login");
+        const result = userProfileStore.signup(this.name, this.email, this.password);
+        if (result.success) {
+          alert("Sign Up Successful!");
+          this.$emit("switchToLogin");
+        } else {
+          this.signUpError.general = result.message;
+        }
       }
     },
   },
