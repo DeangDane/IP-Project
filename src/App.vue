@@ -80,7 +80,7 @@ import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
-import SignUp from "@/components/SignUp.vue";
+import SignUp from "@/components/Signup.vue";
 import ProfileModal from "@/components/ProfileModal.vue";
 import { useUserProfileStore } from "@/stores/UserStore";
 import UserOptions from "@/components/UserOptions.vue";
