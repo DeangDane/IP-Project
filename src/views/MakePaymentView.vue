@@ -439,9 +439,12 @@ button:hover {
  .success-step {
   text-align: center;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 5rem;
   color: #ff4c61;
+  padding: 80px;
+  margin: auto;
   margin-bottom: 20px;
+  /* background-color: red; */
 
 }
 .success-step i{
@@ -449,7 +452,15 @@ button:hover {
   color: #ff4c61;
   margin-bottom: 20px;
 }
-
+.success-step h3{
+  color: black;
+  font-weight: bold;
+}
+.success-step button{
+  margin-bottom: 20px;
+  padding: 10px 40px;
+  /* color: red; */
+}
 h3 {
   color: rgb(18, 18, 110);
   font-size: 1rem;
@@ -563,7 +574,7 @@ button.next-btn {
   align-items: center;
   justify-content: center;
   padding: 12px 60px;
-  border: none;
+  border: none;   
   border-radius: 8px;
 }
 
