@@ -7,7 +7,7 @@
       
     </div>
     <div class="content">
-      <GridProduct v-for="gridPro in hotProducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
+      <GridProduct v-for="gridPro in featProducts" :image="gridPro.images[0]" :color="gridPro.color" :label="gridPro.label"
         :proName="gridPro.proName" :price="gridPro.price" :rawPrice="gridPro.rawPrice" :discount="gridPro.discount" />
     </div>
 
@@ -46,10 +46,10 @@
     
     <button class="viewAll" @click="goToNewArrival()" >View All</button>
 
-    <div class="search-container">
+    <!-- <div class="search-container">
       <input type="text" placeholder="Search query..." class="search-input" />
       <button class="search-button">Search</button>
-    </div>
+    </div> -->
     
 
   </div>
@@ -81,11 +81,14 @@ export default {
     const hotProducts = computed(() => productStore.hotProducts);
     const newProducts = computed(() => productStore.newProducts);
     const proProducts = computed(() => productStore.proProducts);
+    const featProducts = computed(() => productStore.featProducts);
+
 
     return {
       hotProducts,
       newProducts,
       proProducts,
+      featProducts,
     };
   },
 

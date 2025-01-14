@@ -15,27 +15,27 @@
 
     <div class="payment">
       <div class="coupon">
-        <input class="couponCode" type="string" placeholder="Coupon or Voucher Code">
+        <input class="couponCode" type="string" placeholder="   Coupon Code">
         <button class="subBtn">Submit</button>
       </div>
 
       <div class="total">
         <div class="info">
           <div>Subtotal</div>
-          <div>{{ cartTotal | currency }}</div>
+          <!-- <div>{{ cartTotal | currency }}</div> -->
         </div>
         <div class="info">
           <div>Shipping Fee</div>
-          <div>3$</div>
+          <div>Free</div>
         </div>
         <div class="info">
-          <div>Coupon or Voucher</div>
-          <div>{{ appliedCoupon || 'None' }}</div>
+          <div>Coupon</div>
+          <!-- <div>{{ appliedCoupon || 'None' }}</div> -->
         </div>
         <hr>
         <div id="inf" class="info">
           <div>Total</div>
-          <div>{{ (cartTotal + 3) | currency }}</div>
+          <!-- <div>{{ (cartTotal + 3) | currency }}</div> -->
         </div>
         <router-link to="/makePayment">
           <button class="checkoutTotal">Checkout</button>
@@ -64,8 +64,6 @@ export default {
       return products.value.reduce((total, item) => total + item.quantity * item.price, 0);
     });
 
-    const taxAmount = computed(() => cartTotal.value * 0.1); // 10% tax
-
     const handleRemove = (productId) => {
       // Handle item removal here
       cartStore.removeFromCart(productId);
@@ -75,92 +73,10 @@ export default {
     return {
       products,
       cartTotal,
-      taxAmount,
       handleRemove,
     };
   },
-  // computed: {
-  //   cartTotal() {
-  //     return this.cart.items.reduce(
-  //       (total, item) => total + item.quantity * item.product.price,
-  //       0
-  //     );
-  //   },
-  //   taxAmount() {
-  //     return this.cartTotal * 0.1; // 10% tax
-  //   },
-  // },
-  // filters: {
-  //   currency: function (value) {
-  //     var formatter = new Intl.NumberFormat("en-US", {
-  //       style: "currency",
-  //       currency: "USD",
-  //       minimumFractionDigits: 0
-  //     });
-  //     return formatter.format(value);
-  //   }
-  // },
-  // methods: {
-  //   addProductToCart(product) {
-  //     const cartItem = this.getCartItem(product);
-  //     if (cartItem) {
-  //       cartItem.quantity++;
-  //     } else {
-  //       this.cart.items.push({ product, quantity: 1 });
-  //     }
-  //     product.inStock--;
-  //   },
-  //   increaseQuantity(item) {
-  //     item.quantity++;
-  //     item.product.inStock--;
-  //   },
-  //   decreaseQuantity(item) {
-  //     item.quantity--;
-  //     item.product.inStock++;
-  //     if (item.quantity === 0) {
-  //       this.removeItemFromCart(item);
-  //     }
-  //   },
-  //   removeItemFromCart(item) {
-  //     const index = this.cart.items.indexOf(item);
-  //     if (index > -1) {
-  //       this.cart.items.splice(index, 1);
-  //     }
-  //   },
-  //   listWrapper() {
-  //     this.groupWrapper = "list-group-item";
-  //   },
-  //   gridWrapper() {
-  //     this.groupWrapper = "grid-group-item";
-  //   },
-  //   checkout() {
-  //     if (confirm("Are you sure that you want to purchase these products?")) {
-  //       this.cart.items.forEach((item) => (item.product.inStock += item.quantity));
-  //       this.cart.items = [];
-  //     }
-  //   },
 
-  //   goToMakePayment() {
-  //     this.$router.push('/makePayment');
-  //   },
-
-  //   getCartItem(product) {
-  //     return this.cart.items.find((item) => item.product.id === product.id) || null;
-  //   },
-  //   handleRemove() {
-  //     // Handle item removal here
-  //     console.log("Item removed");
-  //   },
-  // },
-  // filters: {
-  //   currency(value) {
-  //     return new Intl.NumberFormat("en-US", {
-  //       style: "currency",
-  //       currency: "USD",
-  //       minimumFractionDigits: 2,
-  //     }).format(value);
-  //   },
-  // },
 };
 </script>
 
@@ -184,9 +100,10 @@ export default {
   gap: 20px;
 }
 
+
 .line {
   flex: 1;
-  height: 2px;
+  height: 4px;
   background-color: #1f3566;
   /* Navy blue line color */
 }
