@@ -1,7 +1,7 @@
 <template>
   <div class="gridPro">
     <div class="btns">
-      <div class="cart" id="cart" @click="toggleCartColor()">
+      <div class="cart" id="cart" @click="addToCartArray()">
         <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
           <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import { useProductStore } from '@/store/ProductStore';
+
 import { useCartStore } from '@/store/CartStore';
 
 
@@ -113,7 +113,7 @@ export default {
     discount: Number,
     color: String,
     label: String,
-    Quantity: Number,
+    id: Number,
   },
 
   methods: {
@@ -121,51 +121,31 @@ export default {
       this.$router.push({ name: "ProDetail" });
     },
 
-    toggleCartColor(product) {
-      const cartStore = useCartStore();
-      const productInCart = cartStore.cart.find(item => item.id === product.id);
+    // toggleCart() {
+    //   const cartButton = document.querySelector('.cart');
+    //   const currentColor = window.getComputedStyle(cartButton).backgroundColor;
+    //   if (currentColor === 'rgb(235, 246, 255)') { // #EBF6FF in RGB
+    //     this.addToCartArray();
+    //   } else if (currentColor === 'rgb(64, 191, 255)') { // #40BFFF in RGB
+    //     this.removeFromCartArray();
+    //   }
+    // },
 
-      if (!productInCart) {
-        // Add product to the cart
-        cartStore.addToCart(product);
-        console.log('add');
-      } else {
-        // Remove product from the cart
-        cartStore.removeFromCart(product.id);
-        console.log('remove');
-      }
+    addToCartArray() {
+      const cartStore = useCartStore();
+      const product = {
+        id: this.id,
+        price: this.price,
+        proName: this.proName,
+        images: [this.image],
+      };
+      cartStore.addToCart(product);
+      document.getElementById('cart').style.backgroundColor = '#40BFFF';
+      const svgPath = document.getElementById('strock');
+      svgPath.setAttribute('stroke', '#EBF6FF');
     },
 
-    // toggleCartColor() {
 
-    //   this.cartActive = !this.cartActive;
-    //   const cart = document.getElementById("cart");
-
-    //   if (this.cartActive) {
-    //     cart.style.backgroundColor = '#33A0FF';
-
-    //     console.log('add');
-    //   } else {
-    //     cart.style.backgroundColor = '#EBF6FF';
-    //     console.log('remove');
-    //   }
-
-
-    //   this.strokeActive = !this.strokeActive;
-    //   const stk = document.getElementById("strock");
-    //   stk.style.stroke = this.strokeActive ? '#EBF6FF' : '#33A0FF';
-
-    // },
-    // toggleFavoriteColor() {
-    //   this.favoriteActive = !this.favoriteActive;
-    //   const fav = document.getElementById("favorite");
-    //   fav.style.backgroundColor = this.favoriteActive ? '#33A0FF' : '#EBF6FF';
-
-    //   this.strokeActive = !this.strokeActive;
-    //   const stk = document.getElementById("stroke");
-    //   stk.style.stroke = this.strokeActive ? '#EBF6FF' : '#33A0FF';
-
-    // },
   },
 };
 </script>

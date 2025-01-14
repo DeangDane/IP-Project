@@ -8,7 +8,7 @@
             style="width: 50px; height: auto"
         />
         <div class="flex-grow-1 ms-2">
-            <h5 class="mb-1">{{ title }}</h5>
+            <h5 class="mb-1">{{ proName }}</h5>
             <p class="mb-1 text-muted">${{ price }}</p>
         </div>
         <div class="d-flex align-items-center me-3">
@@ -43,7 +43,7 @@
 export default {
     name: "ProductItem",
     props: {
-        title: String,
+        proName: String,
         price: Number,
         image: String,
     },
@@ -75,6 +75,7 @@ export default {
 
 <style scoped>
 #box {
+    font-family: 'Poppins', sans-serif;
     background-color: white;
     box-shadow: 1px 3px 3px gray;
 }

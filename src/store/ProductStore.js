@@ -55,7 +55,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Torriden",
                 instock: 40,
                 skintype: ["All"],
-                images: ["images/Product3.png"]
+                images: ["images/Product1.png"]
             },
             {
                 id: 4,

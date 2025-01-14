@@ -17,6 +17,7 @@
 import GridProduct from "@/components/GridProduct.vue";
 import ProductGallery from "@/components/ProductGallery.vue";
 import { useProductStore } from "@/store/ProductStore";
+import { computed } from "vue";
 // import YourOrdered from "@/components/YourOrdered.vue";
 
 export default {
@@ -30,7 +31,7 @@ export default {
     setup() {
         const productStore = useProductStore();
         return {
-            gridproducts: productStore.hotProducts,
+            gridproducts: computed(() => productStore.hotProducts) ,
         };
     },
 

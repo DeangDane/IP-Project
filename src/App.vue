@@ -24,7 +24,7 @@
                     stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
                 </g>
               </svg>
-              <div class="cartCount">0</div>
+              <div class="cartCount">{{ cartCount }}</div>
             </button>
             <button class="favoriteButton">
               <!-- <i class="fa fa-heart"></i> -->
@@ -129,6 +129,7 @@ import OrderView from './views/OrderView.vue';
 import { useUserProfileStore } from "@/store/UserStore";
 import UserOptions from "@/components/UserOptions.vue";
 import { ref, computed } from 'vue';
+import { useCartStore } from "@/store/CartStore";
 // import ProfileModal from "@/components/ProfileModal.vue";
 
 export default {
@@ -144,11 +145,17 @@ export default {
     // ProfileModal,
     MakePaymentView,
     OrderView,
-
     UserOptions,
   },
 
+  props: {
+    cartCount: Number,
+  },
+
   setup() {
+    
+    const cartStore = useCartStore();
+
     const searchQuery = ref('');
     const items = ref([
       { id: 1, name: 'Item 1' },
@@ -162,13 +169,14 @@ export default {
         return [];
       }
       return items.value.filter(item =>
-        item.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+        item.name.toLowerCase().includes(searchQuery.value.toLowerCase()),
       );
     });
 
     return {
       searchQuery,
       filteredItems,
+      cartCount: computed(() => cartStore.countItemsInCart()),
     };
   },
 
