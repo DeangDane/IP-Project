@@ -59,7 +59,7 @@
                 <input type="text" placeholder="Expiry Date (MM/YY)" v-model="form.expiry" />
                 <input type="text" placeholder="CVV  (3 digits)" v-model="form.cvv " maxlength="3" />
             </div>          
-                <input type="text" placeholder="Holder Number" v-model="form.holderName" />
+                <input type="text" placeholder="Holder Name" v-model="form.holderName" />
           </div>
         </div>
       </div>     
