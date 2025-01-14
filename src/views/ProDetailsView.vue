@@ -23,8 +23,6 @@
                             ⭐
                         </span>
                         <span class="rating-number">{{ reviewRating }}/5</span>
-                         <!-- <a href="#reviews" class="reviews-link">0 reviews</a>
-                <a href="#submit-review" class="submit-review">Submit a review</a> -->
                 <a href="#Reviews" class="reviews-link">{{ reviews.length }} reviews</a>
                 <a href="#Reviews" class="submit-review" @click="openReviewModal">Submit a review</a>
                     </div>           
