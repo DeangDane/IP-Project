@@ -61,7 +61,6 @@
       };
     },
     methods: {
-
     handleLogin() {
       this.loginError = {};
       if (!this.email.includes("@")) {
