@@ -28,11 +28,8 @@ export const useReviewsStore = defineStore("Review", {
       if (!comment || rating < 1 || rating > 5) {
         throw new Error("Invalid comment or rating.");
       }
-
       const newReview = {
         id: Date.now(), 
-        // userAvatar,
-        // userName,
         productId,
         comment,
         rating,
@@ -56,8 +53,4 @@ export const useReviewsStore = defineStore("Review", {
       this.saveReviews();
     },
   },
-  // mounted() {
-  //   const reviewsStore = useReviewsStore();
-  //   reviewsStore.loadReviews();
-  // },
 });

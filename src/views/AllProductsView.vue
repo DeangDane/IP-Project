@@ -415,4 +415,10 @@ button {
   display: flex;
   gap: 30px;
 }
+
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 </style>

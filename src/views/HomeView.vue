@@ -11,7 +11,7 @@
         :proName="gridPro.proName" :price="gridPro.price" :rawPrice="gridPro.rawPrice" :discount="gridPro.discount" />
     </div>
 
-    <PromoProduct/>
+    <!-- <PromoProduct/> -->
     
     <div class="text">
       BEST SELLER
@@ -130,7 +130,8 @@ export default {
   font-weight: 600;
 }
 .viewAll {
-  border: none;
+  border: solid 2px rgb(3, 26, 145);
+  border-radius: 10px;
   background-color: white;
   font-family: 'Poppins', sans-serif;
   font-size: large;

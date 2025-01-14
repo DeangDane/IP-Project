@@ -1,6 +1,8 @@
 <template>
   <div class="product-gallery">
-    <img :src="bgImage" style="width: 100%; height: 30rem;" alt="Background Image" />
+    <div class="Image">
+      <img class="image" :src="bgImage" alt="Background Image" />
+    </div>
     <div class="products">
       <div class="product" v-for="product in products" :key="product.id">
         <div class="product-image" :style="{ backgroundImage: `url(${product.image})` }">
@@ -16,7 +18,7 @@
           </div>
       </div>
     </div>
-       
+    
         
       </div>
     </div>
@@ -99,6 +101,18 @@ export default {
   
 
 }
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Image {
+  width: 100%;
+  height: 30rem;
+}
+/* style="width: 100%; height: 30rem;" */
 
 .product {
   /* position: relative; */

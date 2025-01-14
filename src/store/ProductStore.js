@@ -54,8 +54,8 @@ export const useProductStore = defineStore("product", {
                 reviews: 120,
                 brand: "Torriden",
                 instock: 40,
-                skintype: ["All"],
-                images: ["images/Product1.png"]
+                skintype: ["Normal", "Oily"],
+                images: ["https://m.media-amazon.com/images/I/51gxe4oTl8L._SY450_.jpg"]
             },
             {
                 id: 4,
@@ -73,7 +73,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Dr. G",
                 instock: 15,
                 skintype: ["Normal", "Dry", "Oily"],
-                images: ["images/Product4.png"]
+                images: ["https://m.media-amazon.com/images/I/71sWWbYc1rL._SX679_.jpg"]
             },
             {
                 id: 5,
@@ -91,7 +91,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Anua",
                 instock: 18,
                 skintype: ["Normal", "Dry"],
-                images: ["images/Product5.png"]
+                images: ["images/Product1.png"]
             },
             {
                 id: 6,
@@ -109,7 +109,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Skin1004",
                 instock: 20,
                 skintype: ["Oily", "Combination"],
-                images: ["images/Product6.png"]
+                images: ["https://m.media-amazon.com/images/I/31zAEsVXP8L._SX300_SY300_QL70_FMwebp_.jpg"]
             },
             {
                 id: 7,
@@ -127,7 +127,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Torriden",
                 instock: 25,
                 skintype: ["Normal", "Dry"],
-                images: ["images/Product7.png"]
+                images: ["https://m.media-amazon.com/images/I/21jQmag5RiL._SX300_SY300_QL70_FMwebp_.jpg"]
             },
             {
                 id: 8,
@@ -144,8 +144,8 @@ export const useProductStore = defineStore("product", {
                 reviews: 100,
                 brand: "Dr. G",
                 instock: 35,
-                skintype: ["All"],
-                images: ["images/Product8.png"]
+                skintype: ["Normal", "Oily", "Combination"],
+                images: ["https://m.media-amazon.com/images/I/71G5kVMacxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
             },
             {
                 id: 9,
@@ -163,7 +163,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Anua",
                 instock: 22,
                 skintype: ["Oily", "Combination"],
-                images: ["images/Product9.png"]
+                images: ["https://m.media-amazon.com/images/I/41eE1roDBrL._SX300_SY300_QL70_FMwebp_.jpg"]
             },
             {
                 id: 10,
@@ -181,7 +181,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Skin1004",
                 instock: 15,
                 skintype: ["Sensitive", "Normal"],
-                images: ["images/Product10.png"]
+                images: ["https://m.media-amazon.com/images/I/31UUGcVRjjL._SX300_SY300_QL70_FMwebp_.jpg"]
             },
             {
                 id: 11,
@@ -199,7 +199,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Torriden",
                 instock: 30,
                 skintype: ["Normal", "Oily", "Combination"],
-                images: ["images/Product11.png"]
+                images: ["https://m.media-amazon.com/images/I/51WpWEjRhmL._SL1500_.jpg"]
             },
             {
                 id: 12,
@@ -216,8 +216,8 @@ export const useProductStore = defineStore("product", {
                 reviews: 18,
                 brand: "Skin1004",
                 instock: 25,
-                skintype: ["All"],
-                images: ["images/Product12.png"]
+                skintype: ["Normal", "Oily", "Combination"],
+                images: ["https://m.media-amazon.com/images/I/81ZeK-6Dy8L._SL1500_.jpg"]
             },
             {
                 id: 13,
@@ -235,7 +235,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Dr. G",
                 instock: 20,
                 skintype: ["Normal", "Dry", "Sensitive"],
-                images: ["images/Product13.png"]
+                images: ["https://m.media-amazon.com/images/I/71jTuSY+xSL._SL1500_.jpg"]
             },
             {
                 id: 14,
@@ -253,7 +253,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Anua",
                 instock: 40,
                 skintype: ["Sensitive", "Normal", "Dry"],
-                images: ["images/Product14.png"]
+                images: ["https://m.media-amazon.com/images/I/71MnKW-CR5L._SL1500_.jpg"]
             },
             {
                 id: 15,
@@ -271,7 +271,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Skin1004",
                 instock: 15,
                 skintype: ["Oily", "Combination"],
-                images: ["images/Product15.png"]
+                images: ["https://m.media-amazon.com/images/I/61tuB-TSc1L._SL1500_.jpg"]
             },
             {
                 id: 16,
@@ -289,7 +289,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Dr. G",
                 instock: 18,
                 skintype: ["Sensitive", "Dry", "Normal"],
-                images: ["images/Product16.png"]
+                images: ["https://m.media-amazon.com/images/I/71eXA9R1ITL._SL1500_.jpg"]
             },
             {
                 id: 17,
@@ -307,7 +307,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Torriden",
                 instock: 30,
                 skintype: ["Oily", "Combination"],
-                images: ["images/Product17.png"]
+                images: ["https://m.media-amazon.com/images/I/71yT+G0Q9CL._SL1500_.jpg"]
             },
             {
                 id: 18,
@@ -325,7 +325,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Skin1004",
                 instock: 20,
                 skintype: ["Sensitive", "Normal"],
-                images: ["images/Product18.png"]
+                images: ["https://m.media-amazon.com/images/I/61EAjYhpa3L._SL1500_.jpg"]
             },
             {
                 id: 19,
@@ -343,7 +343,7 @@ export const useProductStore = defineStore("product", {
                 brand: "Dr. G",
                 instock: 25,
                 skintype: ["Normal", "Dry", "Sensitive"],
-                images: ["images/Product19.png"]
+                images: ["https://m.media-amazon.com/images/I/51UUChw8idL._SL1500_.jpg"]
             },
             {
                 id: 20,
@@ -361,7 +361,187 @@ export const useProductStore = defineStore("product", {
                 brand: "Anua",
                 instock: 12,
                 skintype: ["Normal", "Dry"],
-                images: ["images/Product20.png"]
+                images: ["https://m.media-amazon.com/images/I/51HqOZc5RTL._SL1500_.jpg"]
+            },
+            {
+                id: 21,
+                category: "Cleanser",
+                proName: "Refreshing Aloe Cleanser",
+                description: "Foaming cleanser infused with aloe vera to soothe and hydrate while removing impurities. Perfect for daily use, leaving your skin feeling fresh, clean, and balanced. Suitable for all skin types, including sensitive skin.",
+                label: "HOT",
+                state: "feature",
+                color: "#FF4858",
+                price: 20,
+                discount: 15,
+                rawPrice: 24,
+                rating: 4.5,
+                reviews: 25,
+                brand: "Anua",
+                instock: 28,
+                skintype: ["Sensitive", "Normal", "Dry"],
+                images: ["https://m.media-amazon.com/images/I/61fxGbj00JL._AC_UL480_FMwebp_QL65_.jpg"]
+            },
+            {
+                id: 22,
+                category: "Toner",
+                proName: "Rosewater Balancing Toner",
+                description: "Alcohol-free toner enriched with rosewater to hydrate, soothe, and balance the skin's pH. Its gentle formula preps the skin for the next steps in your skincare routine, leaving it soft and glowing.",
+                label: "NEW",
+                state: "feature",
+                color: "#FFC600",
+                price: 18,
+                discount: 10,
+                rawPrice: 20,
+                rating: 4.3,
+                reviews: 12,
+                brand: "Torriden",
+                instock: 35,
+                skintype: ["Sensitive", "Normal", "Dry"],
+                images: ["https://m.media-amazon.com/images/I/71zFMAB0ZvL._AC_UL480_FMwebp_QL65_.jpg"]
+            },
+            {
+                id: 23,
+                category: "Serum",
+                proName: "Collagen Boosting Serum",
+                description: "Lightweight serum with marine collagen to improve skin elasticity and reduce the appearance of fine lines. Deeply hydrates and nourishes, leaving your skin plump, smooth, and radiant. Perfect for all skin types.",
+                label: "PRO",
+                state: "feature",
+                color: "#40BFFF",
+                price: 32,
+                discount: 15,
+                rawPrice: 38,
+                rating: 4.7,
+                reviews: 55,
+                brand: "Skin1004",
+                instock: 25,
+                skintype: ["Normal", "Dry", "Sensitive"],
+                images: ["https://m.media-amazon.com/images/I/71iH03eMRzL._AC_UL480_FMwebp_QL65_.jpg"]
+            },
+            {
+                id: 24,
+                category: "Sunscreen",
+                proName: "Lightweight Mineral Sunscreen",
+                description: "SPF 50+ mineral sunscreen with a matte finish to provide broad-spectrum UV protection. Ideal for sensitive skin, this sunscreen is non-comedogenic and free from harmful chemicals, leaving no white cast.",
+                label: "NEW",
+                state: "feature",
+                color: "#FFC600",
+                price: 25,
+                discount: 20,
+                rawPrice: 31,
+                rating: 4.6,
+                reviews: 40,
+                brand: "Dr. G",
+                instock: 18,
+                skintype: ["Sensitive", "Normal"],
+                images: ["https://m.media-amazon.com/images/I/51iGzjBAWGL._AC_UL480_FMwebp_QL65_.jpg"]
+            },
+            {
+                id: 25,
+                category: "Moisturizer",
+                proName: "Hydrating Gel Cream",
+                description: "Oil-free gel cream with hyaluronic acid to deliver long-lasting hydration. Lightweight and fast-absorbing, this moisturizer is perfect for oily and combination skin types, leaving your skin soft and refreshed.",
+                label: "HOT",
+                state: "feature",
+                color: "#FF4858",
+                price: 29,
+                discount: 15,
+                rawPrice: 34,
+                rating: 4.8,
+                reviews: 65,
+                brand: "Skin1004",
+                instock: 20,
+                skintype: ["Oily", "Combination"],
+                images: ["https://m.media-amazon.com/images/I/614BLp3kBuL._AC_UL480_FMwebp_QL65_.jpg"]
+            },
+            {
+                id: 26,
+                category: "Cleanser",
+                proName: "Charcoal Detox Cleanser",
+                description: "Purifying cleanser with activated charcoal to draw out impurities and deeply cleanse pores. Leaves the skin feeling refreshed and revitalized without over-drying. Ideal for oily and combination skin types.",
+                label: "PRO",
+                state: "feature",
+                color: "#40BFFF",
+                price: 22,
+                discount: 10,
+                rawPrice: 25,
+                rating: 4.4,
+                reviews: 30,
+                brand: "Dr. G",
+                instock: 22,
+                skintype: ["Oily", "Combination"],
+                images: ["https://m.media-amazon.com/images/I/511ya66vUgL._AC_UL480_FMwebp_QL65_.jpg"]
+            },
+            {
+                id: 27,
+                category: "Toner",
+                proName: "Green Tea Calming Toner",
+                description: "Toner infused with green tea extract to soothe irritated skin and provide antioxidant benefits. Hydrates and refreshes the skin, making it an essential step in calming sensitive or acne-prone skin.",
+                label: "HOT",
+                state: "feature",
+                color: "#FF4858",
+                price: 19,
+                discount: 15,
+                rawPrice: 22,
+                rating: 4.5,
+                reviews: 35,
+                brand: "Torriden",
+                instock: 28,
+                skintype: ["Sensitive", "Oily", "Combination"],
+                images: ["https://m.media-amazon.com/images/I/615SGry2ZUL._AC_UL480_FMwebp_QL65_.jpg"]
+            },
+            {
+                id: 28,
+                category: "Serum",
+                proName: "Vitamin E Antioxidant Serum",
+                description: "Serum with vitamin E and botanical oils to combat free radicals and deeply nourish the skin. Improves overall skin texture and tone, leaving it healthy, radiant, and hydrated all day long.",
+                label: "NEW",
+                state: "feature",
+                color: "#FFC600",
+                price: 28,
+                discount: 15,
+                rawPrice: 33,
+                rating: 4.6,
+                reviews: 50,
+                brand: "Anua",
+                instock: 15,
+                skintype: ["Normal", "Dry"],
+                images: ["https://m.media-amazon.com/images/I/51KZcRXDy9L._AC_UL480_FMwebp_QL65_.jpg"]
+            },
+            {
+                id: 29,
+                category: "Sunscreen",
+                proName: "Ultra-Light UV Essence",
+                description: "Water-based sunscreen with SPF 50+ PA+++ for powerful sun protection. Its ultra-light texture absorbs quickly without clogging pores, making it perfect for oily and acne-prone skin types.",
+                label: "PRO",
+                state: "feature",
+                color: "#40BFFF",
+                price: 27,
+                discount: 20,
+                rawPrice: 34,
+                rating: 4.7,
+                reviews: 65,
+                brand: "Skin1004",
+                instock: 18,
+                skintype: ["Oily", "Combination"],
+                images: ["https://m.media-amazon.com/images/I/41EdXr-QSSL._AC_UL480_FMwebp_QL65_.jpg"]
+            },
+            {
+                id: 30,
+                category: "Moisturizer",
+                proName: "Soothing Barrier Cream",
+                description: "Rich cream with ceramides to strengthen the skin barrier and lock in moisture. Soothes dry, irritated skin and provides lasting hydration, making it perfect for sensitive and dry skin types.",
+                label: "HOT",
+                state: "feature",
+                color: "#FF4858",
+                price: 31,
+                discount: 25,
+                rawPrice: 41,
+                rating: 4.9,
+                reviews: 75,
+                brand: "Dr. G",
+                instock: 10,
+                skintype: ["Sensitive", "Dry"],
+                images: ["https://m.media-amazon.com/images/I/61Fm9jcrjVL._AC_UL480_FMwebp_QL65_.jpg"]
             }
         ],
 

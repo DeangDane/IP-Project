@@ -1,4 +1,5 @@
 <template>
+    <ProductGallery />
     <div class="newArrival">
         <div class="text">
             NEW ARRIVALS

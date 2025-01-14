@@ -12,7 +12,7 @@
             <input class="search" type="search" placeholder="Search" v-model="searchQuery" @input="filterItems">
             <ul v-if="filteredItems.length" class="dropdown">
               <li v-for="item in filteredItems" :key="item.id">{{ item.name }}</li>
-            </ul>  
+            </ul>
             <button @click="goToProItem()" class="cartButton">
               <!-- <i class="fas fa-shopping-cart"></i> -->
               <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -57,62 +57,65 @@
 
             <!-- <ProfileModal :show="isModalVisible" @close="toggleModal" /> -->
             <!-- <UserOptions v-if="showUserOptions && isLoggedIn" /> -->
-            <UserOptions v-if="showUserOptions"/>
+            <UserOptions v-if="showUserOptions" />
           </div>
         </div>
-      </div>  
-        <router-link to="/order-history">Order History</router-link>
-        
-        <div class="lower">
-          <NavButton v-for="button in buttons" :key="button.name" :name="button.name" :route="button.route" />
-        </div>
       </div>
-    
-      <div class="content">
-        <RouterView />
-      </div>
+      <!-- <router-link to="/order-history">Order History</router-link> -->
 
-      <div class="footer">
-        <div class="container">
-          <div class="logo">
-            <img src="@/assets/logo.png" alt="Skin Glow" />
-            <h2>SKIN GLOW</h2>
-          </div>
-          <div class="info">
+      <div class="lower">
+        <NavButton v-for="button in buttons" :key="button.name" :name="button.name" :route="button.route" />
+      </div>
+    </div>
+
+    <div class="content">
+      <RouterView />
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <div class="logo">
+          <img src="@/assets/logo.png" alt="Skin Glow" />
+          <h2>SKIN GLOW</h2>
+        </div>
+        <div class="info">
+          <ul>
             <h3>Information</h3>
-            <ul>
-              <li><router-link to="/about">About Us</router-link></li>
-              <li>Services</li>
-              <li>Privacy Policy </li>
-              <li>Terms & Conditions</li>
-            </ul>
-          </div>
-          <div class="social">
-            <h3>Follow us</h3>
-            <ul>
-              <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-              <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-              <li><a href="https://tiktok.com" target="_blank">TikTok</a></li>
-            </ul>
-          </div>
-          <div class="contact">
-            <h3>Contact us</h3>
-            <p>Email: <a href="mailto:skinglow@gmail.com">skinglow@gmail.com</a></p>
-            <p>Phone: <a href="tel:+855230002323">+855 23 000 2323</a></p>
-          </div>
+            <li><router-link to="/about">About Us</router-link></li>
+            <li>Services</li>
+            <li>Privacy Policy </li>
+            <li>Terms & Conditions</li>
+          </ul>
         </div>
-
-        <div class="pay">
-          <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
-          <div class="payments">
-            <img src="@/assets/visa.png" alt="Visa" />
-            <img src="@/assets/mastercard.png" alt="MasterCard" />
-            <img src="@/assets/paypal.png" alt="PayPal" />
-          </div>
+        <div class="social">
+          <ul>
+            <h3>Follow us</h3>
+            <li> <a href="https://facebook.com" target="_blank">Facebook</a></li>
+            <li><a href="https://instagram.com"
+                target="_blank">Instagram</a></li>
+            <li> <a href="https://tiktok.com" target="_blank">TikTok</a></li>
+          </ul>
+        </div>
+        <div class="contact">
+          <ul>
+            <h3>Contact us</h3>
+            <li><font-awesome-icon icon="envelope" /> <a href="mailto:skinglow@gmail.com">skinglow@gmail.com</a></li>
+            <li><font-awesome-icon icon="phone" /> <a href="tel:+855230002323">+855 23 000 2323</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="line"></div>
+      <div class="pay">
+        <p class="copyright">© 2018 Ecommerce theme by www.bisenbaev.com</p>
+        <div class="payments">
+          <img src="@/assets/visa.png" alt="Visa" />
+          <img src="@/assets/mastercard.png" alt="MasterCard" />
+          <img src="@/assets/paypal.png" alt="PayPal" />
         </div>
       </div>
     </div>
-  
+  </div>
+
 </template>
 
 
@@ -153,7 +156,7 @@ export default {
   },
 
   setup() {
-    
+
     const cartStore = useCartStore();
 
     const searchQuery = ref('');
@@ -293,17 +296,19 @@ export default {
 
 .container {
   display: flex;
+  flex-direction:row;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
 }
 
 .logo img {
-  height: 100px;
+  height: 200px;
 }
 
 .logo h2 {
-  font-size: 24px;
+  font-size: 40px;
   font-family: Cormorant Garamond;
   margin: 10px 10px;
 }
@@ -317,8 +322,9 @@ export default {
 
 .info ul,
 .social ul {
-  list-style: none;
-  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 ul li {
@@ -331,18 +337,28 @@ ul li a {
 }
 
 .payments img {
-  margin: 0 5px;
+  margin: 0 10px;
   height: 20px;
 }
 
-.pay {
-  /* margin-left: 1400px; */
-  justify-content: space-between;
+.payments {
+  margin-right:10px;
   display: flex;
+  flex-direction: row;
 }
+
+.pay {
+  background-color: #f9dada;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid black;
+}
+
 
 .copyright {
   margin-top: 10px;
+  margin-left: 20px;
   font-size: 14px;
   color: #555;
   left: 620px;
@@ -410,5 +426,9 @@ ul li a {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content{
+  padding-bottom: 32px;
 }
 </style>

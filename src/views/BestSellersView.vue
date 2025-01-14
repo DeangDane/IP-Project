@@ -1,5 +1,5 @@
 <template>
-    <!-- <ProductGallery /> -->
+    <ProductGallery />
     <!-- <YourOrdered/> -->
     <div class="bestSeller">
         
@@ -8,7 +8,7 @@
         </div>
 
         <div class="content">
-            <GridProduct v-for="gridPro in gridproducts" :image="gridPro.image" :color="gridPro.color"
+            <GridProduct v-for="gridPro in gridproducts" :image="gridPro.images[0]" :color="gridPro.color"
                 :label="gridPro.label" :proName="gridPro.proName" :price="gridPro.price" />
         </div>
     </div>
