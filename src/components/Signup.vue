@@ -47,20 +47,16 @@
   </div>
 </template>
 <script>
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { useUserProfileStore } from "@/stores/UserStore";
+import { RouterLink } from 'vue-router';
 
 export default {
-  components: {
-    FontAwesomeIcon,
-  },
   data() {
     return {
       name: "",
       email: "",
       password: "",
       confirmpassword:"",
-      signUpError: {}, 
+      signUpError: {}, // Error messages for invalid signup
     };
   },
   methods: {
@@ -75,18 +71,16 @@ export default {
       if (this.password.length < 6) {
         this.signUpError.password = "Password must be at least 6 characters.";
       }
-      if (this.password !== this.confirmpassword) {
-        this.signUpError.confirmpassword = "Passwords do not match.";
+      if (this.confirmpassword.length < 6) {
+        this.signUpError.confirmpassword = "Confirm Password must be the same Password.";
       }
       if (!Object.keys(this.signUpError).length) {
+        alert("Sign Up Successful!");
         const userProfileStore = useUserProfileStore();
-        const result = userProfileStore.signup(this.name, this.email, this.password);
-        if (result.success) {
-          alert("Sign Up Successful!");
-          this.$emit("switchToLogin");
-        } else {
-          this.signUpError.general = result.message;
-        }
+        userProfileStore.saveUserProfile({ name: this.name, email: this.email });
+        this.$emit('switchToLogin');
+        // Navigate to the login page
+        // this.$router.push("/login");
       }
     },
   },
@@ -113,7 +107,7 @@ export default {
 }
 
 .left-panel img.logo {
-  width: 210px; 
+  width: 210px; /* Adjust logo size */
   margin-bottom: 5px;
 }
 
@@ -206,7 +200,7 @@ export default {
 .login-btn {
   width: 100%;
   padding: 10px;
-  background-color: #f08c9c; 
+  background-color: #f08c9c; /* Soft pink */
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -233,7 +227,7 @@ export default {
 }
 
 .signup-link a {
-  color: #f08c9c;
+  color: #f08c9c; /* Soft pink */
   text-decoration: none;
 }
 
