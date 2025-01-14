@@ -8,6 +8,7 @@
 export default {
     name: "NavButton",
     props: {
+        id: Number,
         name: String,
         route: String,
         color: String,
@@ -27,7 +28,7 @@ export default {
     /* font-family: 'Poppins', sans-serif; */
     padding: 10px 20px;
     font-size: 1.15rem;
-    border: none;
+    border: solid 2px white;
     cursor: pointer;
     font-family: 'Poppins', sans-serif;
     background-color: white;

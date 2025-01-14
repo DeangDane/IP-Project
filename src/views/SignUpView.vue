@@ -55,7 +55,7 @@ export default {
       name: "",
       email: "",
       password: "",
-      confirmpassword:"",
+      confirmpassword: "",
       signUpError: {}, // Error messages for invalid signup
     };
   },
@@ -97,7 +97,7 @@ export default {
 
 .left-panel {
   flex: 1;
-  background-color: #f9dada; 
+  background-color: #f9dada;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,7 +107,8 @@ export default {
 }
 
 .left-panel img.logo {
-  width: 210px; /* Adjust logo size */
+  width: 210px;
+  /* Adjust logo size */
   margin-bottom: 5px;
 }
 
@@ -189,7 +190,8 @@ export default {
 
 .options .forgot-password {
   font-size: 14px;
-  color: #f08c9c; /* Soft pink */
+  color: #f08c9c;
+  /* Soft pink */
   text-decoration: none;
 }
 
@@ -200,7 +202,8 @@ export default {
 .login-btn {
   width: 100%;
   padding: 10px;
-  background-color: #f08c9c; /* Soft pink */
+  background-color: #f08c9c;
+  /* Soft pink */
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -227,7 +230,8 @@ export default {
 }
 
 .signup-link a {
-  color: #f08c9c; /* Soft pink */
+  color: #f08c9c;
+  /* Soft pink */
   text-decoration: none;
 }
 
@@ -235,4 +239,3 @@ export default {
   text-decoration: underline;
 }
 </style>
-  
