@@ -36,12 +36,6 @@ export default {
       this.currentView = "SignUp";
     },
   },
-  computed: {
-    userProfile() {
-      const userProfileStore = useUserProfileStore();
-      return userProfileStore.currentUser;
-    },
-  },
   mounted() {
     const userProfileStore = useUserProfileStore();
     userProfileStore.loadUsersFromLocalStorage();
@@ -57,7 +51,6 @@ export default {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.6);
-  /* Semi-transparent background */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,7 +58,7 @@ export default {
 }
 
 .modal-content {
-    width: 60%; /* Default width for larger screens */
+    width: 60%;
     background: white;
     border-radius: 10px;
     padding: 20px;
@@ -74,9 +67,9 @@ export default {
   }
 
 @media (max-width: 768px) {
-.modal-content {
-width: 90%; /* Adjust width for smaller screens */
-}
+  .modal-content {
+  width: 90%; 
+  }
 }
 </style>
 

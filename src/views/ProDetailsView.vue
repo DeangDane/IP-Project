@@ -264,14 +264,13 @@ export default {
             alert(`Added ${this.quantity} item(s) of ${this.productName} to your cart.`);
         },
         loadProductDetails(product) {
-            // Update all product details dynamically
             this.productName = product.name;
             this.productImages = product.details.images;
             this.selectedImage = product.details.images[0];
             this.reviews = product.details.reviews;
             this.currentPrice = product.currentPrice;
             this.tabContents[0] = `Details about ${product.name}.`;
-            this.selectedTab = 0; // Reset to the first tab
+            this.selectedTab = 0;
         },
         shareOnFacebook() {
             const url = encodeURIComponent(window.location.href);
@@ -294,15 +293,107 @@ export default {
         closeReviewModal() {
             this.isReviewModalOpen = false;
         },
-        handlePhotoUpload(event) {
-            const files = event.target.files;
-            Array.from(files).forEach((file) => {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    this.reviewPhotos.push(e.target.result);
+        methods: {
+            selectImage(image) {
+                this.selectedImage = image;
+            },
+            selectTab(index) {
+                this.selectedTab = index;
+            },
+            addToCart() {
+                const product = {
+                    name: this.productName,
+                    price: this.currentPrice,
+                    image: this.selectedImage,
+                    quantity: this.quantity,
                 };
-                reader.readAsDataURL(file);
-            });
+                alert(`Added ${this.quantity} item(s) of ${this.productName} to your cart.`);
+            },
+            loadProductDetails(product) {
+                // Update all product details dynamically
+                this.productName = product.name;
+                this.productImages = product.details.images;
+                this.selectedImage = product.details.images[0];
+                this.reviews = product.details.reviews;
+                this.currentPrice = product.currentPrice;
+                this.tabContents[0] = `Details about ${product.name}.`;
+                this.selectedTab = 0; // Reset to the first tab
+            },
+            shareOnFacebook() {
+                const url = encodeURIComponent(window.location.href);
+                const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                window.open(shareUrl, "_blank");
+            },
+            shareOnTwitter() {
+                const url = encodeURIComponent(window.location.href);
+                const text = encodeURIComponent(`Check out this product: ${this.productName}`);
+                const shareUrl = `https://twitter.com/intent/tweet?text=${text}&url=${url}`;
+                window.open(shareUrl, "_blank");
+            },
+            openReviewModal() {
+                this.isReviewModalOpen = true;
+                this.isEditing = false;
+                this.reviewRating = 0;
+                this.reviewComment = "";
+                this.reviewPhotos = [];
+            },
+            closeReviewModal() {
+                this.isReviewModalOpen = false;
+            },
+            handlePhotoUpload(event) {
+                const files = event.target.files;
+                Array.from(files).forEach((file) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.reviewPhotos.push(e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            },
+            submitReview() {
+                const reviewsStore = useReviewsStore();
+                const newReview = {
+                    profileImage: this.userProfile.profileImage,
+                    userName: this.userProfile.name,
+                    rating: this.reviewRating,
+                    comment: this.reviewComment,
+                    date: new Date().toISOString().split("T")[0],
+                    photos: this.reviewPhotos,
+                };
+                if (this.isEditing) {
+                    reviewsStore.updateReview(this.editingReviewId, newReview);
+                } else {
+                    // reviewsStore.addReview({
+                    //   userAvatar: this.userProfile.profileImage,
+                    //   userName: this.userProfile.name,
+                    //   date: new Date().toLocaleDateString(),
+                    //   rating: this.reviewRating,
+                    //   comment: this.reviewComment,
+                    //   photos: this.reviewPhotos,
+                    // });      
+                    reviewsStore.addReview(
+                        this.productId, // Ensure productId is defined in your component
+                        this.reviewComment,
+                        this.reviewRating,
+                        this.reviewPhotos
+                    );
+                }
+                this.closeReviewModal();
+            },
+            editReview(reviewId) {
+                const reviewsStore = useReviewsStore();
+                const review = reviewsStore.reviews.find((review) => review.id === reviewId);
+                this.reviewRating = review.rating;
+                this.reviewComment = review.comment;
+                this.reviewPhotos = review.photos;
+                this.editingReviewId = reviewId;
+                this.isEditing = true;
+                this.openReviewModal();
+            },
+            deleteReview(reviewId) {
+                const reviewsStore = useReviewsStore();
+                reviewsStore.deleteReview(reviewId);
+            },
         },
         submitReview() {
             const reviewsStore = useReviewsStore();
@@ -317,16 +408,9 @@ export default {
             if (this.isEditing) {
                 reviewsStore.updateReview(this.editingReviewId, newReview);
             } else {
-                // reviewsStore.addReview({
-                //   userAvatar: this.userProfile.profileImage,
-                //   userName: this.userProfile.name,
-                //   date: new Date().toLocaleDateString(),
-                //   rating: this.reviewRating,
-                //   comment: this.reviewComment,
-                //   photos: this.reviewPhotos,
-                // });      
+
                 reviewsStore.addReview(
-                    this.productId, // Ensure productId is defined in your component
+                    this.productId,
                     this.reviewComment,
                     this.reviewRating,
                     this.reviewPhotos
@@ -334,25 +418,7 @@ export default {
             }
             this.closeReviewModal();
         },
-        editReview(reviewId) {
-            const reviewsStore = useReviewsStore();
-            const review = reviewsStore.reviews.find((review) => review.id === reviewId);
-            this.reviewRating = review.rating;
-            this.reviewComment = review.comment;
-            this.reviewPhotos = review.photos;
-            this.editingReviewId = reviewId;
-            this.isEditing = true;
-            this.openReviewModal();
-        },
-        deleteReview(reviewId) {
-            const reviewsStore = useReviewsStore();
-            reviewsStore.deleteReview(reviewId);
-        },
-    },
-    mounted() {
-        const reviewsStore = useReviewsStore();
-        reviewsStore.loadReviews();
-    },
+    }
 };
 </script>
 
@@ -571,6 +637,31 @@ export default {
 .review-comment {
     margin-top: 10px;
     font-size: 14px;
+}
+
+.review-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.review-actions button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.review-actions button:hover {
+    background-color: #0056b3;
+}
+
+.review-actions button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 .write-review-container {

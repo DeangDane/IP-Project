@@ -62,26 +62,6 @@
     },
     methods: {
 
-    //   handleLogin() {
-    //   this.loginError = {};
-    //   if (!this.email.includes("@")) {
-    //     this.loginError.email = "Invalid email format.";
-    //   }
-    //   if (this.password.length < 6) {
-    //     this.loginError.password = "Password must be at least 6 characters.";
-    //   }
-    //   if (!Object.keys(this.loginError).length) {
-    //     const userProfileStore = useUserProfileStore();
-    //     userProfileStore.signIn(this.email, this.password);
-    //     if (userProfileStore.isLoggedIn) {
-    //       this.$emit("close");
-    //       this.$router.push('/');
-    //     } else {
-    //       this.loginError.general = userProfileStore.loginError;
-    //     }
-    //   }
-    // },
-
     handleLogin() {
       this.loginError = {};
       if (!this.email.includes("@")) {
@@ -125,7 +105,7 @@
 }
 
 .left-panel img.logo {
-  width: 210px; /* Adjust logo size */
+  width: 210px; 
   margin-bottom: 5px;
 }
 
@@ -204,7 +184,7 @@
 .login-btn {
   width: 100%;
   padding: 10px;
-  background-color: #f08c9c; /* Soft pink */
+  background-color: #f08c9c; 
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -231,7 +211,7 @@
 }
 
 .signup-link a {
-  color: #f08c9c; /* Soft pink */
+  color: #f08c9c;
   text-decoration: none;
 }
 
