@@ -26,32 +26,23 @@
         <input type="email" id="email" placeholder="Email Address" v-model="form.email" />
         <input type="text" id="del" placeholder="Delivery Address" v-model="form.address" />
       </div>
-      <div class="select">Select Method of Payment</div>
+      <div class="select">Method of Payment</div>
       <div class="form-group">
-        <div class="payment-methods">
+        <!-- <div class="payment-methods"> -->
           <label>
             <i class="fa-regular fa-credit-card"></i> 
-            <input value="MasterCard" type="checkbox" @change="selectPaymentMethod('MasterCard')" :checked="form.paymentMethod === 'MasterCard'" />
             <span id="M">Credit Card Or Debit</span>
           </label>
-          <label>
-            <!-- <img src="/src/assets/visa.png" alt="Visa Logo" /> -->
-            <i class="fa-brands fa-paypal"></i>
-            <input value="VisaCard" type="checkbox" @change="selectPaymentMethod('VisaCard')" :checked="form.paymentMethod === 'VisaCard'" />
-            <span id="p">PayPal</span> 
-          </label>
-          <label>
-            <!-- <img src="/src/assets/paypal.png" alt="PayPal Logo" /> -->
-            <i class="fa-solid fa-building-columns"></i>
-            <input value="PayPal" type="checkbox" @change="selectPaymentMethod('PayPal')" :checked="form.paymentMethod === 'PayPal'" />
-            <span id="v">Bank Transfer</span> 
-          </label>
-        </div>
+         
+          
+        <!-- </div> -->
         <div class="ph">
           <input type="text" placeholder="Phone Number" v-model="form.phoneNumber" />
         </div>
       </div>
-      <button class="next-btn" @click="nextStep">Go to Payment</button>
+      <button class="next-btn" @click="nextStep">
+        Go to Payment
+      </button>
     </div>
 
     <!-- Step 2: Payment Details -->
@@ -63,12 +54,12 @@
 
         <div class="form-container1">
           <div class="form-group">
-              <input type="text" placeholder="Card Number" v-model="form.cardNumber" />
+              <input type="text" placeholder="Card Number (16 digits)" v-model="form.cardNumber" maxlength="16"/>
             <div class="cvv">
                 <input type="text" placeholder="Expiry Date (MM/YY)" v-model="form.expiry" />
-                <input type="text" placeholder="CVV" v-model="form.cvv" />
+                <input type="text" placeholder="CVV  (3 digits)" v-model="form.cvv " maxlength="3" />
             </div>          
-                <input type="text" placeholder="Holder Number" v-model="form.holderName" />
+                <input type="text" placeholder="Holder Name" v-model="form.holderName" />
           </div>
         </div>
       </div>     
@@ -92,9 +83,10 @@
 </template>
 
 <script>
-import { useOrderStore } from '@/store/OrderStore';
+import { defineComponent } from "vue";
+import { useOrderStore } from "@/store/OrderStore";
 
-export default {
+export default defineComponent({
   data() {
     return {
       currentStep: 1,
@@ -111,73 +103,70 @@ export default {
         holderName: "",
         saveCard: false,
       },
+      errors: {}, // Object to track field-specific errors
     };
   },
+
   methods: {
-    prevStep() {
-      if (this.currentStep > 1) {
-        this.currentStep--;
-      } else {
-        alert("You are already at the first step.");
+    // step1
+    validateStep1() {
+      if (!this.form.firstName || !this.form.lastName || !this.form.email || !this.form.address) {
+        alert("Please fill out all required fields.");
+        return false;
       }
-    },
-    nextStep() {
+      if (!/\S+@\S+\.\S+/.test(this.form.email)) {
+        alert("Please enter a valid email address.");
+        return false;
+      }
       
-      if (this.currentStep < 3) {
-        this.currentStep++;
-      }
-      if (this.currentStep === 3) {
-        this.triggerSuccessAlert();
-  }
+      return true;
     },
+    // step2
+    validateStep2() {
+    if (!this.form.cardNumber || this.form.cardNumber.length < 16) {
+      alert("Please enter a valid 16-digit card number.");
+      return false;
+    }
+    if (!this.form.expiry || !/^(0[1-9]|1[0-2])\/\d{2}$/.test(this.form.expiry)) {
+      alert("Please enter a valid expiry date in MM/YY format.");
+      return false;
+    }
+    if (!this.form.cvv || this.form.cvv.length !== 3) {
+      alert("Please enter a valid 3-digit CVV.");
+      return false;
+    }
+    if (!this.form.holderName || this.form.holderName.trim() === "") {
+      alert("Please enter the cardholder's name.");
+      return false;
+    }
+    return true;
+  },
+    
+  nextStep() {
+    if (this.currentStep === 1 && !this.validateStep1()) {
+      return;
+    }
+    if (this.currentStep === 2 && !this.validateStep2()) {
+      return;
+    }
+    this.currentStep++;
+  },
+    prevStep() {
+      if (this.currentStep > 1) {this.currentStep--;}
+    },
+    
     closePayment() {
-      alert("Payment process has been closed.");
-      this.resetForm();
-      this.currentStep = 1;
+      if (confirm("Are you sure you want to close the payment process?")) {
+        this.resetForm();
+        this.currentStep = 1;
+      }
     },
     completePayment() {
-      const orderStore = useOrderStore();
-      
-      const newOrder = {
-        id: Date.now(), // Unique ID for the order
-        userId: "12345", // Replace with actual user ID
-        location: "123 Street, City", // Replace with actual location
-        coupon: "DISCOUNT10", // Replace with actual coupon
-        totalAmount: 100.0, // Replace with actual total amount
-        discount: 10.0, // Replace with actual discount
-        state: "Completed", // Order status
-        items: [
-          { productId: "1", amount: 2 },
-          { productId: "2", amount: 1 },
-        ], // Example items
-      
-    };
-    
-      // alert("Payment completed successfully!");
-      // this.resetForm();
-      // this.currentStep = 1;
-      // Save the order details to the store
-
-      // const orderDetails = {
-      //   firstName: this.form.firstName,
-      //   lastName: this.form.lastName,
-      //   email: this.form.email,
-      //   phoneNumber: this.form.phoneNumber,
-      //   address: this.form.address,
-      //   paymentMethod: this.form.paymentMethod,
-      //   date: new Date().toLocaleString(),
-      // };
-      // const orderStore = useOrderStore();
-      // orderStore.addOrder(orderDetails);
-
-      // useOrderStore.addOrder(newOrder);
-  
-      // Alert the user and reset
       alert("Payment completed successfully!");
       this.resetForm();
       this.currentStep = 1;
-
     },
+
     resetForm() {
       this.form = {
         firstName: "",
@@ -192,27 +181,19 @@ export default {
         holderName: "",
         saveCard: false,
       };
-      // Save the order details to history
-        useOrderStore.addToHistory(orderDetails);
+      this.errors = {};
     },
-    
-
-    selectPaymentMethod(method) {
-      if (this.form.paymentMethod === method) {
-        this.form.paymentMethod = "";
-      } else {
-        this.form.paymentMethod = method;
-      }
-    },
-
   },
-};
+});
 </script>
+
+
 
 <style scoped>
 /* General Container */
 .payment-container {
   width: 800px;
+  height: 600px;
   position: relative;
   margin: 50px auto;
   padding: 25px 30px;
@@ -276,8 +257,8 @@ export default {
 }
 
 .progress-indicator span {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   margin: 0 10px;
   border-radius: 50%;
   background: #f0f0f0;
@@ -301,25 +282,17 @@ export default {
   
   text-align: left;
 }
-
-.step h3 {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  color: #555;
-}
-
-.step p {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 25px;
-}
-
-/* Input Fields */
 .step .form-group {
   margin-bottom: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
+}
+
+.step h3 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  color: #555;
 }
 
 .form-group input#del {
@@ -345,7 +318,6 @@ export default {
   transition: border 0.3s;
   text-align: left; /* Align text to the left */
 }
-
 .form-group input::placeholder {
   text-align: left; /* Align placeholder text to the left */
   padding-top: 0; /* Remove top padding */
@@ -353,35 +325,36 @@ export default {
 
 .form-group input:focus {
   border-color: #ff4c61;
-  outline: none;
+  /* outline: none; */
   box-shadow: 0 0 5px rgba(255, 94, 87, 0.2);
 }
-
-.form-group label {
+.step p {
   font-size: 0.9rem;
-  font-weight: bold;
-  color: #ff4c61;
+  color: #666;
+  margin-bottom: 25px;
+}
+/* Input Fields */
+.form-group label {
+  font-size: 1.2rem;
+  /* color: #ff4c61; */
+  gap: 3px;
+  margin-right: 10px;
   margin-bottom: 8px;
   display: block;
+  /* margin: space-between; */
 }
-.ph input {
-  width: 100%; 
-  margin-left: 70px;
-  margin-right: 60px;
-  margin-top: 0px;
+.form-group label span{
+  margin-left: 10px ;
+
 }
 .payment-methods{
-    display: flex;
-    /* padding: 10px; */
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 30px;
+  /* font-weight: bold; */
+    margin-bottom: 40px;
 }
-/* Payment Method Logos */
 .payment-methods label {
   display: flex;
   align-items: center; /* Ensures elements are vertically aligned */
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #555;
   margin: 5px 0; /* Consistent margin to prevent shifting */
@@ -389,29 +362,21 @@ export default {
   gap: 10px; /* Space between the icon and the text */
   transition: background-color 0.3s; /* Smooth hover effect */
 }
-.payment-methods label:hover{
-  width:  270px;
-  height: 40px;
-  /* color: red; */
-  background-color: #b6def7c2;
-  border-radius: 3px;
-
+.ph input {
+  width: 82%; 
+  margin-left: 135px;
+  margin-right: 76px;
+  margin-top: 0px;
 }
-i {
+/* Payment Method Logos */
+
+label i {
   font-size: 2.5rem; /* Adjust icon size */
   color: #ff4c61 !important; /* Force the color to always be #ff4c61 */
   margin-right: 10px; /* Space between icon and text */
 }
 
 
-
-.payment-methods input[type="checkbox"] {
-  position: absolute;
-  left: 250px;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-}
 .payment-methods span {
   margin: 0; /* Remove extra margin to keep text inline */
   white-space: nowrap; /* Prevent text wrapping */
@@ -437,14 +402,15 @@ i {
 
 .form-group .payment-methods i{
   font-size: 1.5rem; /* Adjust the size of the icons */
-  background-color: #ff4c61; /* Icon color */
+  
 }
 .select{
   position: absolute;
   top: 290px;
+  font-weight: bold;
   font-size: 20px;
   color:#ff4c61 ;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 /* Buttons */
 button {
@@ -473,9 +439,12 @@ button:hover {
  .success-step {
   text-align: center;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 5rem;
   color: #ff4c61;
+  padding: 80px;
+  margin: auto;
   margin-bottom: 20px;
+  /* background-color: red; */
 
 }
 .success-step i{
@@ -483,7 +452,15 @@ button:hover {
   color: #ff4c61;
   margin-bottom: 20px;
 }
-
+.success-step h3{
+  color: black;
+  font-weight: bold;
+}
+.success-step button{
+  margin-bottom: 20px;
+  padding: 10px 40px;
+  /* color: red; */
+}
 h3 {
   color: rgb(18, 18, 110);
   font-size: 1rem;
@@ -536,10 +513,12 @@ label #savecard{
   gap: 20px;
   flex-direction: row;
 }
+
 .savecard label input{
   margin-top: 10px;
   left: 110px;
-  bottom: 123px;
+  /* top: ; */
+  bottom: 253px;
   right: 10px;
   size: 10px;
   color: gray;
@@ -590,12 +569,12 @@ label[for="checkbox"]:hover {
 button.next-btn {
   background-color: #ff4c61;
   position: absolute;
-  bottom: 20px;
+  bottom: 50px;
   right: 35%;
   align-items: center;
   justify-content: center;
-  padding: 12px 50px;
-  border: none;
+  padding: 12px 60px;
+  border: none;   
   border-radius: 8px;
 }
 

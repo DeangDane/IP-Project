@@ -9,7 +9,7 @@
 
 <script>
 import Login from "@/components/Login.vue";
-import SignUp from "@/components/SignUp.vue";
+import SignUp from "@/components/SigningUp.vue";
 import { useUserProfileStore } from "@/store/UserStore";
 
 export default {

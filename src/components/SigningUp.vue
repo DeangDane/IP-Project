@@ -4,7 +4,6 @@
             <img class="logo" src="@/assets/logo.png" alt="Skin Glow Logo" />
             <h1>Skin Glow</h1>
         </div>
-
         <div class="right-panel">
             <div class="login-form">
                 <h2>Create an account</h2>
@@ -53,6 +52,7 @@
 import { RouterLink } from 'vue-router';
 
 export default {
+    name: "SignUp",
     data() {
         return {
             name: "",

@@ -122,13 +122,14 @@ import Productcard from './views/CartView.vue';
 import GridProduct from './components/GridProduct.vue';
 import ProductItem from './components/ProductItem.vue';
 import Login from "@/components/Login.vue";
-// import SignUp from "@/components/SignUp.vue";
 import ProfileModal from "@/components/ProfileModal.vue";
+import SignUp from "@/components/SigningUp.vue";
 import MakePaymentView from './views/MakePaymentView.vue';
-
+import OrderView from './views/OrderView.vue';
 import { useUserProfileStore } from "@/store/UserStore";
 import UserOptions from "@/components/UserOptions.vue";
 import { ref, computed } from 'vue';
+// import ProfileModal from "@/components/ProfileModal.vue";
 
 export default {
   name: 'App',
@@ -138,7 +139,11 @@ export default {
     GridProduct,
     ProductItem,
     ProfileModal,
+    Login,
+    SignUp,
+    // ProfileModal,
     MakePaymentView,
+    OrderView,
 
     UserOptions,
   },

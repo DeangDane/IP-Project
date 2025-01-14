@@ -7,11 +7,12 @@ import NewArrivalsView from "@/views/NewArrivalsView.vue";
 import ProDetailsView from "@/views/ProDetailsView.vue";
 import PromotionsView from "@/views/PromotionsView.vue";
 import Productcard from "@/views/CartView.vue";
-import AllProductsView from "@/views/AllProductsView.vue";
+import AllProduct from "@/views/AllProduct.vue";
 import Productview from "@/views/Productview.vue";
 import MakePaymentView from "@/views/MakePaymentView.vue";
 import CartView from "@/views/CartView.vue";
-import OrderHistory from "@/views/OrderHistory.vue";
+import OrderView from "@/views/OrderView.vue";
+import AllProductsView from "@/views/AllProductsView.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home, },
@@ -23,16 +24,19 @@ const routes = [
   { path: "/faq", name: "Faq", component: FaqsView },
   { path: "/proDetail", name: "ProDetail", component: ProDetailsView },
   { path: "/cart", name: "Cart", component: Productcard },
-  {path: "/productview", name: "Productview", component: Productview},
-  {path: "/cart", name: "Cart", component: CartView},
+  { path: "/productview", name: "Productview", component: Productview },
+  { path: "/cart", name: "Cart", component: CartView },
   { path: "/makePayment", name: "MakePayment", component: MakePaymentView },
-  { path: "/order-history", name:"OrderHistory", component: () => import("@/views/OrderHistory.vue")},
-  {path: "/profile", name: "Profile", component: () => import("@/views/ProfileView.vue")},
+  { path: "/order-history", name: "OrderHistory", component: () => import("@/views/OrderView.vue") },
+  { path: "/profile", name: "Profile", component: () => import("@/views/ProfileView.vue") },
+  { path: "/order", name: "Order", component: OrderView }
+
+
 ];
 
 const router = createRouter({
   history: createWebHistory(),
-  routes, 
+  routes,
 });
 
 export default router;
