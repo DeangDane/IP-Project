@@ -94,6 +94,7 @@ import Login from "@/components/Login.vue";
 import Signup from "@/components/Signup.vue";
 // import ProfileModal from "@/components/ProfileModal.vue";
 import MakePaymentView from './views/MakePaymentView.vue';
+import OrderView from './views/OrderView.vue';
 
 
 export default {
@@ -108,6 +109,7 @@ export default {
     Signup,
     // ProfileModal,
     MakePaymentView,
+    OrderView,
 
   },
 

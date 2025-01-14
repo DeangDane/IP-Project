@@ -11,8 +11,7 @@ import AllProduct from "@/views/AllProduct.vue";
 import Productview from "@/views/Productview.vue";
 import MakePaymentView from "@/views/MakePaymentView.vue";
 import CartView from "@/views/CartView.vue";
-import OrderHistory from "@/views/OrderHistory.vue";
-
+import OrderView from "@/views/OrderView.vue";
 const routes = [
   { path: "/", name: "Home", component: Home, },
   { path: "/allProduct", name: "AllProduct", component: AllProduct, },
@@ -26,9 +25,8 @@ const routes = [
   {path: "/productview", name: "Productview", component: Productview},
   {path: "/cart", name: "Cart", component: CartView},
   { path: "/makePayment", name: "MakePayment", component: MakePaymentView },
-  { path: "/order-history", name:"OrderHistory", component: () => import("@/views/OrderHistory.vue"),
-
-  }
+  { path: "/order", name: "Order", component: OrderView}
+  
 
 ];
 
