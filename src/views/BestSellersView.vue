@@ -1,5 +1,5 @@
 <template>
-    <ProductGallery />
+    <!-- <ProductGallery /> -->
     <!-- <YourOrdered/> -->
     <div class="bestSeller">
         
@@ -16,6 +16,7 @@
 <script>
 import GridProduct from "@/components/GridProduct.vue";
 import ProductGallery from "@/components/ProductGallery.vue";
+import { useProductStore } from "@/store/ProductStore";
 // import YourOrdered from "@/components/YourOrdered.vue";
 
 export default {
@@ -24,23 +25,15 @@ export default {
     components: {
         GridProduct,
         ProductGallery,
-        // YourOrdered,
     },
 
-    data() {
+    setup() {
+        const productStore = useProductStore();
         return {
-
-            gridproducts: [
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
-                { image: "images/Product1.png", proName: "Cleansing foam", color: "#FF4858", label: "HOT", price: 19 },
-            ],
-
-            currentPage: 1,
-            query: "",
+            gridproducts: productStore.hotProducts,
         };
     },
+
 };
 </script>
 

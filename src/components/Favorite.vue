@@ -49,7 +49,7 @@
 
 <script>
 export default {
-    name: "YourOrdered",
+    name: "Favorite",
     props: {
         title: String,
         price: Number,

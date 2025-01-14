@@ -100,6 +100,8 @@
 
 <script>
 import { useProductStore } from '@/store/ProductStore';
+import { useCartStore } from '@/store/CartStore';
+
 
 export default {
   name: "GridProduct",
@@ -111,6 +113,7 @@ export default {
     discount: Number,
     color: String,
     label: String,
+    Quantity: Number,
   },
 
   methods: {
@@ -118,33 +121,51 @@ export default {
       this.$router.push({ name: "ProDetail" });
     },
 
-    toggleCartColor() {
+    toggleCartColor(product) {
+      const cartStore = useCartStore();
+      const productInCart = cartStore.cart.find(item => item.id === product.id);
 
-      this.cartActive = !this.cartActive;
-      const cart = document.getElementById("cart");
-      cart.style.backgroundColor = this.cartActive ? '#33A0FF' : '#EBF6FF';
-
-      
-      this.strokeActive = !this.strokeActive;
-      const stk = document.getElementById("strock");
-      stk.style.stroke = this.strokeActive ? '#EBF6FF' : '#33A0FF';
-      
-      if (cart.style.backgroundColor == '#33A0FF') {
-        store.commit('incrementCartCount');
-      }else {
-        store.commit('decrementCartCount');
+      if (!productInCart) {
+        // Add product to the cart
+        cartStore.addToCart(product);
+        console.log('add');
+      } else {
+        // Remove product from the cart
+        cartStore.removeFromCart(product.id);
+        console.log('remove');
       }
     },
-    toggleFavoriteColor() {
-      this.favoriteActive = !this.favoriteActive;
-      const fav = document.getElementById("favorite");
-      fav.style.backgroundColor = this.favoriteActive ? '#33A0FF' : '#EBF6FF';
 
-      this.strokeActive = !this.strokeActive;
-      const stk = document.getElementById("stroke");
-      stk.style.stroke = this.strokeActive ? '#EBF6FF' : '#33A0FF';
+    // toggleCartColor() {
 
-    },
+    //   this.cartActive = !this.cartActive;
+    //   const cart = document.getElementById("cart");
+
+    //   if (this.cartActive) {
+    //     cart.style.backgroundColor = '#33A0FF';
+
+    //     console.log('add');
+    //   } else {
+    //     cart.style.backgroundColor = '#EBF6FF';
+    //     console.log('remove');
+    //   }
+
+
+    //   this.strokeActive = !this.strokeActive;
+    //   const stk = document.getElementById("strock");
+    //   stk.style.stroke = this.strokeActive ? '#EBF6FF' : '#33A0FF';
+
+    // },
+    // toggleFavoriteColor() {
+    //   this.favoriteActive = !this.favoriteActive;
+    //   const fav = document.getElementById("favorite");
+    //   fav.style.backgroundColor = this.favoriteActive ? '#33A0FF' : '#EBF6FF';
+
+    //   this.strokeActive = !this.strokeActive;
+    //   const stk = document.getElementById("stroke");
+    //   stk.style.stroke = this.strokeActive ? '#EBF6FF' : '#33A0FF';
+
+    // },
   },
 };
 </script>

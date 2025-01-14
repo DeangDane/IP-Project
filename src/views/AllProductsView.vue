@@ -98,7 +98,7 @@ export default {
     const viewMode = ref('grid');
     const query = ref('');
     const sortBy = ref('name');
-    const itemsPerPage = ref(6);
+    const itemsPerPage = ref(9);
     const currentPage = ref(1);
 
     const categories = ['Cleanser', 'Toner', 'Serum &', 'Moisturizer', 'Sunscreen'];

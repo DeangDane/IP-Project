@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 
 export const useProductStore = defineStore("product", {
     state: () => ({
-        cartCount: 0,
         products: [
             {
                 id: 1,
@@ -183,10 +182,188 @@ export const useProductStore = defineStore("product", {
                 instock: 15,
                 skintype: ["Sensitive", "Normal"],
                 images: ["images/Product10.png"]
+            },
+            {
+                id: 11,
+                category: "Cleanser",
+                proName: "Deep Pore Cleansing Foam",
+                description: "Rich foaming cleanser that penetrates deep into pores to remove dirt, oil, and impurities. Formulated with natural extracts to leave the skin feeling clean, refreshed, and balanced. Suitable for daily use and ideal for oily and combination skin types.",
+                label: "HOT",
+                state: "feature",
+                color: "#FF4858",
+                price: 21,
+                discount: 15,
+                rawPrice: 25,
+                rating: 4.6,
+                reviews: 20,
+                brand: "Torriden",
+                instock: 30,
+                skintype: ["Normal", "Oily", "Combination"],
+                images: ["images/Product11.png"]
+            },
+            {
+                id: 12,
+                category: "Toner",
+                proName: "Brightening Vitamin C Toner",
+                description: "Infused with vitamin C and natural antioxidants, this toner helps brighten the complexion and fade dark spots over time. Provides hydration and preps the skin for better absorption of serums and moisturizers. Perfect for dull or uneven skin tones.",
+                label: "NEW",
+                state: "feature",
+                color: "#FFC600",
+                price: 24,
+                discount: 10,
+                rawPrice: 27,
+                rating: 4.5,
+                reviews: 18,
+                brand: "Skin1004",
+                instock: 25,
+                skintype: ["All"],
+                images: ["images/Product12.png"]
+            },
+            {
+                id: 13,
+                category: "Serum",
+                proName: "Peptide Firming Serum",
+                description: "Advanced serum with peptides to improve skin elasticity and reduce the appearance of fine lines and wrinkles. Delivers intense hydration and helps strengthen the skin barrier, leaving the skin firmer, smoother, and more youthful-looking.",
+                label: "PRO",
+                state: "feature",
+                color: "#40BFFF",
+                price: 35,
+                discount: 20,
+                rawPrice: 44,
+                rating: 4.8,
+                reviews: 85,
+                brand: "Dr. G",
+                instock: 20,
+                skintype: ["Normal", "Dry", "Sensitive"],
+                images: ["images/Product13.png"]
+            },
+            {
+                id: 14,
+                category: "Sunscreen",
+                proName: "UV Shield Hydrating Sunscreen",
+                description: "Broad-spectrum SPF 50+ sunscreen with a lightweight, non-greasy formula. Protects against UVA and UVB rays while providing all-day hydration. Ideal for all skin types, including sensitive skin, and perfect for daily use.",
+                label: "NEW",
+                state: "feature",
+                color: "#FFC600",
+                price: 22,
+                discount: 15,
+                rawPrice: 26,
+                rating: 4.4,
+                reviews: 32,
+                brand: "Anua",
+                instock: 40,
+                skintype: ["Sensitive", "Normal", "Dry"],
+                images: ["images/Product14.png"]
+            },
+            {
+                id: 15,
+                category: "Moisturizer",
+                proName: "Oil-Free Gel Cream",
+                description: "Lightweight, oil-free moisturizer designed for oily and acne-prone skin. Hydrates without clogging pores, leaving the skin feeling refreshed and balanced. Formulated with soothing ingredients to reduce redness and irritation.",
+                label: "HOT",
+                state: "feature",
+                color: "#FF4858",
+                price: 28,
+                discount: 20,
+                rawPrice: 35,
+                rating: 4.7,
+                reviews: 50,
+                brand: "Skin1004",
+                instock: 15,
+                skintype: ["Oily", "Combination"],
+                images: ["images/Product15.png"]
+            },
+            {
+                id: 16,
+                category: "Cleanser",
+                proName: "Calming Micellar Gel Cleanser",
+                description: "Gentle micellar cleanser with a gel texture that removes makeup, dirt, and impurities without stripping the skin. Enriched with soothing botanicals to calm irritation and leave the skin feeling soft and hydrated.",
+                label: "PRO",
+                state: "feature",
+                color: "#40BFFF",
+                price: 23,
+                discount: 10,
+                rawPrice: 26,
+                rating: 4.3,
+                reviews: 25,
+                brand: "Dr. G",
+                instock: 18,
+                skintype: ["Sensitive", "Dry", "Normal"],
+                images: ["images/Product16.png"]
+            },
+            {
+                id: 17,
+                category: "Toner",
+                proName: "AHA BHA Exfoliating Toner",
+                description: "Dual-action toner with AHA and BHA to gently exfoliate dead skin cells and unclog pores. Helps to refine skin texture and promote a brighter, clearer complexion. Suitable for oily and acne-prone skin types.",
+                label: "HOT",
+                state: "feature",
+                color: "#FF4858",
+                price: 26,
+                discount: 20,
+                rawPrice: 32,
+                rating: 4.6,
+                reviews: 45,
+                brand: "Torriden",
+                instock: 30,
+                skintype: ["Oily", "Combination"],
+                images: ["images/Product17.png"]
+            },
+            {
+                id: 18,
+                category: "Serum",
+                proName: "Centella Repair Serum",
+                description: "Calming serum with centella asiatica to soothe and repair sensitive or irritated skin. Provides hydration and strengthens the skin barrier for improved resilience against environmental stressors.",
+                label: "NEW",
+                state: "feature",
+                color: "#FFC600",
+                price: 27,
+                discount: 15,
+                rawPrice: 32,
+                rating: 4.7,
+                reviews: 40,
+                brand: "Skin1004",
+                instock: 20,
+                skintype: ["Sensitive", "Normal"],
+                images: ["images/Product18.png"]
+            },
+            {
+                id: 19,
+                category: "Sunscreen",
+                proName: "Moisture Lock Sun Essence",
+                description: "Hydrating sun essence with SPF 50+ PA+++ to provide superior UV protection while locking in moisture. The lightweight formula absorbs quickly without leaving a white cast, making it perfect for everyday use.",
+                label: "PRO",
+                state: "feature",
+                color: "#40BFFF",
+                price: 30,
+                discount: 20,
+                rawPrice: 38,
+                rating: 4.8,
+                reviews: 60,
+                brand: "Dr. G",
+                instock: 25,
+                skintype: ["Normal", "Dry", "Sensitive"],
+                images: ["images/Product19.png"]
+            },
+            {
+                id: 20,
+                category: "Moisturizer",
+                proName: "Probiotic Barrier Cream",
+                description: "Nourishing cream infused with probiotics to support a healthy skin microbiome and strengthen the natural barrier. Provides long-lasting hydration and helps improve the overall texture and appearance of the skin.",
+                label: "HOT",
+                state: "feature",
+                color: "#FF4858",
+                price: 34,
+                discount: 25,
+                rawPrice: 45,
+                rating: 4.9,
+                reviews: 70,
+                brand: "Anua",
+                instock: 12,
+                skintype: ["Normal", "Dry"],
+                images: ["images/Product20.png"]
             }
-        ]
-
-
+        ],
 
     }),
     getters: {
@@ -214,31 +391,10 @@ export const useProductStore = defineStore("product", {
             return state.products.filter((product) => product.label === "PRO");
         },
 
-        cartCount: (state) => state.cartCount,
     },
     mutations: {
-        incrementCartCount(state) {
-            state.cartCount++;
-        },
-        decrementCartCount(state) {
-            if (state.cartCount > 0) {
-                state.cartCount--;
-            }
-        },
-        setCartCount(state, count) {
-            state.cartCount = count;
-        },
     },
     actions: {
-        // incrementCartCount({ commit }) {
-        //     commit('incrementCartCount');
-        // },
-        // decrementCartCount({ commit }) {
-        //     commit('decrementCartCount');
-        // },
-        // setCartCount({ commit }, count) {
-        //     commit('setCartCount', count);
-        // }
     },
 });
 

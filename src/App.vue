@@ -82,11 +82,9 @@
             <h3>Information</h3>
             <ul>
               <li><router-link to="/about">About Us</router-link></li>
-              <li><router-link to="/services">Services</router-link></li>
-              <li>
-                <router-link to="/privacy-policy">Privacy Policy</router-link>
-              </li>
-              <li><router-link to="/terms">Terms & Conditions</router-link></li>
+              <li>Services</li>
+              <li>Privacy Policy </li>
+              <li>Terms & Conditions</li>
             </ul>
           </div>
           <div class="social">

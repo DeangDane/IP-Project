@@ -1,5 +1,5 @@
 <template>
-    <ProductGallery />
+    <!-- <ProductGallery /> -->
     <div class="promotions">
         <div class="text">
             PROMOTIONS
